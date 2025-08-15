@@ -1,0 +1,379 @@
+{% extends "base.html" %}
+
+{% block title %}Modifier la Candidature - Administration{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4 admin-layout">
+    <div class="row">
+        <!-- Sidebar Professionnelle -->
+        <nav class="col-md-3 col-lg-2 d-md-block sidebar">
+            <div class="sidebar-sticky pt-3">
+                <div class="admin-header px-3 mb-4">
+                    <div class="d-flex align-items-center">
+                        <div class="admin-avatar me-3">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0 text-white fw-bold">Administration</h6>
+                            <small class="text-white-50">{{ current_user.first_name }} {{ current_user.last_name }}</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <ul class="nav flex-column admin-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('admin_dashboard') }}">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Tableau de bord</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('admin_settings') }}">
+                            <i class="fas fa-cogs"></i>
+                            <span>Paramètres</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('admin_users') }}">
+                            <i class="fas fa-users"></i>
+                            <span>Utilisateurs</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('admin_applications') }}">
+                            <i class="fas fa-briefcase"></i>
+                            <span>Candidatures</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('admin_appointments') }}">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Rendez-vous</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main content -->
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Modifier la Candidature #{{ application.id }}</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group me-2">
+                        <a href="{{ url_for('admin_application_detail', application_id=application.id) }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Retour
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
+                            <i class="fas fa-{{ 'exclamation-triangle' if category == 'error' else 'check-circle' }} me-2"></i>
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card shadow">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-edit me-2"></i>Modifier la Candidature
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <form method="POST">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="position" class="form-label fw-bold">
+                                            <i class="fas fa-briefcase me-2 text-primary"></i>Poste recherché
+                                        </label>
+                                        <input type="text" class="form-control" id="position" name="position" 
+                                               value="{{ application.position }}" required>
+                                    </div>
+                                    
+                                    <div class="col-md-6 mb-3">
+                                        <label for="service_type" class="form-label fw-bold">
+                                            <i class="fas fa-tasks me-2 text-primary"></i>Type de service
+                                        </label>
+                                        <select class="form-select" id="service_type" name="service_type" required>
+                                            <option value="recrutement" {{ 'selected' if application.service_type == 'recrutement' }}>Recrutement</option>
+                                            <option value="coaching" {{ 'selected' if application.service_type == 'coaching' }}>Coaching</option>
+                                            <option value="formation" {{ 'selected' if application.service_type == 'formation' }}>Formation</option>
+                                            <option value="interim" {{ 'selected' if application.service_type == 'interim' }}>Intérim</option>
+                                            <option value="conseil" {{ 'selected' if application.service_type == 'conseil' }}>Conseil en Organisation</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="experience_years" class="form-label fw-bold">
+                                            <i class="fas fa-clock me-2 text-primary"></i>Années d'expérience
+                                        </label>
+                                        <select class="form-select" id="experience_years" name="experience_years" required>
+                                            <option value="0-1" {{ 'selected' if application.experience_years == '0-1' }}>0-1 an</option>
+                                            <option value="1-3" {{ 'selected' if application.experience_years == '1-3' }}>1-3 ans</option>
+                                            <option value="3-5" {{ 'selected' if application.experience_years == '3-5' }}>3-5 ans</option>
+                                            <option value="5-10" {{ 'selected' if application.experience_years == '5-10' }}>5-10 ans</option>
+                                            <option value="10+" {{ 'selected' if application.experience_years == '10+' }}>10+ ans</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="col-md-6 mb-3">
+                                        <label for="salary_expectation" class="form-label fw-bold">
+                                            <i class="fas fa-euro-sign me-2 text-primary"></i>Prétentions salariales
+                                        </label>
+                                        <input type="text" class="form-control" id="salary_expectation" name="salary_expectation" 
+                                               value="{{ application.salary_expectation or '' }}" placeholder="Ex: 35000€/an">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="availability" class="form-label fw-bold">
+                                            <i class="fas fa-calendar-check me-2 text-primary"></i>Disponibilité
+                                        </label>
+                                        <select class="form-select" id="availability" name="availability" required>
+                                            <option value="immediate" {{ 'selected' if application.availability == 'immediate' }}>Immédiate</option>
+                                            <option value="1-2-weeks" {{ 'selected' if application.availability == '1-2-weeks' }}>1-2 semaines</option>
+                                            <option value="1-month" {{ 'selected' if application.availability == '1-month' }}>1 mois</option>
+                                            <option value="3-months" {{ 'selected' if application.availability == '3-months' }}>3 mois</option>
+                                            <option value="flexible" {{ 'selected' if application.availability == 'flexible' }}>Flexible</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="col-md-6 mb-3">
+                                        <label for="status" class="form-label fw-bold">
+                                            <i class="fas fa-info-circle me-2 text-primary"></i>Statut
+                                        </label>
+                                        <select class="form-select" id="status" name="status" required>
+                                            <option value="pending" {{ 'selected' if application.status == 'pending' }}>En attente</option>
+                                            <option value="reviewed" {{ 'selected' if application.status == 'reviewed' }}>En cours d'examen</option>
+                                            <option value="accepted" {{ 'selected' if application.status == 'accepted' }}>Acceptée</option>
+                                            <option value="rejected" {{ 'selected' if application.status == 'rejected' }}>Rejetée</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="cover_letter" class="form-label fw-bold">
+                                        <i class="fas fa-file-alt me-2 text-primary"></i>Lettre de motivation
+                                    </label>
+                                    <textarea class="form-control" id="cover_letter" name="cover_letter" rows="6" 
+                                              placeholder="Lettre de motivation du candidat...">{{ application.cover_letter or '' }}</textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="notes" class="form-label fw-bold">
+                                        <i class="fas fa-sticky-note me-2 text-primary"></i>Notes internes
+                                    </label>
+                                    <textarea class="form-control" id="notes" name="notes" rows="4" 
+                                              placeholder="Notes internes pour l'équipe...">{{ application.notes or '' }}</textarea>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <a href="{{ url_for('admin_application_detail', application_id=application.id) }}" 
+                                       class="btn btn-outline-secondary">
+                                        <i class="fas fa-times me-2"></i>Annuler
+                                    </a>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save me-2"></i>Enregistrer les modifications
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Informations du candidat -->
+                <div class="col-lg-4">
+                    <div class="card shadow">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-user me-2"></i>Informations du Candidat
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            {% if application.applicant %}
+                                <div class="mb-3">
+                                    <h6 class="text-muted">Nom complet</h6>
+                                    <p class="fw-bold">{{ application.applicant.first_name }} {{ application.applicant.last_name }}</p>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <h6 class="text-muted">Email</h6>
+                                    <p>{{ application.applicant.email }}</p>
+                                </div>
+                                
+                                {% if application.applicant.phone %}
+                                <div class="mb-3">
+                                    <h6 class="text-muted">Téléphone</h6>
+                                    <p>{{ application.applicant.phone }}</p>
+                                </div>
+                                {% endif %}
+                                
+                                {% if application.applicant.company %}
+                                <div class="mb-3">
+                                    <h6 class="text-muted">Entreprise</h6>
+                                    <p>{{ application.applicant.company }}</p>
+                                </div>
+                                {% endif %}
+                                
+                                <div class="mb-3">
+                                    <h6 class="text-muted">Date d'inscription</h6>
+                                    <p>{{ application.applicant.created_at.strftime('%d/%m/%Y') }}</p>
+                                </div>
+                            {% else %}
+                                <p class="text-muted">Candidat externe - informations non disponibles</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- CV -->
+                    <div class="card shadow mt-4">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-file-pdf me-2"></i>CV
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            {% if application.google_drive_link %}
+                                <a href="{{ application.google_drive_link }}" target="_blank" class="btn btn-outline-primary w-100 mb-2">
+                                    <i class="fab fa-google-drive me-2"></i>Voir sur Google Drive
+                                </a>
+                            {% elif application.cv_filename %}
+                                <a href="{{ url_for('static', filename='uploads/' + application.cv_filename) }}" target="_blank" class="btn btn-outline-secondary w-100 mb-2">
+                                    <i class="fas fa-file-pdf me-2"></i>Télécharger le CV
+                                </a>
+                            {% else %}
+                                <p class="text-muted">Aucun CV disponible</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<style>
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 48px 0 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.sidebar .nav-link {
+    color: #333;
+}
+
+.sidebar .nav-link.active {
+    color: #007bff;
+    background-color: #f8f9fa;
+}
+
+/* Sidebar Professionnelle */
+.sidebar {
+    position: fixed;
+    top: 80px;
+    bottom: 0;
+    left: 0;
+    width: 250px;
+    z-index: 100;
+    padding: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-header {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin: 0 15px;
+    padding: 15px !important;
+}
+
+.admin-avatar {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.admin-nav .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    padding: 12px 20px;
+    margin: 2px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.admin-nav .nav-link:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.admin-nav .nav-link.active {
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-nav .nav-link i {
+    width: 20px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.admin-layout {
+    min-height: calc(100vh - 300px);
+    flex: 1;
+}
+
+.admin-layout main {
+    margin-left: 250px;
+    margin-bottom: 0;
+    padding-left: 2rem;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: relative;
+        top: auto;
+        height: auto;
+        width: 100% !important;
+        padding: 1rem;
+    }
+    
+    .admin-layout {
+        padding-bottom: 100px !important;
+    }
+    
+    .admin-layout main {
+        margin-left: 0 !important;
+        padding-left: 1rem !important;
+    }
+}
+</style>
+{% endblock %} 

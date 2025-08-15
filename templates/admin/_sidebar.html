@@ -1,0 +1,62 @@
+<!-- Sidebar Professionnelle -->
+<nav class="col-md-3 col-lg-2 d-md-block sidebar">
+    <div class="sidebar-sticky pt-3">
+        <div class="admin-header px-3 mb-4">
+            <div class="d-flex align-items-center">
+                <div class="admin-avatar me-3">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div>
+                    <h6 class="mb-0 text-white fw-bold">Administration</h6>
+                    <small class="text-white-50">{{ current_user.first_name }} {{ current_user.last_name }}</small>
+                </div>
+            </div>
+        </div>
+        
+        <ul class="nav flex-column admin-nav">
+            <li class="nav-item">
+                <a class="nav-link {{ 'active' if request.endpoint == 'admin_dashboard' else '' }}" href="{{ url_for('admin_dashboard') }}">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Tableau de bord</span>
+                </a>
+            </li>
+            {# Route admin_settings not implemented yet #}
+            {# <li class="nav-item">
+                <a class="nav-link {{ 'active' if request.endpoint == 'admin_settings' else '' }}" href="{{ url_for('admin_settings') }}">
+                    <i class="fas fa-cogs"></i>
+                    <span>Paramètres</span>
+                </a>
+            </li> #}
+            <li class="nav-item">
+                <a class="nav-link {{ 'active' if request.endpoint == 'admin_users' else '' }}" href="{{ url_for('admin_users') }}">
+                    <i class="fas fa-users"></i>
+                    <span>Utilisateurs</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ 'active' if request.endpoint == 'admin_applications' else '' }}" href="{{ url_for('admin_applications') }}">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Candidatures</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ 'active' if request.endpoint == 'admin_jobs' else '' }}" href="{{ url_for('admin_jobs') }}">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Offres d'emploi</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ 'active' if request.endpoint == 'admin_appointments' else '' }}" href="{{ url_for('admin_appointments') }}">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Rendez-vous</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="sidebar-footer mt-auto px-3 py-3">
+            <a href="{{ url_for('index') }}" class="btn btn-outline-light btn-sm w-100">
+                <i class="fas fa-external-link-alt me-2"></i>Voir le site
+            </a>
+        </div>
+    </div>
+</nav> 

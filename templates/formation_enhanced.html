@@ -1,0 +1,975 @@
+{% extends "base.html" %}
+
+{% block title %}Formation - MonDRH{% endblock %}
+
+{% block content %}
+<!-- Hero Section Formation -->
+<section class="formation-hero bg-gradient-warning text-white position-relative overflow-hidden">
+    <div class="formation-hero-bg-pattern"></div>
+    <div class="container position-relative">
+        <div class="row align-items-center min-vh-75">
+            <div class="col-lg-6">
+                <div class="formation-hero-content">
+                    <div class="formation-badge mb-4 animate-fade-in">
+                        <span class="badge bg-primary text-white px-4 py-3 fw-bold fs-6">
+                            <i class="fas fa-graduation-cap me-2"></i>Développement des Compétences
+                        </span>
+                    </div>
+                    <h1 class="display-3 fw-bold mb-4 animate-slide-up">
+                        Formation <span class="text-primary">Professionnelle</span>
+                    </h1>
+                    <p class="lead mb-4 fs-5 animate-slide-up-delay">
+                        Formez vos équipes avec nos programmes sur mesure et certifiants. 
+                        Développez les compétences clés pour la réussite de votre organisation.
+                    </p>
+                    
+                    <!-- Statistiques formation -->
+                    <div class="formation-stats mb-5 animate-fade-in-delay">
+                        <div class="row g-3">
+                            <div class="col-4">
+                                <div class="stat-item text-center">
+                                    <h3 class="fw-bold mb-1 text-primary counter" data-target="2000">0</h3>
+                                    <small>Formés</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-item text-center">
+                                    <h3 class="fw-bold mb-1 text-primary counter" data-target="50">0</h3>
+                                    <small>Programmes</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-item text-center">
+                                    <h3 class="fw-bold mb-1 text-primary counter" data-target="98">0</h3>
+                                    <small>% Satisfaction</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex gap-3 flex-wrap animate-fade-in-delay">
+                        <a href="#programs" class="btn btn-primary btn-lg px-5 py-3 fw-bold">
+                            <i class="fas fa-rocket me-2"></i>Découvrir nos formations
+                        </a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg px-5 py-3 fw-bold">
+                            <i class="fas fa-calendar me-2"></i>Demander un devis
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="formation-hero-visual text-center animate-slide-up-delay">
+                    <div class="formation-icon-container">
+                        <div class="formation-main-icon">
+                            <i class="fas fa-graduation-cap display-1 text-primary"></i>
+                        </div>
+                        <div class="floating-formation-elements">
+                            <div class="floating-element element-1">
+                                <i class="fas fa-book text-success"></i>
+                            </div>
+                            <div class="floating-element element-2">
+                                <i class="fas fa-laptop text-warning"></i>
+                            </div>
+                            <div class="floating-element element-3">
+                                <i class="fas fa-certificate text-danger"></i>
+                            </div>
+                            <div class="floating-element element-4">
+                                <i class="fas fa-users text-info"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pourquoi la Formation -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Pourquoi Investir dans la Formation ?</h2>
+                <p class="lead text-muted">
+                    La formation est un levier stratégique pour la croissance de votre entreprise
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="why-formation-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-formation-icon mb-4">
+                        <div class="icon-circle bg-warning text-white">
+                            <i class="fas fa-chart-line fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Performance Améliorée</h5>
+                    <p class="text-muted mb-0">
+                        Augmentez la productivité et l'efficacité de vos équipes
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="why-formation-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-formation-icon mb-4">
+                        <div class="icon-circle bg-primary text-white">
+                            <i class="fas fa-users fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Rétention des Talents</h5>
+                    <p class="text-muted mb-0">
+                        Fidélisez vos collaborateurs en investissant dans leur développement
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="why-formation-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-formation-icon mb-4">
+                        <div class="icon-circle bg-success text-white">
+                            <i class="fas fa-lightbulb fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Innovation</h5>
+                    <p class="text-muted mb-0">
+                        Stimulez la créativité et l'innovation dans votre organisation
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="why-formation-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-formation-icon mb-4">
+                        <div class="icon-circle bg-danger text-white">
+                            <i class="fas fa-trophy fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Avantage Concurrentiel</h5>
+                    <p class="text-muted mb-0">
+                        Distinguez-vous de la concurrence avec des équipes qualifiées
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nos Programmes de Formation -->
+<section id="programs" class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Nos Programmes de Formation</h2>
+                <p class="lead text-muted">
+                    Des formations sur mesure adaptées à vos enjeux business
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="formation-program-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="program-header mb-4">
+                        <div class="program-icon mb-3">
+                            <div class="icon-circle-lg bg-primary text-white">
+                                <i class="fas fa-user-tie fs-2"></i>
+                            </div>
+                        </div>
+                        <h4 class="fw-bold mb-2">Management & Leadership</h4>
+                        <p class="text-muted mb-3">Développez vos compétences managériales</p>
+                        <div class="program-duration mb-3">
+                            <span class="badge bg-primary px-3 py-2">3-5 jours</span>
+                            <small class="text-muted d-block mt-2">Formation intensive</small>
+                        </div>
+                    </div>
+                    <div class="program-features mb-4">
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Leadership situationnel
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Gestion d'équipe
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Communication efficace
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Résolution de conflits
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Certification incluse
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="btn btn-primary w-100 py-3 fw-bold">
+                        <i class="fas fa-info-circle me-2"></i>Demander un devis
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="formation-program-card p-4 bg-white rounded-4 shadow-sm h-100 border border-warning">
+                    <div class="program-badge mb-3">
+                        <span class="badge bg-warning text-dark px-3 py-2 fw-bold">
+                            <i class="fas fa-star me-1"></i>Le Plus Demandé
+                        </span>
+                    </div>
+                    <div class="program-header mb-4">
+                        <div class="program-icon mb-3">
+                            <div class="icon-circle-lg bg-warning text-white">
+                                <i class="fas fa-tools fs-2"></i>
+                            </div>
+                        </div>
+                        <h4 class="fw-bold mb-2">Outils RH & Digital</h4>
+                        <p class="text-muted mb-3">Maîtrisez les outils RH modernes</p>
+                        <div class="program-duration mb-3">
+                            <span class="badge bg-warning text-dark px-3 py-2">2-3 jours</span>
+                            <small class="text-muted d-block mt-2">Formation pratique</small>
+                        </div>
+                    </div>
+                    <div class="program-features mb-4">
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>SIRH et ATS
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Réseaux sociaux RH
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Analytics RH
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>E-learning
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Support post-formation
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="btn btn-warning w-100 py-3 fw-bold">
+                        <i class="fas fa-info-circle me-2"></i>Demander un devis
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="formation-program-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="program-header mb-4">
+                        <div class="program-icon mb-3">
+                            <div class="icon-circle-lg bg-success text-white">
+                                <i class="fas fa-balance-scale fs-2"></i>
+                            </div>
+                        </div>
+                        <h4 class="fw-bold mb-2">Droit Social & RH</h4>
+                        <p class="text-muted mb-3">Connaissez vos obligations légales</p>
+                        <div class="program-duration mb-3">
+                            <span class="badge bg-success px-3 py-2">1-2 jours</span>
+                            <small class="text-muted d-block mt-2">Formation théorique</small>
+                        </div>
+                    </div>
+                    <div class="program-features mb-4">
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Code du travail
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Conventions collectives
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Gestion des conflits
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Audit social
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Mise à jour annuelle
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="btn btn-success w-100 py-3 fw-bold">
+                        <i class="fas fa-info-circle me-2"></i>Demander un devis
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Méthodologie de Formation -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Notre Méthodologie</h2>
+                <p class="lead text-muted">
+                    Une approche pédagogique innovante pour des résultats optimaux
+                </p>
+            </div>
+        </div>
+        
+        <div class="formation-methodology">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="methodology-step text-center">
+                        <div class="methodology-icon mb-4">
+                            <div class="icon-circle-lg bg-primary text-white position-relative">
+                                <i class="fas fa-search fs-3"></i>
+                                <span class="step-number">1</span>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-3">Analyse des Besoins</h5>
+                        <p class="text-muted">
+                            Diagnostic approfondi de vos besoins en formation
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="methodology-step text-center">
+                        <div class="methodology-icon mb-4">
+                            <div class="icon-circle-lg bg-warning text-white position-relative">
+                                <i class="fas fa-pencil-ruler fs-3"></i>
+                                <span class="step-number">2</span>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-3">Conception Sur Mesure</h5>
+                        <p class="text-muted">
+                            Élaboration d'un programme adapté à vos objectifs
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="methodology-step text-center">
+                        <div class="methodology-icon mb-4">
+                            <div class="icon-circle-lg bg-success text-white position-relative">
+                                <i class="fas fa-chalkboard-teacher fs-3"></i>
+                                <span class="step-number">3</span>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-3">Formation Interactive</h5>
+                        <p class="text-muted">
+                            Apprentissage actif avec cas pratiques et exercices
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="methodology-step text-center">
+                        <div class="methodology-icon mb-4">
+                            <div class="icon-circle-lg bg-danger text-white position-relative">
+                                <i class="fas fa-chart-bar fs-3"></i>
+                                <span class="step-number">4</span>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-3">Évaluation & Suivi</h5>
+                        <p class="text-muted">
+                            Mesure des acquis et accompagnement post-formation
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Témoignages Formation -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Ils ont Transformé leurs Équipes</h2>
+                <p class="lead text-muted">
+                    Découvrez les témoignages de nos clients qui ont investi dans la formation
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="formation-testimonial-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="testimonial-content mb-4">
+                        <p class="fst-italic text-muted">
+                            "La formation management a transformé nos équipes. Nos managers sont plus efficaces et la communication s'est considérablement améliorée."
+                        </p>
+                    </div>
+                    <div class="testimonial-author d-flex align-items-center">
+                        <div class="author-avatar me-3">
+                            <div class="avatar-circle bg-primary text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Mariama Sow</h6>
+                            <small class="text-muted">DRH, Banque Régionale</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="formation-testimonial-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="testimonial-content mb-4">
+                        <p class="fst-italic text-muted">
+                            "L'équipe RH maîtrise maintenant parfaitement les outils digitaux. Nous avons automatisé 60% de nos processus de recrutement."
+                        </p>
+                    </div>
+                    <div class="testimonial-author d-flex align-items-center">
+                        <div class="author-avatar me-3">
+                            <div class="avatar-circle bg-warning text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Ousmane Diop</h6>
+                            <small class="text-muted">CEO, TechStart Africa</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="formation-testimonial-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="testimonial-content mb-4">
+                        <p class="fst-italic text-muted">
+                            "La formation droit social nous a permis d'éviter de nombreux litiges et d'optimiser nos procédures RH. Un investissement rentable !"
+                        </p>
+                    </div>
+                    <div class="testimonial-author d-flex align-items-center">
+                        <div class="author-avatar me-3">
+                            <div class="avatar-circle bg-success text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Fatou Ndiaye</h6>
+                            <small class="text-muted">Directrice Juridique, Groupe Industriel</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nos Formateurs -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Nos Formateurs Experts</h2>
+                <p class="lead text-muted">
+                    Une équipe d'experts qualifiés pour vous accompagner vers l'excellence
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="trainer-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="trainer-avatar mb-4">
+                        <div class="avatar-circle-lg bg-primary text-white mx-auto">
+                            <i class="fas fa-chalkboard-teacher fs-1"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-2">Dr. Aminata Diallo</h5>
+                    <p class="text-muted mb-3">Formatrice Senior en Management</p>
+                    <div class="trainer-specialties mb-3">
+                        <span class="badge bg-primary me-1">Leadership</span>
+                        <span class="badge bg-warning me-1">Management</span>
+                        <span class="badge bg-success">Communication</span>
+                    </div>
+                    <p class="text-muted small">
+                        20 ans d'expérience en formation et développement des compétences managériales
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="trainer-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="trainer-avatar mb-4">
+                        <div class="avatar-circle-lg bg-warning text-white mx-auto">
+                            <i class="fas fa-laptop-code fs-1"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-2">Mamadou Fall</h5>
+                    <p class="text-muted mb-3">Expert Digital RH</p>
+                    <div class="trainer-specialties mb-3">
+                        <span class="badge bg-primary me-1">SIRH</span>
+                        <span class="badge bg-warning me-1">Digital</span>
+                        <span class="badge bg-success">Innovation</span>
+                    </div>
+                    <p class="text-muted small">
+                        Spécialiste en transformation digitale RH et outils innovants
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="trainer-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="trainer-avatar mb-4">
+                        <div class="avatar-circle-lg bg-success text-white mx-auto">
+                            <i class="fas fa-balance-scale fs-1"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-2">Aissatou Ba</h5>
+                    <p class="text-muted mb-3">Avocate Spécialisée en Droit Social</p>
+                    <div class="trainer-specialties mb-3">
+                        <span class="badge bg-primary me-1">Droit Social</span>
+                        <span class="badge bg-warning me-1">Conventions</span>
+                        <span class="badge bg-success">Audit</span>
+                    </div>
+                    <p class="text-muted small">
+                        Experte en droit du travail et accompagnement juridique des entreprises
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-gradient-warning text-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-4">Prêt à Former vos Équipes ?</h2>
+                <p class="lead mb-4">
+                    Rejoignez les 2000+ professionnels qui ont transformé leurs compétences grâce à nos formations.
+                </p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="#contact" class="btn btn-primary btn-lg px-5 py-3 fw-bold">
+                        <i class="fas fa-calendar me-2"></i>Demander un devis gratuit
+                    </a>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-light btn-lg px-5 py-3 fw-bold">
+                        <i class="fas fa-home me-2"></i>Retour à l'accueil
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Parlons de vos Besoins en Formation</h2>
+                <p class="lead text-muted">
+                    Contactez-nous pour discuter de vos objectifs de formation et obtenir un devis personnalisé
+                </p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="contact-card bg-white rounded-4 shadow-lg border-0">
+                    <div class="card-body p-5">
+                        <div class="row g-4">
+                            <div class="col-lg-6">
+                                <div class="contact-info">
+                                    <h4 class="fw-bold mb-4">Informations de Contact</h4>
+                                    <div class="contact-item d-flex align-items-center mb-3">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-phone text-warning"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0 fw-bold">+221 787 962 422</p>
+                                            <small class="text-muted">Lun-Ven 9h-18h</small>
+                                        </div>
+                                    </div>
+                                    <div class="contact-item d-flex align-items-center mb-3">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-envelope text-warning"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0 fw-bold">formation@mondrh.com</p>
+                                            <small class="text-muted">Réponse sous 24h</small>
+                                        </div>
+                                    </div>
+                                    <div class="contact-item d-flex align-items-center mb-3">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-map-marker-alt text-warning"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0 fw-bold">Dakar, Sénégal</p>
+                                            <small class="text-muted">Formations sur site et en ligne</small>
+                                        </div>
+                                    </div>
+                                    <div class="contact-item d-flex align-items-center mb-3">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-clock text-warning"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0 fw-bold">Devis gratuit</p>
+                                            <small class="text-muted">Étude personnalisée de vos besoins</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <form id="formationContactForm" class="contact-form">
+                                    <div class="row g-3">
+                                        <div class="col-12">
+                                            <label for="firstName" class="form-label fw-bold">Prénom *</label>
+                                            <input type="text" class="form-control form-control-lg" id="firstName" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="lastName" class="form-label fw-bold">Nom *</label>
+                                            <input type="text" class="form-control form-control-lg" id="lastName" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="email" class="form-label fw-bold">Email *</label>
+                                            <input type="email" class="form-control form-control-lg" id="email" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="phone" class="form-label fw-bold">Téléphone</label>
+                                            <input type="tel" class="form-control form-control-lg" id="phone">
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="company" class="form-label fw-bold">Entreprise *</label>
+                                            <input type="text" class="form-control form-control-lg" id="company" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="formationType" class="form-label fw-bold">Type de formation</label>
+                                            <select class="form-select form-select-lg" id="formationType">
+                                                <option value="">Sélectionnez un type</option>
+                                                <option value="management">Management & Leadership</option>
+                                                <option value="digital">Outils RH & Digital</option>
+                                                <option value="droit">Droit Social & RH</option>
+                                                <option value="sur-mesure">Formation sur mesure</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="participants" class="form-label fw-bold">Nombre de participants</label>
+                                            <input type="number" class="form-control form-control-lg" id="participants" min="1" max="50">
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="needs" class="form-label fw-bold">Vos besoins *</label>
+                                            <textarea class="form-control form-control-lg" id="needs" rows="4" placeholder="Décrivez vos objectifs de formation et vos besoins spécifiques..."></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-warning btn-lg w-100 py-3 fw-bold">
+                                                <i class="fas fa-paper-plane me-2"></i>Demander un devis gratuit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Formation Hero Styles */
+.formation-hero {
+    position: relative;
+    background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+}
+
+.formation-hero-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    animation: float 6s ease-in-out infinite;
+}
+
+.formation-badge {
+    animation: slideInLeft 1s ease-out;
+}
+
+.formation-title {
+    animation: slideInLeft 1s ease-out 0.2s both;
+}
+
+.formation-description {
+    animation: slideInLeft 1s ease-out 0.4s both;
+}
+
+.formation-stats {
+    animation: slideInLeft 1s ease-out 0.6s both;
+}
+
+.formation-hero-visual {
+    animation: slideInRight 1s ease-out 0.8s both;
+}
+
+.formation-icon-container {
+    position: relative;
+    display: inline-block;
+}
+
+.formation-main-icon {
+    font-size: 8rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.floating-formation-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.floating-element {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.element-1 {
+    top: 15%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.element-2 {
+    top: 45%;
+    right: 15%;
+    animation-delay: 1s;
+}
+
+.element-3 {
+    bottom: 25%;
+    left: 20%;
+    animation-delay: 2s;
+}
+
+.element-4 {
+    top: 70%;
+    right: 25%;
+    animation-delay: 1.5s;
+}
+
+/* Why Formation Cards */
+.why-formation-card {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.why-formation-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--bs-warning);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+/* Formation Program Cards */
+.formation-program-card {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.formation-program-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+}
+
+.program-badge {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.program-duration {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 2px dashed var(--bs-primary);
+}
+
+/* Methodology Steps */
+.methodology-step {
+    transition: all 0.3s ease;
+}
+
+.methodology-step:hover {
+    transform: translateY(-5px);
+}
+
+.methodology-icon {
+    transition: all 0.3s ease;
+}
+
+.methodology-step:hover .methodology-icon {
+    transform: scale(1.1);
+}
+
+/* Formation Testimonial Cards */
+.formation-testimonial-card {
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--bs-warning);
+}
+
+.formation-testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+/* Trainer Cards */
+.trainer-card {
+    transition: all 0.3s ease;
+}
+
+.trainer-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+}
+
+.trainer-avatar {
+    transition: all 0.3s ease;
+}
+
+.trainer-card:hover .trainer-avatar {
+    transform: scale(1.05);
+}
+
+.avatar-circle-lg {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trainer-specialties .badge {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+}
+
+/* Contact Card */
+.contact-card {
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(var(--bs-warning-rgb), 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Utility Classes */
+.animate-fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+.animate-slide-up {
+    animation: slideInLeft 1s ease-out;
+}
+
+.animate-slide-up-delay {
+    animation: slideInLeft 1s ease-out 0.2s both;
+}
+
+.animate-fade-in-delay {
+    animation: fadeIn 1s ease-out 0.4s both;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .formation-main-icon {
+        font-size: 5rem;
+    }
+    
+    .floating-element {
+        font-size: 1rem;
+    }
+    
+    .icon-circle-lg {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .avatar-circle-lg {
+        width: 100px;
+        height: 100px;
+    }
+}
+</style>
+
+<script>
+// Animation des compteurs
+document.addEventListener('DOMContentLoaded', function() {
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200;
+
+    const animateCounter = (counter) => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = target / speed;
+
+        if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(() => animateCounter(counter), 1);
+        } else {
+            counter.innerText = target;
+        }
+    };
+
+    // Observer pour déclencher l'animation au scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+
+    counters.forEach(counter => {
+        observer.observe(counter);
+    });
+});
+</script>
+{% endblock %} 

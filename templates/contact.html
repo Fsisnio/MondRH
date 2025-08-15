@@ -1,0 +1,722 @@
+{% extends "base.html" %}
+
+{% block title %}Contact - MonDRH{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="contact-hero bg-gradient-primary text-white position-relative overflow-hidden">
+    <div class="hero-bg-pattern"></div>
+    <div class="container position-relative">
+        <div class="row align-items-center min-vh-50">
+            <div class="col-lg-8 mx-auto text-center">
+                <div class="hero-content">
+                    <div class="hero-badge mb-3">
+                        <span class="badge bg-warning text-dark px-3 py-2 fw-bold">
+                            <i class="fas fa-envelope me-2"></i>Contactez-nous
+                        </span>
+                    </div>
+                    <h1 class="display-3 fw-bold mb-4 hero-title">
+                        Parlons de vos <span class="text-warning gradient-text">projets</span>
+                    </h1>
+                    <p class="lead mb-4 hero-subtitle">
+                        Notre équipe d'experts RH est là pour vous accompagner dans tous vos projets. 
+                        Contactez-nous pour un accompagnement personnalisé.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section py-5">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Informations de contact -->
+            <div class="col-lg-4">
+                <div class="contact-info-card bg-white rounded-4 shadow-lg p-4 h-100">
+                    <div class="text-center mb-4">
+                        <div class="contact-icon-large mb-3">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3 class="fw-bold text-primary">Informations de Contact</h3>
+                        <p class="text-muted">Nous sommes disponibles pour vous accompagner</p>
+                    </div>
+                    
+                    <div class="contact-items">
+                        <div class="contact-item" data-aos="fade-up" data-aos-delay="100">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-content">
+                                <h6 class="fw-bold mb-1">Adresse</h6>
+                                <p class="mb-0">123 Avenue des Affaires<br>75001 Paris, France</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item" data-aos="fade-up" data-aos-delay="200">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-content">
+                                <h6 class="fw-bold mb-1">Téléphone</h6>
+                                <p class="mb-0">
+                                    <a href="tel:+33123456789" class="text-decoration-none">+33 1 23 45 67 89</a>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item" data-aos="fade-up" data-aos-delay="300">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-content">
+                                <h6 class="fw-bold mb-1">Email</h6>
+                                <p class="mb-0">
+                                    <a href="mailto:contact@monderh.fr" class="text-decoration-none">contact@monderh.fr</a>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item" data-aos="fade-up" data-aos-delay="400">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-content">
+                                <h6 class="fw-bold mb-1">Horaires</h6>
+                                <p class="mb-0">Lun-Ven: 9h-18h<br>Sam: 9h-12h</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links mt-4 text-center">
+                        <h6 class="fw-bold mb-3">Suivez-nous</h6>
+                        <div class="d-flex justify-content-center gap-3">
+                            <a href="#" class="social-link" title="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="social-link" title="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link" title="Facebook">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="#" class="social-link" title="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Formulaire de contact -->
+            <div class="col-lg-8">
+                <div class="contact-form-card bg-white rounded-4 shadow-lg p-5">
+                    <div class="text-center mb-4">
+                        <h3 class="fw-bold text-primary">Envoyez-nous un message</h3>
+                        <p class="text-muted">Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais</p>
+                    </div>
+                    
+                    <form id="contactForm" class="contact-form">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="firstName" class="form-label fw-bold">
+                                        <i class="fas fa-user me-2"></i>Prénom *
+                                    </label>
+                                    <input type="text" class="form-control form-control-lg" id="firstName" name="firstName" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="lastName" class="form-label fw-bold">
+                                        <i class="fas fa-user me-2"></i>Nom *
+                                    </label>
+                                    <input type="text" class="form-control form-control-lg" id="lastName" name="lastName" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email" class="form-label fw-bold">
+                                        <i class="fas fa-envelope me-2"></i>Email *
+                                    </label>
+                                    <input type="email" class="form-control form-control-lg" id="email" name="email" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="phone" class="form-label fw-bold">
+                                        <i class="fas fa-phone me-2"></i>Téléphone
+                                    </label>
+                                    <input type="tel" class="form-control form-control-lg" id="phone" name="phone">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="company" class="form-label fw-bold">
+                                        <i class="fas fa-building me-2"></i>Entreprise
+                                    </label>
+                                    <input type="text" class="form-control form-control-lg" id="company" name="company">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="service" class="form-label fw-bold">
+                                        <i class="fas fa-briefcase me-2"></i>Service d'intérêt *
+                                    </label>
+                                    <select class="form-select form-select-lg" id="service" name="service" required>
+                                        <option value="">Choisissez un service</option>
+                                        <option value="recrutement">Recrutement</option>
+                                        <option value="formation">Formation</option>
+                                        <option value="conseil">Conseil RH</option>
+                                        <option value="interim">Intérim</option>
+                                        <option value="coaching">Coaching</option>
+                                        <option value="autre">Autre</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="subject" class="form-label fw-bold">
+                                        <i class="fas fa-tag me-2"></i>Sujet *
+                                    </label>
+                                    <input type="text" class="form-control form-control-lg" id="subject" name="subject" required>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="message" class="form-label fw-bold">
+                                        <i class="fas fa-comment me-2"></i>Message *
+                                    </label>
+                                    <textarea class="form-control form-control-lg" id="message" name="message" rows="6" required placeholder="Décrivez votre projet ou votre demande..."></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter">
+                                    <label class="form-check-label" for="newsletter">
+                                        Je souhaite recevoir la newsletter MonDRH
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-lg w-100 py-3 fw-bold contact-btn">
+                                    <i class="fas fa-paper-plane me-2"></i>
+                                    <span class="btn-text">Envoyer le message</span>
+                                    <span class="btn-loading d-none">
+                                        <i class="fas fa-spinner fa-spin me-2"></i>Envoi en cours...
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="fw-bold mb-3">Besoin d'une réponse rapide ?</h3>
+                <p class="lead mb-0">Appelez-nous directement au <strong>+33 1 23 45 67 89</strong> ou prenez rendez-vous en ligne.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a href="{{ url_for('appointments') }}" class="btn btn-warning btn-lg px-4 py-3 fw-bold">
+                    <i class="fas fa-calendar-plus me-2"></i>Prendre RDV
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map Section -->
+<section class="map-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="map-card bg-white rounded-4 shadow-lg p-4">
+                    <h4 class="fw-bold text-center mb-4">
+                        <i class="fas fa-map-marked-alt me-2"></i>Notre localisation
+                    </h4>
+                    <div class="map-container">
+                        <div class="map-placeholder">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <p>Carte interactive</p>
+                            <small>123 Avenue des Affaires, 75001 Paris</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Styles CSS -->
+<style>
+/* Hero Section */
+.contact-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+.hero-title {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #ffc107, #fd7e14);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Contact Info Card */
+.contact-info-card {
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.contact-info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.contact-icon-large {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    margin: 0 auto;
+}
+
+.contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.contact-content h6 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.contact-content p {
+    color: #6c757d;
+    margin: 0;
+}
+
+.contact-content a {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.contact-content a:hover {
+    color: #764ba2;
+}
+
+/* Social Links */
+.social-links {
+    border-top: 1px solid #e9ecef;
+    padding-top: 1.5rem;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    color: white;
+}
+
+/* Contact Form Card */
+.contact-form-card {
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.contact-form-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.form-control, .form-select {
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+.form-control-lg, .form-select-lg {
+    padding: 1rem 1.25rem;
+    font-size: 1.1rem;
+}
+
+/* Contact Button */
+.contact-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.contact-btn:active {
+    transform: translateY(0);
+}
+
+.btn-loading {
+    display: none;
+}
+
+.contact-btn.loading .btn-text {
+    display: none;
+}
+
+.contact-btn.loading .btn-loading {
+    display: inline;
+}
+
+/* CTA Section */
+.cta-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+/* Map Section */
+.map-card {
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.map-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.map-container {
+    height: 300px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #dee2e6;
+}
+
+.map-placeholder {
+    text-align: center;
+    color: #6c757d;
+}
+
+.map-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #667eea;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+[data-aos] {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Success Message */
+.success-message {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: none;
+}
+
+/* Error Message */
+.error-message {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact-hero {
+        min-height: 40vh;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .contact-form-card {
+        padding: 2rem;
+    }
+    
+    .contact-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .contact-icon {
+        margin: 0 auto;
+    }
+}
+
+/* Loading Animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.fa-spinner {
+    animation: spin 1s linear infinite;
+}
+</style>
+
+<!-- Scripts JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = contactForm.querySelector('.contact-btn');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnLoading = submitBtn.querySelector('.btn-loading');
+    
+    // Animation au scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    document.querySelectorAll('[data-aos]').forEach(el => {
+        observer.observe(el);
+    });
+    
+    // Gestion du formulaire
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Validation du formulaire
+        const formData = new FormData(contactForm);
+        const data = {};
+        
+        for (let [key, value] of formData.entries()) {
+            data[key] = value;
+        }
+        
+        // Validation des champs requis
+        const requiredFields = ['firstName', 'lastName', 'email', 'service', 'subject', 'message'];
+        let isValid = true;
+        
+        requiredFields.forEach(field => {
+            const input = contactForm.querySelector(`[name="${field}"]`);
+            if (!input.value.trim()) {
+                input.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                input.classList.remove('is-invalid');
+            }
+        });
+        
+        if (!isValid) {
+            showMessage('Veuillez remplir tous les champs obligatoires.', 'error');
+            return;
+        }
+        
+        // Validation email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(data.email)) {
+            contactForm.querySelector('[name="email"]').classList.add('is-invalid');
+            showMessage('Veuillez entrer une adresse email valide.', 'error');
+            return;
+        }
+        
+        // Affichage du loading
+        submitBtn.classList.add('loading');
+        submitBtn.disabled = true;
+        
+        // Envoi de la requête
+        fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                showMessage(data.message, 'success');
+                contactForm.reset();
+            } else {
+                showMessage('Une erreur est survenue. Veuillez réessayer.', 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showMessage('Une erreur est survenue. Veuillez réessayer.', 'error');
+        })
+        .finally(() => {
+            // Masquage du loading
+            submitBtn.classList.remove('loading');
+            submitBtn.disabled = false;
+        });
+    });
+    
+    // Fonction d'affichage des messages
+    function showMessage(message, type) {
+        // Supprimer les messages existants
+        const existingMessages = document.querySelectorAll('.success-message, .error-message');
+        existingMessages.forEach(msg => msg.remove());
+        
+        // Créer le nouveau message
+        const messageDiv = document.createElement('div');
+        messageDiv.className = type === 'success' ? 'success-message' : 'error-message';
+        messageDiv.innerHTML = `
+            <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'} me-2"></i>
+            ${message}
+        `;
+        
+        // Insérer le message avant le formulaire
+        contactForm.parentNode.insertBefore(messageDiv, contactForm);
+        messageDiv.style.display = 'block';
+        
+        // Auto-suppression après 5 secondes
+        setTimeout(() => {
+            messageDiv.style.display = 'none';
+        }, 5000);
+    }
+    
+    // Animation des cartes au survol
+    const cards = document.querySelectorAll('.contact-info-card, .contact-form-card, .map-card');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+    
+    // Animation des liens sociaux
+    const socialLinks = document.querySelectorAll('.social-link');
+    socialLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px) scale(1.1)';
+        });
+        
+        link.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+});
+</script>
+{% endblock %} 

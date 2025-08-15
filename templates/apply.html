@@ -1,0 +1,623 @@
+{% extends "base.html" %}
+
+{% block title %}Candidature en ligne - MonDRH{% endblock %}
+
+{% block content %}
+<!-- Hero Section avec Animation -->
+<section class="apply-hero bg-gradient-primary text-white position-relative overflow-hidden">
+    <div class="apply-hero-bg-pattern"></div>
+    <div class="container position-relative">
+        <div class="row align-items-center py-5">
+            <div class="col-lg-6">
+                <div class="apply-hero-content">
+                    <div class="apply-badge mb-4">
+                        <span class="badge bg-warning text-dark px-3 py-2 fw-bold">
+                            <i class="fas fa-rocket me-2"></i>Carrière en Évolution
+                        </span>
+                    </div>
+                    <h1 class="display-4 fw-bold mb-4 apply-title">
+                        <i class="fas fa-file-alt me-3"></i>Candidature en ligne
+                    </h1>
+                    <p class="lead mb-4 apply-description">
+                        Rejoignez l'équipe MonDRH et participez à la transformation du secteur RH en Afrique. 
+                        Postulez facilement et démarrez votre nouvelle aventure professionnelle.
+                    </p>
+                    <div class="apply-stats mb-4">
+                        <div class="row g-3">
+                            <div class="col-4">
+                                <div class="stat-item text-center">
+                                    <h4 class="fw-bold mb-1 text-warning">500+</h4>
+                                    <small>Candidats placés</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-item text-center">
+                                    <h4 class="fw-bold mb-1 text-warning">98%</h4>
+                                    <small>Satisfaction</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-item text-center">
+                                    <h4 class="fw-bold mb-1 text-warning">24h</h4>
+                                    <small>Réponse</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="apply-hero-visual text-center">
+                    <div class="apply-icon-container">
+                        <div class="apply-main-icon">
+                            <i class="fas fa-user-tie display-1 text-warning"></i>
+                        </div>
+                        <div class="floating-elements">
+                            <div class="floating-element element-1">
+                                <i class="fas fa-check-circle text-success"></i>
+                            </div>
+                            <div class="floating-element element-2">
+                                <i class="fas fa-chart-line text-primary"></i>
+                            </div>
+                            <div class="floating-element element-3">
+                                <i class="fas fa-graduation-cap text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Application Form -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="apply-card bg-white rounded-4 shadow-lg border-0">
+                    <div class="card-body p-5">
+                        <div class="text-center mb-5">
+                            <h2 class="display-5 fw-bold mb-3">Formulaire de candidature</h2>
+                            <p class="lead text-muted">
+                                Remplissez ce formulaire et nous vous recontacterons rapidement
+                            </p>
+                        </div>
+                        
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
+                                        <i class="fas fa-{{ 'exclamation-triangle' if category == 'error' else 'check-circle' }} me-2"></i>
+                                        {{ message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+
+                        <form method="POST" enctype="multipart/form-data" class="apply-form">
+                            {{ form.hidden_tag() }}
+                            
+                            <!-- Personal Information -->
+                            <div class="form-section mb-5">
+                                <div class="section-header mb-4">
+                                    <div class="section-icon">
+                                        <i class="fas fa-user text-primary"></i>
+                                    </div>
+                                    <h4 class="fw-bold text-primary mb-0">Informations personnelles</h4>
+                                </div>
+                                
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            {{ form.position.label(class="form-label fw-bold") }}
+                                            {{ form.position(class="form-control form-control-lg", placeholder="Ex: Développeur Full Stack") }}
+                                            {% if form.position.errors %}
+                                                <div class="text-danger small mt-1">
+                                                    {% for error in form.position.errors %}
+                                                        <i class="fas fa-exclamation-circle me-1"></i>{{ error }}
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            {{ form.service_type.label(class="form-label fw-bold") }}
+                                            {{ form.service_type(class="form-select form-select-lg") }}
+                                            {% if form.service_type.errors %}
+                                                <div class="text-danger small mt-1">
+                                                    {% for error in form.service_type.errors %}
+                                                        <i class="fas fa-exclamation-circle me-1"></i>{{ error }}
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            {{ form.experience_years.label(class="form-label fw-bold") }}
+                                            {{ form.experience_years(class="form-select form-select-lg") }}
+                                            {% if form.experience_years.errors %}
+                                                <div class="text-danger small mt-1">
+                                                    {% for error in form.experience_years.errors %}
+                                                        <i class="fas fa-exclamation-circle me-1"></i>{{ error }}
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            {{ form.availability.label(class="form-label fw-bold") }}
+                                            {{ form.availability(class="form-select form-select-lg") }}
+                                            {% if form.availability.errors %}
+                                                <div class="text-danger small mt-1">
+                                                    {% for error in form.availability.errors %}
+                                                        <i class="fas fa-exclamation-circle me-1"></i>{{ error }}
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            {{ form.salary_expectation.label(class="form-label fw-bold") }}
+                                            {{ form.salary_expectation(class="form-control form-control-lg", placeholder="Ex: 45k€ - 55k€") }}
+                                            {% if form.salary_expectation.errors %}
+                                                <div class="text-danger small mt-1">
+                                                    {% for error in form.salary_expectation.errors %}
+                                                        <i class="fas fa-exclamation-circle me-1"></i>{{ error }}
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            <!-- Documents -->
+                            <div class="form-section mb-5">
+                                <div class="section-header mb-4">
+                                    <div class="section-icon">
+                                        <i class="fas fa-file-upload text-success"></i>
+                                    </div>
+                                    <h4 class="fw-bold text-success mb-0">Documents</h4>
+                                </div>
+                                
+                                <div class="row g-4">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            {{ form.cv_file.label(class="form-label fw-bold") }}
+                                            <div class="file-upload-container">
+                                                <div class="input-group input-group-lg">
+                                                    {{ form.cv_file(class="form-control", accept=".pdf,.doc,.docx", id="cvFile") }}
+                                                    <span class="input-group-text">
+                                                        <i class="fas fa-file-pdf text-danger"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="file-info mt-2">
+                                                    <small class="text-muted">
+                                                        <i class="fas fa-info-circle me-1"></i>
+                                                        Formats acceptés : PDF, DOC, DOCX (Max 16MB)
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            {% if form.cv_file.errors %}
+                                                <div class="text-danger small mt-1">
+                                                    {% for error in form.cv_file.errors %}
+                                                        <i class="fas fa-exclamation-circle me-1"></i>{{ error }}
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cover Letter -->
+                            <div class="form-section mb-5">
+                                <div class="section-header mb-4">
+                                    <div class="section-icon">
+                                        <i class="fas fa-envelope text-warning"></i>
+                                    </div>
+                                    <h4 class="fw-bold text-warning mb-0">Lettre de motivation</h4>
+                                </div>
+                                
+                                <div class="row g-4">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            {{ form.cover_letter.label(class="form-label fw-bold") }}
+                                            {{ form.cover_letter(class="form-control form-control-lg", rows="6", placeholder="Présentez-vous et expliquez votre motivation pour rejoindre MonDRH...") }}
+                                            {% if form.cover_letter.errors %}
+                                                <div class="text-danger small mt-1">
+                                                    {% for error in form.cover_letter.errors %}
+                                                        <i class="fas fa-exclamation-circle me-1"></i>{{ error }}
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Submit -->
+                            <div class="form-section">
+                                <div class="d-grid">
+                                    {{ form.submit(class="btn btn-primary btn-lg py-3 fw-bold", value="Envoyer ma candidature") }}
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Information -->
+                        <div class="mt-5">
+                            <div class="info-card bg-primary text-white rounded-4 p-4">
+                                <div class="d-flex align-items-start">
+                                    <div class="info-icon me-3">
+                                        <i class="fas fa-info-circle fs-2"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="fw-bold mb-3">Informations importantes</h5>
+                                        <ul class="mb-0">
+                                            <li>Votre candidature sera traitée dans les plus brefs délais</li>
+                                            <li>Vous recevrez une confirmation par email</li>
+                                            <li>Nos consultants vous contacteront pour la suite</li>
+                                            <li>Vos données sont protégées selon le RGPD</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Pourquoi rejoindre MonDRH ?</h2>
+                <p class="lead text-muted">
+                    Découvrez les avantages de faire partie de notre équipe
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="why-join-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-join-icon mb-4">
+                        <div class="icon-circle bg-primary text-white">
+                            <i class="fas fa-users fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Équipe expérimentée</h5>
+                    <p class="text-muted mb-0">
+                        Plus de 10 ans d'expérience dans le secteur RH et plus de 500 entreprises accompagnées.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="why-join-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-join-icon mb-4">
+                        <div class="icon-circle bg-success text-white">
+                            <i class="fas fa-chart-line fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Croissance garantie</h5>
+                    <p class="text-muted mb-0">
+                        Accompagnement personnalisé pour votre développement professionnel et votre carrière.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="why-join-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-join-icon mb-4">
+                        <div class="icon-circle bg-warning text-white">
+                            <i class="fas fa-handshake fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Relations durables</h5>
+                    <p class="text-muted mb-0">
+                        Nous construisons des relations de confiance avec nos candidats et clients.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Apply Hero Styles */
+.apply-hero {
+    position: relative;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.apply-hero-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    animation: float 6s ease-in-out infinite;
+}
+
+.apply-badge {
+    animation: slideInLeft 1s ease-out;
+}
+
+.apply-title {
+    animation: slideInLeft 1s ease-out 0.2s both;
+}
+
+.apply-description {
+    animation: slideInLeft 1s ease-out 0.4s both;
+}
+
+.apply-stats {
+    animation: slideInLeft 1s ease-out 0.6s both;
+}
+
+.apply-hero-visual {
+    animation: slideInRight 1s ease-out 0.8s both;
+}
+
+.apply-icon-container {
+    position: relative;
+    display: inline-block;
+}
+
+.apply-main-icon {
+    font-size: 8rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.floating-element {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.element-1 {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.element-2 {
+    top: 60%;
+    right: 10%;
+    animation-delay: 1s;
+}
+
+.element-3 {
+    bottom: 20%;
+    left: 50%;
+    animation-delay: 2s;
+}
+
+/* Apply Card */
+.apply-card {
+    transition: all 0.3s ease;
+}
+
+.apply-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+}
+
+/* Form Sections */
+.form-section {
+    animation: slideInUp 0.8s ease-out;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f8f9fa;
+}
+
+.section-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(var(--bs-primary-rgb), 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-control-lg, .form-select-lg {
+    border-radius: 0.75rem;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.form-control-lg:focus, .form-select-lg:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.2rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+/* File Upload */
+.file-upload-container {
+    position: relative;
+}
+
+.file-info {
+    padding: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 0.5rem;
+}
+
+
+
+/* Info Card */
+.info-card {
+    transition: all 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+.info-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Why Join Cards */
+.why-join-card {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.why-join-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--bs-primary);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+.icon-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .apply-main-icon {
+        font-size: 5rem;
+    }
+    
+    .floating-element {
+        font-size: 1rem;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .section-icon {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+
+
+// File upload preview
+document.getElementById('cvFile').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const fileSize = file.size / 1024 / 1024; // MB
+        if (fileSize > 16) {
+            alert('Le fichier est trop volumineux. Taille maximale : 16MB');
+            this.value = '';
+        }
+    }
+});
+
+// Form validation feedback
+document.querySelectorAll('.form-control, .form-select').forEach(input => {
+    input.addEventListener('blur', function() {
+        if (this.value.trim() !== '') {
+            this.classList.add('is-valid');
+            this.classList.remove('is-invalid');
+        } else if (this.hasAttribute('required')) {
+            this.classList.add('is-invalid');
+            this.classList.remove('is-valid');
+        }
+    });
+});
+</script>
+{% endblock %} 

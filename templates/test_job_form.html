@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Formulaire Offre d'Emploi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">
+                            <i class="fas fa-briefcase me-2"></i>Test - Création d'Offre d'Emploi
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="/test/jobs/form" id="testJobForm">
+                            <!-- Formulaire simplifié sans CSRF -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="title" class="form-label fw-bold">Titre du poste *</label>
+                                        <input type="text" class="form-control" id="title" name="title" required 
+                                               placeholder="Ex: Développeur Full Stack Python">
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="company" class="form-label fw-bold">Entreprise *</label>
+                                        <input type="text" class="form-control" id="company" name="company" required 
+                                               placeholder="Ex: MondeRH">
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="location" class="form-label fw-bold">Localisation *</label>
+                                        <input type="text" class="form-control" id="location" name="location" required 
+                                               placeholder="Ex: Paris, France">
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="contract_type" class="form-label fw-bold">Type de contrat *</label>
+                                        <select class="form-select" id="contract_type" name="contract_type" required>
+                                            <option value="">Choisir...</option>
+                                            <option value="CDI">CDI</option>
+                                            <option value="CDD">CDD</option>
+                                            <option value="Stage">Stage</option>
+                                            <option value="Alternance">Alternance</option>
+                                            <option value="Freelance">Freelance</option>
+                                            <option value="Intérim">Intérim</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="experience_level" class="form-label fw-bold">Niveau d'expérience *</label>
+                                        <select class="form-select" id="experience_level" name="experience_level" required>
+                                            <option value="">Choisir...</option>
+                                            <option value="Junior">Junior (0-2 ans)</option>
+                                            <option value="Confirmé">Confirmé (3-5 ans)</option>
+                                            <option value="Senior">Senior (6-10 ans)</option>
+                                            <option value="Expert">Expert (10+ ans)</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="salary_range" class="form-label">Fourchette salariale</label>
+                                        <input type="text" class="form-control" id="salary_range" name="salary_range" 
+                                               placeholder="Ex: 35000-45000€">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="description" class="form-label fw-bold">Description du poste *</label>
+                                <textarea class="form-control" id="description" name="description" rows="4" required
+                                          placeholder="Décrivez les missions et responsabilités du poste..."></textarea>
+                                <div class="form-text">Minimum 50 caractères</div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="requirements" class="form-label fw-bold">Profil recherché *</label>
+                                <textarea class="form-control" id="requirements" name="requirements" rows="4" required
+                                          placeholder="Compétences, qualités et expériences requises..."></textarea>
+                                <div class="form-text">Minimum 30 caractères</div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="benefits" class="form-label">Avantages et bénéfices</label>
+                                <textarea class="form-control" id="benefits" name="benefits" rows="3"
+                                          placeholder="Avantages sociaux, environnement de travail..."></textarea>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="department" class="form-label">Département</label>
+                                <input type="text" class="form-control" id="department" name="department" 
+                                       placeholder="Ex: Développement">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="is_active" name="is_active" checked>
+                                    <label class="form-check-label fw-bold" for="is_active">Offre active</label>
+                                </div>
+                            </div>
+                            
+                            <!-- Boutons d'action -->
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" onclick="resetForm()">
+                                    <i class="fas fa-times me-2"></i>Annuler
+                                </button>
+                                <button type="submit" class="btn btn-primary" id="submitBtn">
+                                    <i class="fas fa-save me-2"></i>Publier l'offre
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Zone de débogage -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Debug Info</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="debugInfo"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Formulaire de test chargé');
+            
+            const form = document.getElementById('testJobForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const debugInfo = document.getElementById('debugInfo');
+            
+            // Fonction de débogage
+            function debugLog(message) {
+                console.log(message);
+                debugInfo.innerHTML += '<div class="text-muted">' + new Date().toLocaleTimeString() + ': ' + message + '</div>';
+            }
+            
+            debugLog('Formulaire initialisé');
+            debugLog('Bouton submit trouvé: ' + (submitBtn ? 'OUI' : 'NON'));
+            
+            // Validation du formulaire
+            form.addEventListener('submit', function(event) {
+                debugLog('Tentative de soumission du formulaire');
+                
+                // Validation des champs requis
+                const requiredFields = ['title', 'company', 'location', 'contract_type', 'experience_level', 'description', 'requirements'];
+                let isValid = true;
+                
+                for (let fieldName of requiredFields) {
+                    const field = document.getElementById(fieldName);
+                    if (!field.value.trim()) {
+                        debugLog('Erreur: Champ ' + fieldName + ' vide');
+                        field.classList.add('is-invalid');
+                        isValid = false;
+                    } else {
+                        field.classList.remove('is-invalid');
+                    }
+                }
+                
+                // Validation de la longueur
+                const description = document.getElementById('description');
+                const requirements = document.getElementById('requirements');
+                
+                if (description.value.length < 50) {
+                    debugLog('Erreur: Description trop courte (' + description.value.length + ' caractères)');
+                    description.classList.add('is-invalid');
+                    isValid = false;
+                }
+                
+                if (requirements.value.length < 30) {
+                    debugLog('Erreur: Requirements trop courts (' + requirements.value.length + ' caractères)');
+                    requirements.classList.add('is-invalid');
+                    isValid = false;
+                }
+                
+                if (!isValid) {
+                    event.preventDefault();
+                    debugLog('Soumission bloquée - validation échouée');
+                    return false;
+                }
+                
+                debugLog('Validation réussie - soumission autorisée');
+                
+                // Désactiver le bouton
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Publication en cours...';
+                
+                debugLog('Bouton désactivé, soumission en cours...');
+            });
+            
+            // Test de clic sur le bouton
+            submitBtn.addEventListener('click', function(event) {
+                debugLog('Clic sur le bouton submit détecté');
+            });
+        });
+        
+        function resetForm() {
+            document.getElementById('testJobForm').reset();
+            document.getElementById('debugInfo').innerHTML = '';
+        }
+    </script>
+</body>
+</html> 

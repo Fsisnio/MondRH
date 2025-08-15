@@ -1,0 +1,490 @@
+{% extends "base.html" %}
+
+{% block title %}{{ job.title }} - {{ job.company }} - MonDRH{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="py-5 bg-gradient-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <div class="job-hero-content animate-slide-up">
+                    <h1 class="display-4 fw-bold mb-3">{{ job.title }}</h1>
+                    <p class="lead mb-4">{{ job.company }} • {{ job.location }}</p>
+                    
+                    <div class="job-badges mb-4">
+                        <span class="badge bg-light text-dark me-2">{{ job.contract_type }}</span>
+                        <span class="badge bg-light text-dark me-2">{{ job.experience_level }}</span>
+                        {% if job.salary_range %}
+                            <span class="badge bg-light text-dark">{{ job.salary_range }}</span>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="job-actions">
+                        <a href="#apply" class="btn btn-warning btn-lg me-3">
+                            <i class="fas fa-paper-plane me-2"></i>Postuler maintenant
+                        </a>
+                        <a href="{{ url_for('apply') }}" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-user-plus me-2"></i>Candidature spontanée
+                        </a>
+                    </div>
+                    
+                    {% if current_user.is_authenticated and current_user.is_admin() %}
+                    <div class="mt-4 pt-3 border-top border-light">
+                        <div class="d-flex gap-2">
+                            <span class="badge bg-light text-dark">
+                                <i class="fas fa-shield-alt me-1"></i>Mode administrateur
+                            </span>
+                            {% if job.is_active %}
+                                <span class="badge bg-success">Active</span>
+                            {% else %}
+                                <span class="badge bg-secondary">Inactive</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="job-hero-visual text-center animate-slide-up-delay">
+                    <div class="job-icon-container">
+                        <div class="job-main-icon">
+                            <i class="fas fa-briefcase display-1 text-warning"></i>
+                        </div>
+                        <div class="floating-job-elements">
+                            <div class="floating-element element-1">
+                                <i class="fas fa-users text-primary"></i>
+                            </div>
+                            <div class="floating-element element-2">
+                                <i class="fas fa-chart-line text-success"></i>
+                            </div>
+                            <div class="floating-element element-3">
+                                <i class="fas fa-rocket text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Job Details Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="job-details">
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-header bg-white border-0">
+                            <h3 class="fw-bold text-primary mb-0">
+                                <i class="fas fa-info-circle me-2"></i>Description du poste
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="job-description">
+                                {{ job.description|safe }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-header bg-white border-0">
+                            <h3 class="fw-bold text-primary mb-0">
+                                <i class="fas fa-list-check me-2"></i>Profil recherché
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="job-requirements">
+                                {{ job.requirements|safe }}
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if job.benefits %}
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-header bg-white border-0">
+                            <h3 class="fw-bold text-primary mb-0">
+                                <i class="fas fa-gift me-2"></i>Avantages
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="job-benefits">
+                                {{ job.benefits|safe }}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+                <!-- Bouton de candidature -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body text-center">
+                        <h5 class="fw-bold mb-3">Intéressé par cette offre ?</h5>
+                        <p class="text-muted mb-4">Postulez dès maintenant et rejoignez notre équipe !</p>
+                        <a href="#apply" class="btn btn-primary btn-lg w-100 mb-3">
+                            <i class="fas fa-paper-plane me-2"></i>Postuler maintenant
+                        </a>
+                        <a href="{{ url_for('apply') }}" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-user-plus me-2"></i>Candidature spontanée
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Offres similaires -->
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0">
+                        <h5 class="fw-bold text-primary mb-0">
+                            <i class="fas fa-briefcase me-2"></i>Offres Similaires
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="similar-jobs">
+                            {% if similar_jobs %}
+                                {% for similar_job in similar_jobs %}
+                                <div class="similar-job-item mb-3">
+                                    <h6 class="fw-bold mb-1">
+                                        <a href="{{ url_for('job_detail', job_id=similar_job.id) }}" class="text-decoration-none">
+                                            {{ similar_job.title }}
+                                        </a>
+                                    </h6>
+                                    <p class="text-muted small mb-1">{{ similar_job.company }}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">{{ similar_job.location }}</small>
+                                        <span class="badge bg-primary">{{ similar_job.contract_type }}</span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                <p class="text-muted small">Aucune offre similaire pour le moment.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section de candidature -->
+<section id="apply" class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold mb-3">Postuler à cette offre</h2>
+                    <p class="lead text-muted">
+                        Remplissez le formulaire ci-dessous pour postuler au poste de <strong>{{ job.title }}</strong> chez <strong>{{ job.company }}</strong>.
+                    </p>
+                </div>
+                
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-5">
+                        <form method="POST" action="{{ url_for('apply') }}" enctype="multipart/form-data">
+                            <input type="hidden" name="job_id" value="{{ job.id }}">
+                            
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <label for="first_name" class="form-label fw-bold">Prénom *</label>
+                                    <input type="text" class="form-control form-control-lg" id="first_name" name="first_name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="last_name" class="form-label fw-bold">Nom *</label>
+                                    <input type="text" class="form-control form-control-lg" id="last_name" name="last_name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label fw-bold">Email *</label>
+                                    <input type="email" class="form-control form-control-lg" id="email" name="email" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label fw-bold">Téléphone *</label>
+                                    <input type="tel" class="form-control form-control-lg" id="phone" name="phone" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="cv_file" class="form-label fw-bold">CV (PDF) *</label>
+                                    <input type="file" class="form-control form-control-lg" id="cv_file" name="cv_file" accept=".pdf" required>
+                                    <div class="form-text">Format PDF uniquement, taille max 5MB</div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="cover_letter" class="form-label fw-bold">Lettre de motivation</label>
+                                    <textarea class="form-control form-control-lg" id="cover_letter" name="cover_letter" rows="5" 
+                                              placeholder="Présentez-vous et expliquez pourquoi vous souhaitez rejoindre cette entreprise..."></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="terms" name="terms" required>
+                                        <label class="form-check-label" for="terms">
+                                            J'accepte que mes données soient traitées dans le cadre de ma candidature *
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary btn-lg w-100 py-3 fw-bold">
+                                        <i class="fas fa-paper-plane me-2"></i>Envoyer ma candidature
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Job Hero Styles */
+.job-hero {
+    position: relative;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.job-hero-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    animation: float 6s ease-in-out infinite;
+}
+
+.job-badge {
+    animation: slideInLeft 1s ease-out;
+}
+
+.job-title {
+    animation: slideInLeft 1s ease-out 0.2s both;
+}
+
+.job-description {
+    animation: slideInLeft 1s ease-out 0.4s both;
+}
+
+.job-info {
+    animation: slideInLeft 1s ease-out 0.6s both;
+}
+
+.job-hero-visual {
+    animation: slideInRight 1s ease-out 0.8s both;
+}
+
+.job-icon-container {
+    position: relative;
+    display: inline-block;
+}
+
+.job-main-icon {
+    font-size: 6rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.floating-job-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.floating-element {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.element-1 {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.element-2 {
+    top: 60%;
+    right: 10%;
+    animation-delay: 1s;
+}
+
+.element-3 {
+    bottom: 20%;
+    left: 50%;
+    animation-delay: 2s;
+}
+
+/* Job Info */
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.info-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(var(--bs-primary-rgb), 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.similar-job-item {
+    padding: 1rem;
+    border: 1px solid #e9ecef;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.similar-job-item:hover {
+    border-color: var(--bs-primary);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.similar-job-item a {
+    color: var(--bs-dark);
+    transition: color 0.3s ease;
+}
+
+.similar-job-item:hover a {
+    color: var(--bs-primary);
+}
+
+/* Job Description */
+.job-description, .job-requirements, .job-benefits {
+    line-height: 1.8;
+    color: #495057;
+}
+
+.job-description p, .job-requirements p, .job-benefits p {
+    margin-bottom: 1rem;
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Utility Classes */
+.animate-fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+.animate-slide-up {
+    animation: slideInLeft 1s ease-out;
+}
+
+.animate-slide-up-delay {
+    animation: slideInLeft 1s ease-out 0.2s both;
+}
+
+.animate-fade-in-delay {
+    animation: fadeIn 1s ease-out 0.4s both;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .job-main-icon {
+        font-size: 4rem;
+    }
+    
+    .floating-element {
+        font-size: 1rem;
+    }
+    
+    .info-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .info-icon {
+        margin-bottom: 0.5rem;
+    }
+}
+</style>
+
+<script>
+// Smooth scroll pour les ancres
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Animation des éléments au scroll
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Observer les cartes
+document.querySelectorAll('.card').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(card);
+});
+</script>
+{% endblock %} 

@@ -1,0 +1,797 @@
+{% extends "base.html" %}
+
+{% block title %}Recrutement - MonDRH{% endblock %}
+
+{% block content %}
+<!-- Hero Section Amélioré -->
+<section class="recruitment-hero bg-gradient-primary text-white position-relative overflow-hidden">
+    <div class="hero-bg-pattern"></div>
+    <div class="container position-relative">
+        <div class="row align-items-center min-vh-75">
+            <div class="col-lg-6">
+                <div class="hero-content">
+                    <div class="service-badge mb-4 animate-fade-in">
+                        <span class="badge bg-warning text-dark px-4 py-3 fw-bold fs-6">
+                            <i class="fas fa-crown me-2"></i>Service Premium
+                        </span>
+                    </div>
+                    <h1 class="display-3 fw-bold mb-4 animate-slide-up">
+                        Recrutement de <span class="text-warning">Talents</span>
+                    </h1>
+                    <p class="lead mb-4 fs-5 animate-slide-up-delay">
+                        Trouvez les meilleurs talents pour votre entreprise avec notre expertise en recrutement. 
+                        Nous vous accompagnons de l'analyse des besoins à l'intégration des nouveaux collaborateurs.
+                    </p>
+                    
+                    <!-- Statistiques animées -->
+                    <div class="stats-grid mb-5 animate-fade-in-delay">
+                        <div class="row g-3">
+                            <div class="col-4">
+                                <div class="stat-card text-center p-3 bg-white bg-opacity-10 rounded-4">
+                                    <div class="stat-number fw-bold fs-2 text-warning" data-target="98">0</div>
+                                    <div class="stat-label text-white-50">% Satisfaction</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-card text-center p-3 bg-white bg-opacity-10 rounded-4">
+                                    <div class="stat-number fw-bold fs-2 text-warning" data-target="500">0</div>
+                                    <div class="stat-label text-white-50">+ Projets</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-card text-center p-3 bg-white bg-opacity-10 rounded-4">
+                                    <div class="stat-number fw-bold fs-2 text-warning" data-target="24">0</div>
+                                    <div class="stat-label text-white-50">h Réponse</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-buttons d-flex gap-3 flex-wrap animate-slide-up-delay-2">
+                        <a href="#contact" class="btn btn-warning btn-lg px-5 py-3 fw-bold shadow-lg">
+                            <i class="fas fa-rocket me-2"></i>Démarrer un recrutement
+                        </a>
+                        <a href="#process" class="btn btn-outline-light btn-lg px-5 py-3 fw-bold">
+                            <i class="fas fa-play me-2"></i>Découvrir notre processus
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hero-visual text-center">
+                    <div class="recruitment-illustration">
+                        <div class="main-illustration">
+                            <div class="illustration-container">
+                                <div class="floating-card card-1">
+                                    <i class="fas fa-user-tie text-primary"></i>
+                                    <span class="card-text">Candidat</span>
+                                </div>
+                                <div class="floating-card card-2">
+                                    <i class="fas fa-building text-success"></i>
+                                    <span class="card-text">Entreprise</span>
+                                </div>
+                                <div class="floating-card card-3">
+                                    <i class="fas fa-handshake text-warning"></i>
+                                    <span class="card-text">Match</span>
+                                </div>
+                                <div class="central-icon">
+                                    <i class="fas fa-users-cog display-1 text-warning"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Avantages MonDRH -->
+<section class="advantages-section py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Pourquoi Choisir MonDRH ?</h2>
+                <p class="lead text-muted">
+                    Une expertise africaine reconnue pour des résultats exceptionnels
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="advantage-card text-center p-4 bg-white rounded-4 shadow-sm h-100 border-0">
+                    <div class="advantage-icon mb-4">
+                        <div class="icon-circle bg-gradient-primary text-white">
+                            <i class="fas fa-globe-africa fs-1"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Expertise Africaine</h5>
+                    <p class="text-muted mb-0">
+                        25 ans d'expérience sur le continent africain avec une connaissance approfondie des marchés locaux
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="advantage-card text-center p-4 bg-white rounded-4 shadow-sm h-100 border-0">
+                    <div class="advantage-icon mb-4">
+                        <div class="icon-circle bg-gradient-success text-white">
+                            <i class="fas fa-handshake fs-1"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Accompagnement Sur Mesure</h5>
+                    <p class="text-muted mb-0">
+                        Solutions personnalisées adaptées à votre culture d'entreprise et vos objectifs spécifiques
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="advantage-card text-center p-4 bg-white rounded-4 shadow-sm h-100 border-0">
+                    <div class="advantage-icon mb-4">
+                        <div class="icon-circle bg-gradient-warning text-white">
+                            <i class="fas fa-clock fs-1"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Réactivité Garantie</h5>
+                    <p class="text-muted mb-0">
+                        Réponse sous 24h et délais de recrutement optimisés pour répondre à vos urgences
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="advantage-card text-center p-4 bg-white rounded-4 shadow-sm h-100 border-0">
+                    <div class="advantage-icon mb-4">
+                        <div class="icon-circle bg-gradient-danger text-white">
+                            <i class="fas fa-trophy fs-1"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Résultats Exceptionnels</h5>
+                    <p class="text-muted mb-0">
+                        98% de satisfaction client et un taux de rétention des candidats de 95%
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nos Services de Recrutement -->
+<section class="services-section py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Nos Services de Recrutement</h2>
+                <p class="lead text-muted">
+                    Une approche complète pour trouver les meilleurs talents
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="service-card p-4 bg-white rounded-4 shadow-sm border-start border-4 border-primary h-100">
+                    <div class="d-flex align-items-start">
+                        <div class="service-icon me-4">
+                            <div class="icon-circle-lg bg-primary text-white">
+                                <i class="fas fa-search fs-3"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-3">Analyse des Besoins</h5>
+                            <p class="text-muted mb-3">
+                                Étude approfondie de votre entreprise, de votre culture et de vos besoins spécifiques pour définir le profil idéal.
+                            </p>
+                            <ul class="list-unstyled text-muted">
+                                <li><i class="fas fa-check text-success me-2"></i>Analyse de la culture d'entreprise</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Définition du profil de poste</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Étude du marché</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="service-card p-4 bg-white rounded-4 shadow-sm border-start border-4 border-success h-100">
+                    <div class="d-flex align-items-start">
+                        <div class="service-icon me-4">
+                            <div class="icon-circle-lg bg-success text-white">
+                                <i class="fas fa-users fs-3"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-3">Sourcing & Présélection</h5>
+                            <p class="text-muted mb-3">
+                                Recherche active de candidats qualifiés et présélection rigoureuse pour vous présenter les meilleurs profils.
+                            </p>
+                            <ul class="list-unstyled text-muted">
+                                <li><i class="fas fa-check text-success me-2"></i>Recherche multi-canal</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Présélection technique</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Évaluation comportementale</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="service-card p-4 bg-white rounded-4 shadow-sm border-start border-4 border-warning h-100">
+                    <div class="d-flex align-items-start">
+                        <div class="service-icon me-4">
+                            <div class="icon-circle-lg bg-warning text-white">
+                                <i class="fas fa-comments fs-3"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-3">Entretiens & Évaluation</h5>
+                            <p class="text-muted mb-3">
+                                Conduite d'entretiens structurés et évaluation approfondie des compétences techniques et soft skills.
+                            </p>
+                            <ul class="list-unstyled text-muted">
+                                <li><i class="fas fa-check text-success me-2"></i>Entretiens structurés</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Tests de compétences</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Évaluation culturelle</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="service-card p-4 bg-white rounded-4 shadow-sm border-start border-4 border-info h-100">
+                    <div class="d-flex align-items-start">
+                        <div class="service-icon me-4">
+                            <div class="icon-circle-lg bg-info text-white">
+                                <i class="fas fa-handshake fs-3"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-3">Accompagnement & Intégration</h5>
+                            <p class="text-muted mb-3">
+                                Support dans la prise de décision et accompagnement pour une intégration réussie du nouveau collaborateur.
+                            </p>
+                            <ul class="list-unstyled text-muted">
+                                <li><i class="fas fa-check text-success me-2"></i>Présentation des candidats</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Négociation salariale</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Suivi post-recrutement</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Processus de Recrutement -->
+<section id="process" class="process-section py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Notre Processus de Recrutement</h2>
+                <p class="lead text-muted">
+                    Une méthodologie éprouvée en 6 étapes pour des résultats optimaux
+                </p>
+            </div>
+        </div>
+        
+        <div class="process-timeline">
+            <div class="row g-4">
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="process-step text-center">
+                        <div class="process-icon mb-3">
+                            <div class="icon-circle bg-primary text-white">
+                                <i class="fas fa-clipboard-list fs-2"></i>
+                            </div>
+                        </div>
+                        <h6 class="fw-bold mb-2">1. Analyse</h6>
+                        <p class="text-muted small">Étude des besoins et définition du profil</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="process-step text-center">
+                        <div class="process-icon mb-3">
+                            <div class="icon-circle bg-success text-white">
+                                <i class="fas fa-search fs-2"></i>
+                            </div>
+                        </div>
+                        <h6 class="fw-bold mb-2">2. Sourcing</h6>
+                        <p class="text-muted small">Recherche active de candidats</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="process-step text-center">
+                        <div class="process-icon mb-3">
+                            <div class="icon-circle bg-warning text-white">
+                                <i class="fas fa-filter fs-2"></i>
+                            </div>
+                        </div>
+                        <h6 class="fw-bold mb-2">3. Présélection</h6>
+                        <p class="text-muted small">Évaluation et filtrage des profils</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="process-step text-center">
+                        <div class="process-icon mb-3">
+                            <div class="icon-circle bg-info text-white">
+                                <i class="fas fa-comments fs-2"></i>
+                            </div>
+                        </div>
+                        <h6 class="fw-bold mb-2">4. Entretiens</h6>
+                        <p class="text-muted small">Évaluation approfondie</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="process-step text-center">
+                        <div class="process-icon mb-3">
+                            <div class="icon-circle bg-danger text-white">
+                                <i class="fas fa-user-check fs-2"></i>
+                            </div>
+                        </div>
+                        <h6 class="fw-bold mb-2">5. Sélection</h6>
+                        <p class="text-muted small">Présentation des meilleurs candidats</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="process-step text-center">
+                        <div class="process-icon mb-3">
+                            <div class="icon-circle bg-dark text-white">
+                                <i class="fas fa-rocket fs-2"></i>
+                            </div>
+                        </div>
+                        <h6 class="fw-bold mb-2">6. Intégration</h6>
+                        <p class="text-muted small">Accompagnement post-recrutement</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Témoignages Clients -->
+<section class="testimonials-section py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Ce que disent nos clients</h2>
+                <p class="lead text-muted">
+                    Des entreprises qui nous font confiance
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="testimonial-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="testimonial-content mb-4">
+                        <p class="fst-italic text-muted">
+                            "MonDRH nous a aidés à recruter des talents exceptionnels qui s'intègrent parfaitement à notre culture d'entreprise. Leur expertise du marché africain est un vrai plus."
+                        </p>
+                    </div>
+                    <div class="testimonial-author d-flex align-items-center">
+                        <div class="author-avatar me-3">
+                            <div class="avatar-circle bg-primary text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Sarah Koné</h6>
+                            <p class="text-muted mb-0">DRH, Tech Solutions Africa</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="testimonial-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="testimonial-content mb-4">
+                        <p class="fst-italic text-muted">
+                            "Un service de recrutement professionnel et réactif. MonDRH comprend nos besoins et nous propose des candidats de qualité. Je recommande vivement !"
+                        </p>
+                    </div>
+                    <div class="testimonial-author d-flex align-items-center">
+                        <div class="author-avatar me-3">
+                            <div class="avatar-circle bg-success text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Moussa Diallo</h6>
+                            <p class="text-muted mb-0">Directeur Général, FinTech Benin</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="testimonial-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="testimonial-content mb-4">
+                        <p class="fst-italic text-muted">
+                            "Grâce à MonDRH, nous avons pu recruter des profils senior en seulement 3 semaines. Leur réseau et leur expertise sont impressionnants."
+                        </p>
+                    </div>
+                    <div class="testimonial-author d-flex align-items-center">
+                        <div class="author-avatar me-3">
+                            <div class="avatar-circle bg-warning text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Fatou Sall</h6>
+                            <p class="text-muted mb-0">CEO, Innovation Hub Senegal</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="contact-card bg-white rounded-4 shadow-lg p-5">
+                    <div class="text-center mb-5">
+                        <h2 class="display-5 fw-bold mb-3">Prêt à Recruter ?</h2>
+                        <p class="lead text-muted">
+                            Contactez-nous pour discuter de vos besoins en recrutement
+                        </p>
+                    </div>
+                    
+                    <form id="contactForm" class="contact-form">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label for="firstName" class="form-label fw-bold">Prénom *</label>
+                                <input type="text" class="form-control form-control-lg" id="firstName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lastName" class="form-label fw-bold">Nom *</label>
+                                <input type="text" class="form-control form-control-lg" id="lastName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label fw-bold">Email *</label>
+                                <input type="email" class="form-control form-control-lg" id="email" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label fw-bold">Téléphone</label>
+                                <input type="tel" class="form-control form-control-lg" id="phone">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="company" class="form-label fw-bold">Entreprise *</label>
+                                <input type="text" class="form-control form-control-lg" id="company" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="position" class="form-label fw-bold">Poste à pourvoir *</label>
+                                <input type="text" class="form-control form-control-lg" id="position" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="message" class="form-label fw-bold">Détails du projet *</label>
+                                <textarea class="form-control form-control-lg" id="message" rows="4" 
+                                          placeholder="Décrivez vos besoins en recrutement, le profil recherché, les compétences requises..."></textarea>
+                            </div>
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-primary btn-lg px-5 py-3 fw-bold">
+                                    <i class="fas fa-paper-plane me-2"></i>Envoyer ma demande
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Hero Section */
+.recruitment-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+}
+
+.hero-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.min-vh-75 {
+    min-height: 75vh;
+}
+
+/* Animations */
+.animate-fade-in {
+    animation: fadeIn 1s ease-in;
+}
+
+.animate-slide-up {
+    animation: slideUp 1s ease-out;
+}
+
+.animate-slide-up-delay {
+    animation: slideUp 1s ease-out 0.3s both;
+}
+
+.animate-slide-up-delay-2 {
+    animation: slideUp 1s ease-out 0.6s both;
+}
+
+.animate-fade-in-delay {
+    animation: fadeIn 1s ease-in 0.9s both;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { 
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stats Animation */
+.stat-number {
+    transition: all 0.5s ease;
+}
+
+/* Floating Cards */
+.recruitment-illustration {
+    position: relative;
+    height: 400px;
+}
+
+.illustration-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.central-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.floating-card {
+    position: absolute;
+    background: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: float 3s ease-in-out infinite;
+}
+
+.floating-card i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-1 {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.card-2 {
+    top: 60%;
+    right: 10%;
+    animation-delay: 1s;
+}
+
+.card-3 {
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: 2s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Cards */
+.advantage-card, .service-card, .testimonial-card {
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.advantage-card:hover, .service-card:hover, .testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1) !important;
+}
+
+/* Icons */
+.icon-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.icon-circle-lg {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Gradients */
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.bg-gradient-success {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.bg-gradient-warning {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.bg-gradient-danger {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+}
+
+/* Process Timeline */
+.process-timeline {
+    position: relative;
+}
+
+.process-step {
+    transition: all 0.3s ease;
+}
+
+.process-step:hover {
+    transform: scale(1.05);
+}
+
+/* Contact Form */
+.contact-card {
+    border: none;
+}
+
+.form-control-lg {
+    border-radius: 0.75rem;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.form-control-lg:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .display-3 {
+        font-size: 2.5rem;
+    }
+    
+    .floating-card {
+        display: none;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+    }
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Animation des statistiques
+function animateStats() {
+    const stats = document.querySelectorAll('.stat-number');
+    stats.forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-target'));
+        const increment = target / 50;
+        let current = 0;
+        
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            stat.textContent = Math.floor(current) + (target === 24 ? 'h' : target === 500 ? '+' : '%');
+        }, 30);
+    });
+}
+
+// Animation au scroll
+function animateOnScroll() {
+    const elements = document.querySelectorAll('.advantage-card, .service-card, .testimonial-card');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    });
+    
+    elements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.6s ease';
+        observer.observe(el);
+    });
+}
+
+// Initialisation
+document.addEventListener('DOMContentLoaded', function() {
+    animateStats();
+    animateOnScroll();
+    
+    // Gestion du formulaire
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulation d'envoi
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Envoi en cours...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                submitBtn.innerHTML = '<i class="fas fa-check me-2"></i>Message envoyé !';
+                submitBtn.classList.remove('btn-primary');
+                submitBtn.classList.add('btn-success');
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('btn-success');
+                    submitBtn.classList.add('btn-primary');
+                    contactForm.reset();
+                }, 3000);
+            }, 2000);
+        });
+    }
+});
+</script>
+{% endblock %} 

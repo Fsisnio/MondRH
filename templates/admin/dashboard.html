@@ -1,0 +1,1456 @@
+{% extends "base.html" %}
+
+{% block title %}Administration - Tableau de bord{% endblock %}
+
+{% block content %}
+<div class="admin-container">
+    <!-- Sidebar Améliorée -->
+    <nav class="admin-sidebar">
+        <div class="sidebar-header">
+            <div class="admin-profile">
+                <div class="admin-avatar">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                <div class="admin-info">
+                    <h6 class="admin-name">{{ current_user.first_name }} {{ current_user.last_name }}</h6>
+                    <span class="admin-role">Administrateur</span>
+                        </div>
+                    </div>
+                </div>
+                
+        <div class="sidebar-menu">
+            <div class="menu-section">
+                <h6 class="menu-title">Gestion</h6>
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a href="{{ url_for('admin_users') }}" class="menu-link">
+                            <i class="fas fa-users"></i>
+                            <span>Utilisateurs</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ url_for('admin_applications') }}" class="menu-link">
+                            <i class="fas fa-briefcase"></i>
+                            <span>Candidatures</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="menu-section">
+                <h6 class="menu-title">Actions rapides</h6>
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a href="{{ url_for('apply') }}" class="menu-link">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Nouvelle candidature</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ url_for('appointments') }}" class="menu-link">
+                            <i class="fas fa-calendar-plus"></i>
+                            <span>Prendre RDV</span>
+                        </a>
+                    </li>
+                </ul>
+                </div>
+        </div>
+                
+        <div class="sidebar-footer">
+            <a href="{{ url_for('index') }}" class="view-site-btn">
+                <i class="fas fa-external-link-alt"></i>
+                <span>Voir le site</span>
+                    </a>
+            </div>
+        </nav>
+
+        <!-- Contenu Principal -->
+    <main class="admin-main">
+        <!-- Header avec actions -->
+        <header class="admin-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <h1 class="page-title">
+                        <i class="fas fa-chart-line"></i>
+                        Tableau de bord
+                    </h1>
+                    <p class="page-subtitle">Vue d'ensemble de votre plateforme RH</p>
+                </div>
+                <div class="header-actions">
+                    <div class="action-buttons">
+                        <button class="btn btn-outline-primary" onclick="exportData()">
+                            <i class="fas fa-download"></i>
+                            Exporter
+                            </button>
+                        <a href="{{ url_for('apply') }}" class="btn btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Nouvelle candidature
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Statistiques principales -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-icon">
+                        <i class="fas fa-file-alt"></i>
+                                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" data-count="{{ total_applications or 0 }}">0</h3>
+                        <p class="stat-label">Candidatures</p>
+                        <div class="stat-trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+12% ce mois</span>
+                                    </div>
+                                    </div>
+                                </div>
+
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" data-count="{{ total_appointments or 0 }}">0</h3>
+                        <p class="stat-label">Rendez-vous</p>
+                        <div class="stat-trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+8% ce mois</span>
+                                </div>
+                            </div>
+                        </div>
+
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" data-count="{{ total_users or 0 }}">0</h3>
+                        <p class="stat-label">Utilisateurs</p>
+                        <div class="stat-trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+5% ce mois</span>
+                </div>
+                                    </div>
+                                    </div>
+
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-icon">
+                        <i class="fas fa-envelope"></i>
+                                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" data-count="{{ total_newsletter or 0 }}">0</h3>
+                        <p class="stat-label">Newsletter</p>
+                        <div class="stat-trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+2% ce mois</span>
+                                </div>
+                                    </div>
+                                </div>
+                            </div>
+        </section>
+
+        <!-- Graphiques et analyses -->
+        <section class="analytics-section">
+            <div class="analytics-grid">
+                <div class="chart-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="chart-header">
+                        <h5>Évolution des candidatures</h5>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="applicationsChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="chart-header">
+                        <h5>Répartition par service</h5>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="servicesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+            <!-- Activités récentes -->
+        <section class="recent-activities">
+            <div class="activities-grid">
+                <div class="activity-card" data-aos="fade-up" data-aos-delay="700">
+                    <div class="card-header">
+                        <h5><i class="fas fa-clock"></i> Rendez-vous récents</h5>
+                        <a href="{{ url_for('admin_appointments') }}" class="view-all">Voir tout</a>
+                                    </div>
+                        <div class="card-body">
+                            {% if recent_appointments %}
+                                {% for appointment in recent_appointments %}
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-calendar"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h6>{{ appointment.user.first_name }} {{ appointment.user.last_name }}</h6>
+                                    <p>{{ appointment.service_type|title }} - {{ appointment.date.strftime('%d/%m/%Y') }}</p>
+                            </div>
+                        </div>
+                                {% endfor %}
+                            {% else %}
+                            <div class="empty-state">
+                                <i class="fas fa-calendar-times"></i>
+                                <p>Aucun rendez-vous récent</p>
+                                </div>
+                            {% endif %}
+                    </div>
+                </div>
+
+                <div class="activity-card" data-aos="fade-up" data-aos-delay="800">
+                    <div class="card-header">
+                        <h5><i class="fas fa-briefcase"></i> Candidatures récentes</h5>
+                        <a href="{{ url_for('admin_applications') }}" class="view-all">Voir tout</a>
+                        </div>
+                        <div class="card-body">
+                            {% if recent_applications %}
+                                {% for application in recent_applications %}
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                    </div>
+                                <div class="activity-content">
+                                    <h6>{{ application.position }}</h6>
+                                    <p>
+                                            {% if application.applicant %}
+                                                {{ application.applicant.first_name }} {{ application.applicant.last_name }}
+                                            {% else %}
+                                                Candidat externe
+                                            {% endif %}
+                                            - {{ application.created_at.strftime('%d/%m/%Y') }}
+                                        </p>
+                                    </div>
+                                <div class="activity-status">
+                                    <span class="status-badge {{ application.status }}">{{ application.status|title }}</span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                            <div class="empty-state">
+                                <i class="fas fa-inbox"></i>
+                                <p>Aucune candidature récente</p>
+                                    </div>
+                            {% endif %}
+                                </div>
+                            </div>
+                        </div>
+        </section>
+
+        <!-- Intégration Google Workspace -->
+        <section class="google-section" data-aos="fade-up" data-aos-delay="900">
+            <div class="google-card">
+                <div class="google-header">
+                    <div class="google-icon">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <div class="google-content">
+                        <h5>Intégration Google Workspace</h5>
+                        <p>Connectez votre compte Google pour une gestion optimale</p>
+                </div>
+            </div>
+                <div class="google-features">
+                    <div class="feature-item">
+                        <i class="fas fa-cloud"></i>
+                        <span>Sauvegarde automatique des CV</span>
+                        </div>
+                    <div class="feature-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>Synchronisation des rendez-vous</span>
+                                </div>
+                    <div class="feature-item">
+                        <i class="fas fa-share-alt"></i>
+                        <span>Partage de documents</span>
+                    </div>
+                </div>
+                <div class="google-action">
+                    {% if current_user.is_admin() %}
+                        <a href="{{ url_for('google_auth') }}" class="btn btn-google">
+                            <i class="fab fa-google"></i>
+                                        Connecter Google
+                                    </a>
+                    {% else %}
+                        <button class="btn btn-google" disabled title="Seuls les administrateurs peuvent configurer Google Workspace">
+                            <i class="fab fa-google"></i>
+                            Connecter Google
+                        </button>
+                        <small class="text-muted d-block mt-2">
+                            <i class="fas fa-info-circle"></i>
+                            Accès réservé aux administrateurs
+                        </small>
+                    {% endif %}
+                                </div>
+                            </div>
+        </section>
+
+        <!-- Raccourcis Google Workspace -->
+        <section class="google-shortcuts-section" data-aos="fade-up" data-aos-delay="1000">
+            <div class="shortcuts-header">
+                <h5><i class="fab fa-google me-2"></i>Raccourcis Google Workspace</h5>
+                <p>Accès rapide aux outils Google pour la gestion</p>
+                        </div>
+            <div class="shortcuts-grid">
+                <div class="shortcut-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="shortcut-icon">
+                        <i class="fas fa-table"></i>
+                    </div>
+                    <div class="shortcut-content">
+                        <h6>Google Sheets</h6>
+                        <p>Gestion des données et tableaux</p>
+                </div>
+                    <div class="shortcut-action">
+                        <a href="{{ url_for('google_sheets_redirect') }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-external-link-alt"></i>
+                            Ouvrir
+                        </a>
+                            </div>
+                        </div>
+
+                <div class="shortcut-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="shortcut-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <div class="shortcut-content">
+                        <h6>Google Forms</h6>
+                        <p>Création de formulaires et sondages</p>
+                    </div>
+                    <div class="shortcut-action">
+                        <a href="{{ url_for('google_forms_redirect') }}" target="_blank" class="btn btn-outline-success btn-sm">
+                            <i class="fas fa-external-link-alt"></i>
+                            Ouvrir
+                        </a>
+                </div>
+            </div>
+
+                <div class="shortcut-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="shortcut-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    <div class="shortcut-content">
+                        <h6>Google Calendar</h6>
+                        <p>Gestion des rendez-vous et planning</p>
+                                    </div>
+                    <div class="shortcut-action">
+                        <a href="{{ url_for('google_calendar_redirect') }}" target="_blank" class="btn btn-outline-warning btn-sm">
+                            <i class="fas fa-external-link-alt"></i>
+                            Ouvrir
+                        </a>
+                                    </div>
+                                </div>
+
+                <div class="shortcut-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="shortcut-icon">
+                        <i class="fas fa-file-alt"></i>
+                                </div>
+                    <div class="shortcut-content">
+                        <h6>Google Docs</h6>
+                        <p>Édition de documents et rapports</p>
+                        </div>
+                    <div class="shortcut-action">
+                        <a href="{{ url_for('google_docs_redirect') }}" target="_blank" class="btn btn-outline-info btn-sm">
+                            <i class="fas fa-external-link-alt"></i>
+                            Ouvrir
+                        </a>
+                    </div>
+                </div>
+
+                <div class="shortcut-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="shortcut-icon">
+                        <i class="fas fa-folder"></i>
+                        </div>
+                    <div class="shortcut-content">
+                        <h6>Google Drive</h6>
+                        <p>Stockage et partage de fichiers</p>
+                                    </div>
+                    <div class="shortcut-action">
+                        <a href="{{ url_for('google_drive_redirect') }}" target="_blank" class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-external-link-alt"></i>
+                            Ouvrir
+                        </a>
+                                    </div>
+                                </div>
+
+                <div class="shortcut-card" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="shortcut-icon">
+                        <i class="fas fa-envelope"></i>
+                                </div>
+                    <div class="shortcut-content">
+                        <h6>Gmail</h6>
+                        <p>Communication et emails</p>
+                        </div>
+                    <div class="shortcut-action">
+                        <a href="{{ url_for('google_gmail_redirect') }}" target="_blank" class="btn btn-outline-danger btn-sm">
+                            <i class="fas fa-external-link-alt"></i>
+                            Ouvrir
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </main>
+</div>
+
+<!-- Styles CSS améliorés -->
+<style>
+/* Container principal */
+.admin-container {
+    display: flex;
+    min-height: 100vh;
+    background: #f8f9fa;
+}
+
+/* Sidebar améliorée */
+.admin-sidebar {
+    width: 280px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    z-index: 1000;
+    box-shadow: 2px 0 20px rgba(0,0,0,0.1);
+}
+
+.sidebar-header {
+    padding: 2rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.admin-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.admin-avatar {
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.admin-info {
+    flex: 1;
+}
+
+.admin-name {
+    font-weight: 600;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.admin-role {
+    font-size: 0.875rem;
+    opacity: 0.8;
+}
+
+.sidebar-menu {
+    flex: 1;
+    padding: 1.5rem 0;
+}
+
+.menu-section {
+    margin-bottom: 2rem;
+}
+
+.menu-title {
+    padding: 0 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.7;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    margin: 0.25rem 0;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 0 25px 25px 0;
+    margin-right: 1rem;
+}
+
+.menu-link:hover {
+    color: white;
+    background: rgba(255,255,255,0.1);
+    transform: translateX(5px);
+    text-decoration: none;
+}
+
+.menu-item.active .menu-link {
+    color: white;
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.menu-link i {
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar-footer {
+    padding: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.view-site-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.view-site-btn:hover {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+/* Contenu principal */
+.admin-main {
+    flex: 1;
+    margin-left: 280px;
+    padding: 2rem;
+}
+
+/* Header */
+.admin-header {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.page-title i {
+    color: #667eea;
+}
+
+.page-subtitle {
+    margin: 0.5rem 0 0 0;
+    color: #6c757d;
+    font-size: 1.1rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Statistiques */
+.stats-section {
+    margin-bottom: 2rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.stat-card:nth-child(1) .stat-icon {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.stat-card:nth-child(2) .stat-icon {
+    background: linear-gradient(135deg, #28a745, #20c997);
+}
+
+.stat-card:nth-child(3) .stat-icon {
+    background: linear-gradient(135deg, #17a2b8, #00d4aa);
+}
+
+.stat-card:nth-child(4) .stat-icon {
+    background: linear-gradient(135deg, #ffc107, #fd7e14);
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: #2c3e50;
+}
+
+.stat-label {
+    margin: 0.5rem 0;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.stat-trend {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.stat-trend.positive {
+    color: #28a745;
+}
+
+.stat-trend.negative {
+    color: #dc3545;
+}
+
+/* Graphiques */
+.analytics-section {
+    margin-bottom: 2rem;
+}
+
+.analytics-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+}
+
+.chart-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.chart-header h5 {
+    margin: 0;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.chart-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chart-container {
+    height: 300px;
+    position: relative;
+}
+
+/* Activités récentes */
+.recent-activities {
+    margin-bottom: 2rem;
+}
+
+.activities-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.activity-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header h5 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.card-header h5 i {
+    color: #667eea;
+}
+
+.view-all {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.view-all:hover {
+    color: #764ba2;
+    text-decoration: none;
+}
+
+.card-body {
+    padding: 1.5rem 2rem;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1rem;
+}
+
+.activity-item:nth-child(odd) .activity-icon {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.activity-item:nth-child(even) .activity-icon {
+    background: linear-gradient(135deg, #28a745, #20c997);
+}
+
+.activity-content {
+    flex: 1;
+}
+
+.activity-content h6 {
+    margin: 0 0 0.25rem 0;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.activity-content p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.status-badge.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-badge.accepted {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-badge.rejected {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.status-badge.reviewed {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: #6c757d;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+/* Section Google */
+.google-section {
+    margin-bottom: 2rem;
+}
+
+.google-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+/* Section Raccourcis Google Workspace */
+.google-shortcuts-section {
+    margin-bottom: 2rem;
+}
+
+.shortcuts-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.shortcuts-header h5 {
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.shortcuts-header p {
+    color: #6c757d;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.shortcuts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.shortcut-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.shortcut-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #4285f4, #34a853, #fbbc05, #ea4335);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.shortcut-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    border-color: rgba(66, 133, 244, 0.2);
+}
+
+.shortcut-card:hover::before {
+    opacity: 1;
+}
+
+.shortcut-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #4285f4, #34a853);
+}
+
+.shortcut-card:nth-child(1) .shortcut-icon {
+    background: linear-gradient(135deg, #4285f4, #34a853);
+}
+
+.shortcut-card:nth-child(2) .shortcut-icon {
+    background: linear-gradient(135deg, #34a853, #fbbc05);
+}
+
+.shortcut-card:nth-child(3) .shortcut-icon {
+    background: linear-gradient(135deg, #fbbc05, #ea4335);
+}
+
+.shortcut-card:nth-child(4) .shortcut-icon {
+    background: linear-gradient(135deg, #4285f4, #ea4335);
+}
+
+.shortcut-card:nth-child(5) .shortcut-icon {
+    background: linear-gradient(135deg, #34a853, #4285f4);
+}
+
+.shortcut-card:nth-child(6) .shortcut-icon {
+    background: linear-gradient(135deg, #ea4335, #fbbc05);
+}
+
+.shortcut-content h6 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.shortcut-content p {
+    color: #6c757d;
+    margin: 0 0 1rem 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.shortcut-action {
+    text-align: right;
+}
+
+.shortcut-action .btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.shortcut-action .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Responsive pour les raccourcis */
+@media (max-width: 768px) {
+    .shortcuts-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .shortcut-card {
+        padding: 1rem;
+    }
+    
+    .shortcut-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+}
+
+.google-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.google-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #4285f4, #34a853);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+}
+
+.google-content h5 {
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.google-content p {
+    margin: 0;
+    color: #6c757d;
+}
+
+.google-features {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.feature-item i {
+    color: #4285f4;
+    font-size: 1.2rem;
+}
+
+.btn-google {
+    background: linear-gradient(135deg, #4285f4, #34a853);
+    border: none;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.btn-google:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(66, 133, 244, 0.3);
+    color: white;
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .admin-sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+}
+
+    .admin-sidebar.open {
+        transform: translateX(0);
+}
+
+    .admin-main {
+        margin-left: 0;
+}
+
+    .analytics-grid {
+        grid-template-columns: 1fr;
+}
+
+    .activities-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .google-features {
+        flex-direction: column;
+        align-items: center;
+}
+}
+
+@media (max-width: 768px) {
+    .admin-main {
+        padding: 1rem;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .chart-actions {
+        flex-wrap: wrap;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+[data-aos] {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Compteurs animés */
+.stat-number {
+    transition: all 0.3s ease;
+}
+
+/* Boutons améliorés */
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 0.75rem 1.5rem;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.btn-outline-primary {
+    border: 2px solid #667eea;
+    color: #667eea;
+}
+
+.btn-outline-primary:hover {
+    background: #667eea;
+    color: white;
+}
+</style>
+
+<!-- Scripts JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Animation des compteurs
+function animateCounters() {
+    const counters = document.querySelectorAll('.stat-number');
+    counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-count'));
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+        
+        const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            counter.textContent = Math.floor(current);
+        }, 16);
+    });
+}
+
+// Graphique des candidatures
+function initApplicationsChart() {
+    const ctx = document.getElementById('applicationsChart').getContext('2d');
+    
+    // Récupérer les données depuis le template
+    const applicationsData = {{ applications_data|safe }};
+    const applicationsLabels = {{ applications_labels|safe }};
+    
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: applicationsLabels,
+            datasets: [{
+                label: 'Candidatures',
+                data: applicationsData,
+                borderColor: '#667eea',
+                backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: 'rgba(0,0,0,0.05)'
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Graphique des services
+function initServicesChart() {
+    const ctx = document.getElementById('servicesChart').getContext('2d');
+    
+    // Récupérer les données depuis le template
+    const servicesLabels = {{ services_labels|safe }};
+    const servicesValues = {{ services_values|safe }};
+    
+    // Couleurs pour les services
+    const colors = [
+        '#667eea', '#28a745', '#ffc107', '#17a2b8', 
+        '#dc3545', '#6f42c1', '#fd7e14', '#20c997'
+    ];
+    
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: servicesLabels,
+            datasets: [{
+                data: servicesValues,
+                backgroundColor: colors.slice(0, servicesLabels.length)
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+}
+
+// Fonction d'export
+function exportData() {
+    // Créer un menu déroulant pour choisir le format
+    const exportMenu = document.createElement('div');
+    exportMenu.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        border: 2px solid #667eea;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        z-index: 10000;
+        min-width: 300px;
+    `;
+    
+    exportMenu.innerHTML = `
+        <h5 style="margin: 0 0 15px 0; color: #667eea; text-align: center;">
+            <i class="fas fa-download"></i> Exporter le Dashboard
+        </h5>
+        <p style="margin: 0 0 20px 0; text-align: center; color: #666;">
+            Choisissez le format d'export :
+        </p>
+        <div style="display: flex; gap: 10px; justify-content: center;">
+            <button onclick="exportFormat('pdf')" style="
+                background: #dc3545;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-weight: bold;
+                transition: all 0.3s;
+            " onmouseover="this.style.background='#c82333'" onmouseout="this.style.background='#dc3545'">
+                <i class="fas fa-file-pdf"></i> PDF
+            </button>
+            <button onclick="exportFormat('png')" style="
+                background: #28a745;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-weight: bold;
+                transition: all 0.3s;
+            " onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+                <i class="fas fa-file-image"></i> PNG
+            </button>
+        </div>
+        <button onclick="closeExportMenu()" style="
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+            transition: all 0.3s;
+        " onmouseover="this.style.background='#5a6268'" onmouseout="this.style.background='#6c757d'">
+            <i class="fas fa-times"></i> Annuler
+        </button>
+    `;
+    
+    // Ajouter un overlay sombre
+    const overlay = document.createElement('div');
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 9999;
+    `;
+    overlay.onclick = closeExportMenu;
+    
+    document.body.appendChild(overlay);
+    document.body.appendChild(exportMenu);
+}
+
+function exportFormat(format) {
+    // Afficher un indicateur de chargement
+    const loadingDiv = document.createElement('div');
+    loadingDiv.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        border: 2px solid #667eea;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        z-index: 10001;
+        text-align: center;
+    `;
+    loadingDiv.innerHTML = `
+        <i class="fas fa-spinner fa-spin" style="font-size: 24px; color: #667eea; margin-bottom: 10px;"></i>
+        <p style="margin: 0; color: #666;">Génération du ${format.toUpperCase()} en cours...</p>
+    `;
+    
+    document.body.appendChild(loadingDiv);
+    
+    // Fermer le menu d'export
+    closeExportMenu();
+    
+    // Rediriger vers la route d'export
+    const url = `/admin/dashboard/export/${format}`;
+    window.location.href = url;
+    
+    // Supprimer l'indicateur de chargement après un délai
+    setTimeout(() => {
+        if (loadingDiv.parentNode) {
+            loadingDiv.parentNode.removeChild(loadingDiv);
+        }
+    }, 3000);
+}
+
+function closeExportMenu() {
+    const menu = document.querySelector('div[style*="z-index: 10000"]');
+    const overlay = document.querySelector('div[style*="z-index: 9999"]');
+    
+    if (menu) menu.remove();
+    if (overlay) overlay.remove();
+}
+
+// Initialisation
+document.addEventListener('DOMContentLoaded', function() {
+    animateCounters();
+    initApplicationsChart();
+    initServicesChart();
+    
+    // Animation au scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    document.querySelectorAll('[data-aos]').forEach(el => {
+        observer.observe(el);
+    });
+});
+</script>
+{% endblock %} 

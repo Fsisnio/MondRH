@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: monderh
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python setup_production_db.py && gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.16
+      - key: SECRET_KEY
+        generateValue: true
+      - key: MAIL_USERNAME
+        value: contact@monderh.fr
+      - key: MAIL_PASSWORD
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_DEBUG
+        value: false
+    healthCheckPath: /
+    autoDeploy: true
+
+databases:
+  - name: monderh-db
+    databaseName: monderh
+    user: monderh_user
+    plan: free 

@@ -1,0 +1,1236 @@
+{% extends "base.html" %}
+
+{% block title %}Tableau de bord - MonDRH{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <!-- Header du tableau de bord -->
+    <header class="dashboard-header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="dashboard-title">
+                    <i class="fas fa-chart-line"></i>
+                    Tableau de bord
+                </h1>
+                <p class="dashboard-subtitle">Bienvenue, {{ current_user.first_name }} {{ current_user.last_name }}</p>
+            </div>
+            <div class="header-actions">
+                <div class="date-display">
+                    <i class="fas fa-calendar"></i>
+                    <span id="current-date"></span>
+                </div>
+                <div class="weather-widget">
+                    <i class="fas fa-sun"></i>
+                    <span>22°C</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Statistiques principales -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 class="stat-number" data-count="{{ total_applications or 0 }}">0</h3>
+                    <p class="stat-label">Candidatures</p>
+                    <div class="stat-trend positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+12% ce mois</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 class="stat-number" data-count="{{ total_appointments or 0 }}">0</h3>
+                    <p class="stat-label">Rendez-vous</p>
+                    <div class="stat-trend positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+8% ce mois</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 class="stat-number" data-count="{{ total_users or 0 }}">0</h3>
+                    <p class="stat-label">Utilisateurs</p>
+                    <div class="stat-trend positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+5% ce mois</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="stat-icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 class="stat-number" data-count="{{ acceptance_rate or 0 }}">0</h3>
+                    <p class="stat-label">Taux d'acceptation</p>
+                    <div class="stat-trend positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+3% ce mois</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenu principal -->
+    <section class="main-content">
+        <div class="content-grid">
+            <!-- Section Candidatures -->
+            <div class="content-card applications-section" data-aos="fade-up" data-aos-delay="500">
+                <div class="card-header">
+                    <div class="card-title">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Mes Candidatures</span>
+                        </div>
+                    <div class="card-actions">
+                        <button class="btn btn-outline-primary btn-sm" onclick="filterApplications('all')">
+                            <i class="fas fa-filter"></i>
+                            Filtrer
+                        </button>
+                        <a href="{{ url_for('apply') }}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-plus"></i>
+                            Nouvelle
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                        {% if applications %}
+                            <div class="applications-table">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Poste</th>
+                                                <th>Service</th>
+                                                <th>Statut</th>
+                                                <th>Date</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for application in applications %}
+                                        <tr class="application-row" data-status="{{ application.status }}">
+                                                <td>
+                                                    <div class="application-position">{{ application.position }}</div>
+                                                    <div class="application-experience">{{ application.experience_years }} d'expérience</div>
+                                                </td>
+                                                <td>
+                                                    <span class="service-badge">{{ application.service_type|title }}</span>
+                                                </td>
+                                                <td>
+                                                    {% if application.status == 'pending' %}
+                                                    <span class="status-badge status-pending">
+                                                        <i class="fas fa-clock"></i>
+                                                        En attente
+                                                    </span>
+                                                    {% elif application.status == 'reviewed' %}
+                                                    <span class="status-badge status-reviewed">
+                                                        <i class="fas fa-eye"></i>
+                                                        En cours
+                                                    </span>
+                                                    {% elif application.status == 'accepted' %}
+                                                    <span class="status-badge status-accepted">
+                                                        <i class="fas fa-check"></i>
+                                                        Acceptée
+                                                    </span>
+                                                    {% elif application.status == 'rejected' %}
+                                                    <span class="status-badge status-rejected">
+                                                        <i class="fas fa-times"></i>
+                                                        Refusée
+                                                    </span>
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    <div class="application-date">{{ application.created_at.strftime('%d/%m/%Y') }}</div>
+                                                </td>
+                                                <td>
+                                                <div class="action-buttons">
+                                                    <button class="btn btn-sm btn-outline-primary view-btn" 
+                                                            data-bs-toggle="modal" 
+                                                            data-bs-target="#applicationModal{{ application.id }}"
+                                                            title="Voir détails">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-warning edit-btn"
+                                                            title="Modifier">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-success accept-btn"
+                                                            title="Accepter">
+                                                        <i class="fas fa-check"></i>
+                                                    </button>
+                                                </div>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="empty-state">
+                                <div class="empty-state-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <h5 class="empty-state-title">Aucune candidature</h5>
+                                <p class="empty-state-description">Vous n'avez pas encore soumis de candidature.</p>
+                                <a href="{{ url_for('apply') }}" class="btn btn-primary">
+                                <i class="fas fa-plus"></i>
+                                Soumettre une candidature
+                                </a>
+                            </div>
+                        {% endif %}
+                </div>
+            </div>
+
+            <!-- Sidebar avec actions rapides et RDV -->
+            <div class="sidebar-content">
+                <!-- Actions rapides -->
+                <div class="content-card quick-actions-section" data-aos="fade-up" data-aos-delay="600">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-bolt"></i>
+                            <span>Actions rapides</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="quick-actions">
+                            <a href="{{ url_for('apply') }}" class="quick-action-btn primary">
+                                <div class="action-icon">
+                                <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div class="action-content">
+                                    <span class="action-title">Nouvelle candidature</span>
+                                    <span class="action-subtitle">Postuler à un poste</span>
+                                </div>
+                            </a>
+                            <a href="{{ url_for('appointments') }}" class="quick-action-btn secondary">
+                                <div class="action-icon">
+                                <i class="fas fa-calendar-plus"></i>
+                                </div>
+                                <div class="action-content">
+                                    <span class="action-title">Prendre rendez-vous</span>
+                                    <span class="action-subtitle">Planifier une consultation</span>
+                                </div>
+                            </a>
+                            <a href="{{ url_for('admin_users') }}" class="quick-action-btn tertiary">
+                                <div class="action-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="action-content">
+                                    <span class="action-title">Gérer utilisateurs</span>
+                                    <span class="action-subtitle">Administration</span>
+                                </div>
+                            </a>
+                            <a href="{{ url_for('admin_applications') }}" class="quick-action-btn quaternary">
+                                <div class="action-icon">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                                <div class="action-content">
+                                    <span class="action-title">Toutes les candidatures</span>
+                                    <span class="action-subtitle">Vue d'ensemble</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prochains RDV -->
+                <div class="content-card appointments-section" data-aos="fade-up" data-aos-delay="700">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-calendar"></i>
+                            <span>Prochains RDV</span>
+                        </div>
+                        <a href="{{ url_for('appointments') }}" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-plus"></i>
+                            Nouveau
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        {% if appointments %}
+                            <div class="appointments-list">
+                                {% for appointment in appointments[:3] %}
+                                    <div class="appointment-item">
+                                        <div class="appointment-icon">
+                                            <i class="fas fa-calendar-day"></i>
+                                        </div>
+                                        <div class="appointment-content">
+                                            <h6 class="appointment-title">{{ appointment.subject or 'Rendez-vous' }}</h6>
+                                            <p class="appointment-time">
+                                                <i class="fas fa-clock"></i>
+                                                {{ appointment.date.strftime('%d/%m/%Y') }} à {{ appointment.time.strftime('%H:%M') }}
+                                            </p>
+                                            <span class="appointment-service">{{ appointment.service_type|title }}</span>
+                                        </div>
+                                        <div class="appointment-status">
+                                            <span class="status-dot active"></span>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                {% if appointments|length > 3 %}
+                                    <div class="appointments-footer">
+                                        <a href="{{ url_for('appointments') }}" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-calendar-alt"></i>
+                                            Voir tous les RDV
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% else %}
+                            <div class="empty-state">
+                                <div class="empty-state-icon">
+                                    <i class="fas fa-calendar-times"></i>
+                                </div>
+                                <h5 class="empty-state-title">Aucun rendez-vous</h5>
+                                <p class="empty-state-description">Aucun rendez-vous prévu pour le moment.</p>
+                                <a href="{{ url_for('appointments') }}" class="btn btn-primary">
+                                    <i class="fas fa-calendar-plus"></i>
+                                    Prendre RDV
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Graphique d'activité -->
+                <div class="content-card activity-chart" data-aos="fade-up" data-aos-delay="800">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Activité récente</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="activityChart" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
+
+<!-- Modales de détails des candidatures -->
+{% for application in applications %}
+<div class="modal fade" id="applicationModal{{ application.id }}" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-file-alt"></i>
+                    Détails de la candidature
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="fw-bold">
+                            <i class="fas fa-info-circle"></i>
+                            Informations générales
+                        </h6>
+                        <div class="info-item">
+                            <span class="info-label">Poste :</span>
+                            <span class="info-value">{{ application.position }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Service :</span>
+                            <span class="info-value">{{ application.service_type|title }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Statut :</span>
+                            <span class="status-badge status-{{ application.status }}">
+                            {% if application.status == 'pending' %}
+                                    <i class="fas fa-clock"></i> En attente
+                            {% elif application.status == 'reviewed' %}
+                                    <i class="fas fa-eye"></i> En cours
+                            {% elif application.status == 'accepted' %}
+                                    <i class="fas fa-check"></i> Acceptée
+                            {% elif application.status == 'rejected' %}
+                                    <i class="fas fa-times"></i> Refusée
+                            {% endif %}
+                            </span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Date de soumission :</span>
+                            <span class="info-value">{{ application.created_at.strftime('%d/%m/%Y à %H:%M') }}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="fw-bold">
+                            <i class="fas fa-user"></i>
+                            Détails candidat
+                        </h6>
+                        <div class="info-item">
+                            <span class="info-label">Expérience :</span>
+                            <span class="info-value">{{ application.experience_years }} ans</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Disponibilité :</span>
+                            <span class="info-value">{{ application.availability }}</span>
+                        </div>
+                        {% if application.salary_expectation %}
+                        <div class="info-item">
+                            <span class="info-label">Prétentions :</span>
+                            <span class="info-value">{{ application.salary_expectation }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% if application.cover_letter %}
+                    <hr>
+                    <h6 class="fw-bold">
+                        <i class="fas fa-envelope"></i>
+                        Lettre de motivation
+                    </h6>
+                    <div class="cover-letter">
+                        {{ application.cover_letter }}
+                    </div>
+                {% endif %}
+                {% if application.notes %}
+                    <hr>
+                    <h6 class="fw-bold">
+                        <i class="fas fa-sticky-note"></i>
+                        Notes
+                    </h6>
+                    <div class="notes">
+                        {{ application.notes }}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times"></i>
+                    Fermer
+                </button>
+                <button type="button" class="btn btn-primary">
+                    <i class="fas fa-edit"></i>
+                    Modifier
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<!-- Styles CSS -->
+<style>
+/* Container principal */
+.dashboard-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 2rem;
+}
+
+/* Header du tableau de bord */
+.dashboard-header {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.dashboard-title i {
+    color: #667eea;
+    -webkit-text-fill-color: #667eea;
+}
+
+.dashboard-subtitle {
+    margin: 0.5rem 0 0 0;
+    color: #6c757d;
+    font-size: 1.1rem;
+}
+
+.header-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.date-display, .weather-widget {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.date-display i, .weather-widget i {
+    color: #667eea;
+}
+
+/* Statistiques */
+.stats-section {
+    margin-bottom: 2rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.stat-card:nth-child(1) .stat-icon {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.stat-card:nth-child(2) .stat-icon {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
+.stat-card:nth-child(3) .stat-icon {
+    background: linear-gradient(135deg, #17a2b8 0%, #00d4aa 100%);
+}
+
+.stat-card:nth-child(4) .stat-icon {
+    background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: #2c3e50;
+}
+
+.stat-label {
+    margin: 0.5rem 0;
+    color: #6c757d;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.stat-trend {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.stat-trend.positive {
+    color: #28a745;
+}
+
+.stat-trend.negative {
+    color: #dc3545;
+}
+
+/* Contenu principal */
+.main-content {
+    margin-bottom: 2rem;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+/* Cartes de contenu */
+.content-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.content-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.card-header {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+}
+
+.card-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.card-title i {
+    color: #667eea;
+}
+
+.card-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+/* Tableau des candidatures */
+.applications-table {
+    background: white;
+}
+
+.applications-table .table {
+    margin-bottom: 0;
+}
+
+.applications-table th {
+    border: none;
+    font-weight: 600;
+    color: #6c757d;
+    padding: 1rem 0.75rem;
+    background: #f8f9fa;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.applications-table td {
+    border: none;
+    padding: 1rem 0.75rem;
+    vertical-align: middle;
+}
+
+.application-row:hover {
+    background: #f8f9fa;
+    transform: scale(1.01);
+    transition: all 0.3s ease;
+}
+
+.application-position {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.25rem;
+}
+
+.application-experience {
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+.service-badge {
+    background: #e3f2fd;
+    color: #1976d2;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.status-badge {
+    padding: 0.375rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-reviewed {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.status-accepted {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-rejected {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.application-date {
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.action-buttons .btn {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.action-buttons .btn:hover {
+    transform: scale(1.1);
+}
+
+/* Actions rapides */
+.quick-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.quick-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    background: #f8f9fa;
+    color: #6c757d;
+}
+
+.quick-action-btn:hover {
+    transform: translateX(5px);
+    text-decoration: none;
+}
+
+.quick-action-btn.primary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+
+.quick-action-btn.secondary {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+}
+
+.quick-action-btn.tertiary {
+    background: linear-gradient(135deg, #17a2b8, #00d4aa);
+    color: white;
+}
+
+.quick-action-btn.quaternary {
+    background: linear-gradient(135deg, #ffc107, #fd7e14);
+    color: white;
+}
+
+.action-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.action-content {
+    flex: 1;
+}
+
+.action-title {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.action-subtitle {
+    display: block;
+    font-size: 0.875rem;
+    opacity: 0.8;
+}
+
+/* Rendez-vous */
+.appointments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.appointment-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.appointment-item:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+}
+
+.appointment-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.appointment-content {
+    flex: 1;
+}
+
+.appointment-title {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.appointment-time {
+    font-size: 0.875rem;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.appointment-service {
+    background: #e3f2fd;
+    color: #1976d2;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.appointment-status {
+    display: flex;
+    align-items: center;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #28a745;
+}
+
+.status-dot.active {
+    background: #28a745;
+}
+
+.status-dot.pending {
+    background: #ffc107;
+}
+
+.appointments-footer {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid #e9ecef;
+}
+
+/* Graphique d'activité */
+.activity-chart {
+    margin-top: 1.5rem;
+}
+
+/* États vides */
+.empty-state {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: #6c757d;
+}
+
+.empty-state-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.5;
+}
+
+.empty-state-title {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.empty-state-description {
+    margin-bottom: 2rem;
+}
+
+/* Modales */
+.modal-content {
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+.modal-header {
+    border-bottom: 1px solid #e9ecef;
+    padding: 1.5rem 2rem;
+}
+
+.modal-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 600;
+}
+
+.modal-title i {
+    color: #667eea;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #6c757d;
+}
+
+.info-value {
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.cover-letter, .notes {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar-content {
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 1rem;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .dashboard-title {
+        font-size: 2rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .card-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+    
+    .card-actions {
+        justify-content: center;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+[data-aos] {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Boutons améliorés */
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 0.75rem 1.5rem;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.btn-outline-primary {
+    border: 2px solid #667eea;
+    color: #667eea;
+}
+
+.btn-outline-primary:hover {
+    background: #667eea;
+    color: white;
+}
+</style>
+
+<!-- Scripts JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Animation des compteurs
+function animateCounters() {
+    const counters = document.querySelectorAll('.stat-number');
+    counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-count'));
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+        
+        const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            counter.textContent = Math.floor(current);
+        }, 16);
+    });
+}
+
+// Graphique d'activité
+function initActivityChart() {
+    const ctx = document.getElementById('activityChart');
+    if (!ctx) return;
+    
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
+            datasets: [{
+                label: 'Candidatures',
+                data: [3, 5, 2, 8, 6, 4, 7],
+                borderColor: '#667eea',
+                backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                tension: 0.4,
+                fill: true
+            }, {
+                label: 'Rendez-vous',
+                data: [1, 3, 2, 4, 3, 1, 2],
+                borderColor: '#28a745',
+                backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        usePointStyle: true,
+                        padding: 20
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: 'rgba(0,0,0,0.05)'
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Filtrage des candidatures
+function filterApplications(status) {
+    const rows = document.querySelectorAll('.application-row');
+    rows.forEach(row => {
+        if (status === 'all' || row.getAttribute('data-status') === status) {
+            row.style.display = 'table-row';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}
+
+// Affichage de la date actuelle
+function updateCurrentDate() {
+    const now = new Date();
+    const options = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    };
+    document.getElementById('current-date').textContent = now.toLocaleDateString('fr-FR', options);
+}
+
+// Initialisation
+document.addEventListener('DOMContentLoaded', function() {
+    // Mise à jour de la date
+    updateCurrentDate();
+    
+    // Animation des compteurs
+    animateCounters();
+    
+    // Initialisation du graphique
+    initActivityChart();
+    
+    // Animation au scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    document.querySelectorAll('[data-aos]').forEach(el => {
+        observer.observe(el);
+    });
+    
+    // Animation pour les cartes
+    const cards = document.querySelectorAll('.content-card');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+});
+</script>
+{% endblock %} 

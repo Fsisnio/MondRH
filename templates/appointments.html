@@ -1,0 +1,920 @@
+{% extends "base.html" %}
+
+{% block title %}Prise de rendez-vous - MonDRH{% endblock %}
+
+{% block content %}
+<!-- Hero Section avec Animation -->
+<section class="appointment-hero bg-gradient-primary text-white position-relative overflow-hidden">
+    <div class="appointment-hero-bg-pattern"></div>
+    <div class="container position-relative">
+        <div class="row align-items-center py-5">
+            <div class="col-lg-6">
+                <div class="appointment-hero-content">
+                    <div class="appointment-badge mb-4">
+                        <span class="badge bg-warning text-dark px-3 py-2 fw-bold">
+                            <i class="fas fa-calendar-check me-2"></i>Rendez-vous en ligne
+                        </span>
+                    </div>
+                    <h1 class="display-4 fw-bold mb-4 appointment-title">
+                        <i class="fas fa-calendar-plus me-3"></i>Prendre rendez-vous
+                    </h1>
+                    <p class="lead mb-4 appointment-description">
+                        Planifiez facilement un rendez-vous avec nos consultants experts. 
+                        Choisissez le service, la date et l'heure qui vous conviennent pour un accompagnement personnalisé.
+                    </p>
+                    <div class="appointment-stats mb-4">
+                        <div class="row g-3">
+                            <div class="col-4">
+                                <div class="stat-item text-center">
+                                    <h4 class="fw-bold mb-1 text-warning">24h</h4>
+                                    <small>Confirmation</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-item text-center">
+                                    <h4 class="fw-bold mb-1 text-warning">100%</h4>
+                                    <small>Gratuit</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-item text-center">
+                                    <h4 class="fw-bold mb-1 text-warning">5</h4>
+                                    <small>Services</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="appointment-hero-visual text-center">
+                    <div class="appointment-icon-container">
+                        <div class="appointment-main-icon">
+                            <i class="fas fa-calendar-alt display-1 text-warning"></i>
+                        </div>
+                        <div class="floating-elements">
+                            <div class="floating-element element-1">
+                                <i class="fas fa-clock text-success"></i>
+                            </div>
+                            <div class="floating-element element-2">
+                                <i class="fas fa-video text-primary"></i>
+                            </div>
+                            <div class="floating-element element-3">
+                                <i class="fas fa-check-circle text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Appointment Form -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Form -->
+            <div class="col-lg-8">
+                <div class="appointment-card bg-white rounded-4 shadow-lg border-0">
+                    <div class="card-body p-5">
+                        <div class="text-center mb-5">
+                            <h2 class="display-5 fw-bold mb-3">Nouveau rendez-vous</h2>
+                            <p class="lead text-muted">
+                                Remplissez ce formulaire pour planifier votre consultation
+                            </p>
+                        </div>
+                        
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
+                                        <i class="fas fa-{{ 'exclamation-triangle' if category == 'error' else 'check-circle' }} me-2"></i>
+                                        {{ message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+
+                        <form method="POST" class="appointment-form">
+                            {{ form.hidden_tag() }}
+                            
+                            <div class="form-section mb-5">
+                                <div class="section-header mb-4">
+                                    <div class="section-icon">
+                                        <i class="fas fa-cog text-primary"></i>
+                                    </div>
+                                    <h4 class="fw-bold text-primary mb-0">Détails du rendez-vous</h4>
+                                </div>
+                                
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            {{ form.service_type.label(class="form-label fw-bold") }}
+                                            {{ form.service_type(class="form-select form-select-lg") }}
+                                            {% if form.service_type.errors %}
+                                                <div class="text-danger small mt-1">
+                                                    {% for error in form.service_type.errors %}
+                                                        <i class="fas fa-exclamation-circle me-1"></i>{{ error }}
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            {{ form.duration.label(class="form-label fw-bold") }}
+                                            {{ form.duration(class="form-select form-select-lg") }}
+                                            {% if form.duration.errors %}
+                                                <div class="text-danger small mt-1">
+                                                    {% for error in form.duration.errors %}
+                                                        <i class="fas fa-exclamation-circle me-1"></i>{{ error }}
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            {{ form.date.label(class="form-label fw-bold") }}
+                                            {{ form.date(class="form-control form-control-lg", type="date") }}
+                                            {% if form.date.errors %}
+                                                <div class="text-danger small mt-1">
+                                                    {% for error in form.date.errors %}
+                                                        <i class="fas fa-exclamation-circle me-1"></i>{{ error }}
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            {{ form.time.label(class="form-label fw-bold") }}
+                                            {{ form.time(class="form-control form-control-lg", type="time") }}
+                                            {% if form.time.errors %}
+                                                <div class="text-danger small mt-1">
+                                                    {% for error in form.time.errors %}
+                                                        <i class="fas fa-exclamation-circle me-1"></i>{{ error }}
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-section mb-5">
+                                <div class="section-header mb-4">
+                                    <div class="section-icon">
+                                        <i class="fas fa-comment text-success"></i>
+                                    </div>
+                                    <h4 class="fw-bold text-success mb-0">Description</h4>
+                                </div>
+                                
+                                <div class="row g-4">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            {{ form.subject.label(class="form-label fw-bold") }}
+                                            {{ form.subject(class="form-control form-control-lg", placeholder="Sujet du rendez-vous") }}
+                                            {% if form.subject.errors %}
+                                                <div class="text-danger small mt-1">
+                                                    {% for error in form.subject.errors %}
+                                                        <i class="fas fa-exclamation-circle me-1"></i>{{ error }}
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            {{ form.description.label(class="form-label fw-bold") }}
+                                            {{ form.description(class="form-control form-control-lg", rows="4", placeholder="Décrivez vos besoins et objectifs pour ce rendez-vous...") }}
+                                            {% if form.description.errors %}
+                                                <div class="text-danger small mt-1">
+                                                    {% for error in form.description.errors %}
+                                                        <i class="fas fa-exclamation-circle me-1"></i>{{ error }}
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <div class="d-grid">
+                                    {{ form.submit(class="btn btn-primary btn-lg py-3 fw-bold", value="Confirmer le rendez-vous") }}
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Information -->
+                        <div class="mt-5">
+                            <div class="info-card bg-primary text-white rounded-4 p-4">
+                                <div class="d-flex align-items-start">
+                                    <div class="info-icon me-3">
+                                        <i class="fas fa-info-circle fs-2"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="fw-bold mb-3">Informations importantes</h5>
+                                        <ul class="mb-0">
+                                            <li>Les rendez-vous sont confirmés sous 24h</li>
+                                            <li>Vous recevrez une confirmation par email</li>
+                                            <li>Possibilité de rendez-vous en visioconférence</li>
+                                            <li>Annulation possible jusqu'à 24h avant</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Available Times -->
+                <div class="sidebar-card bg-white rounded-4 shadow-sm mb-4">
+                    <div class="card-header bg-white border-0 py-4">
+                        <div class="d-flex align-items-center">
+                            <div class="sidebar-icon me-3">
+                                <i class="fas fa-clock text-primary"></i>
+                            </div>
+                            <h5 class="fw-bold mb-0">Horaires disponibles</h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="time-slot text-center p-3 bg-light rounded-3">
+                                    <div class="time-icon mb-2">
+                                        <i class="fas fa-briefcase text-primary"></i>
+                                    </div>
+                                    <h6 class="fw-bold mb-1">Lundi - Vendredi</h6>
+                                    <small class="text-muted">9h - 18h</small>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="time-slot text-center p-3 bg-light rounded-3">
+                                    <div class="time-icon mb-2">
+                                        <i class="fas fa-sun text-warning"></i>
+                                    </div>
+                                    <h6 class="fw-bold mb-1">Samedi</h6>
+                                    <small class="text-muted">9h - 12h</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Services Info -->
+                <div class="sidebar-card bg-white rounded-4 shadow-sm mb-4">
+                    <div class="card-header bg-white border-0 py-4">
+                        <div class="d-flex align-items-center">
+                            <div class="sidebar-icon me-3">
+                                <i class="fas fa-list text-success"></i>
+                            </div>
+                            <h5 class="fw-bold mb-0">Nos services</h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="service-list">
+                            <div class="service-item d-flex align-items-center p-3 bg-light rounded-3 mb-2">
+                                <div class="service-icon me-3">
+                                    <i class="fas fa-users text-primary"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Recrutement</h6>
+                                    <small class="text-muted">Trouvez les meilleurs talents</small>
+                                </div>
+                            </div>
+                            <div class="service-item d-flex align-items-center p-3 bg-light rounded-3 mb-2">
+                                <div class="service-icon me-3">
+                                    <i class="fas fa-bullseye text-success"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Coaching</h6>
+                                    <small class="text-muted">Développez votre potentiel</small>
+                                </div>
+                            </div>
+                            <div class="service-item d-flex align-items-center p-3 bg-light rounded-3 mb-2">
+                                <div class="service-icon me-3">
+                                    <i class="fas fa-graduation-cap text-warning"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Formation</h6>
+                                    <small class="text-muted">Montez en compétences</small>
+                                </div>
+                            </div>
+                            <div class="service-item d-flex align-items-center p-3 bg-light rounded-3 mb-2">
+                                <div class="service-icon me-3">
+                                    <i class="fas fa-bolt text-danger"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Intérim</h6>
+                                    <small class="text-muted">Solutions temporaires</small>
+                                </div>
+                            </div>
+                            <div class="service-item d-flex align-items-center p-3 bg-light rounded-3">
+                                <div class="service-icon me-3">
+                                    <i class="fas fa-building text-info"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Conseil</h6>
+                                    <small class="text-muted">Optimisez votre organisation</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="sidebar-card bg-white rounded-4 shadow-sm">
+                    <div class="card-header bg-white border-0 py-4">
+                        <div class="d-flex align-items-center">
+                            <div class="sidebar-icon me-3">
+                                <i class="fas fa-phone text-warning"></i>
+                            </div>
+                            <h5 class="fw-bold mb-0">Contact rapide</h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="contact-list">
+                            <div class="contact-item d-flex align-items-center p-3 bg-light rounded-3 mb-2">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-phone text-primary"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">+221 787 962 422</h6>
+                                    <small class="text-muted">Appel direct</small>
+                                </div>
+                            </div>
+                            <div class="contact-item d-flex align-items-center p-3 bg-light rounded-3 mb-2">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-envelope text-success"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">aboubacargrh@gmail.com</h6>
+                                    <small class="text-muted">Réponse sous 24h</small>
+                                </div>
+                            </div>
+                            <div class="contact-item d-flex align-items-center p-3 bg-light rounded-3">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-map-marker-alt text-warning"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Dakar, Sénégal</h6>
+                                    <small class="text-muted">8 bureaux en Afrique</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- My Appointments (CACHÉ) -->
+<!--
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Mes rendez-vous</h2>
+                <p class="lead text-muted">
+                    Gérez vos rendez-vous et suivez leur statut
+                </p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                {% if appointments %}
+                    <div class="row g-4">
+                        {% for appointment in appointments %}
+                        <div class="col-lg-6 col-md-12">
+                            <div class="appointment-item bg-white rounded-4 shadow-sm h-100">
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-start mb-3">
+                                        <div>
+                                            <h5 class="fw-bold mb-1">{{ appointment.subject }}</h5>
+                                            <p class="text-muted mb-0">{{ appointment.service_type|title }}</p>
+                                        </div>
+                                        <span class="badge bg-{{ 'success' if appointment.status == 'confirmed' else 'warning' if appointment.status == 'pending' else 'secondary' }} px-3 py-2">
+                                            {{ 'Confirmé' if appointment.status == 'confirmed' else 'En attente' if appointment.status == 'pending' else appointment.status|title }}
+                                        </span>
+                                    </div>
+                                    
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-6">
+                                            <div class="appointment-detail">
+                                                <small class="text-muted">Date</small><br>
+                                                <strong>{{ appointment.date.strftime('%d/%m/%Y') }}</strong>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="appointment-detail">
+                                                <small class="text-muted">Heure</small><br>
+                                                <strong>{{ appointment.time.strftime('%H:%M') }}</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    {% if appointment.description %}
+                                        <p class="text-muted small mb-3">{{ appointment.description[:100] }}{% if appointment.description|length > 100 %}...{% endif %}</p>
+                                    {% endif %}
+                                    
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#appointmentModal{{ appointment.id }}">
+                                            <i class="fas fa-eye me-1"></i>Détails
+                                        </button>
+                                        {% if appointment.status == 'pending' %}
+                                            <button class="btn btn-outline-danger btn-sm">
+                                                <i class="fas fa-times me-1"></i>Annuler
+                                            </button>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="text-center py-5">
+                        <div class="empty-state">
+                            <i class="fas fa-calendar-times text-muted display-1 mb-4"></i>
+                            <h4 class="text-muted mb-3">Aucun rendez-vous</h4>
+                            <p class="text-muted mb-4">Vous n'avez pas encore pris de rendez-vous.</p>
+                            <a href="#appointment-form" class="btn btn-primary btn-lg">
+                                <i class="fas fa-calendar-plus me-2"></i>Prendre un rendez-vous
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+-->
+
+<!-- Appointment Detail Modals (CACHÉS) -->
+<!--
+{% for appointment in appointments %}
+<div class="modal fade" id="appointmentModal{{ appointment.id }}" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content rounded-4">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">
+                    <i class="fas fa-calendar-check me-2"></i>Détails du rendez-vous
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="fw-bold text-primary mb-3">
+                            <i class="fas fa-info-circle me-2"></i>Informations générales
+                        </h6>
+                        <div class="info-item mb-2">
+                            <strong>Sujet :</strong> {{ appointment.subject }}
+                        </div>
+                        <div class="info-item mb-2">
+                            <strong>Service :</strong> {{ appointment.service_type|title }}
+                        </div>
+                        <div class="info-item mb-2">
+                            <strong>Statut :</strong> 
+                            {% if appointment.status == 'pending' %}
+                                <span class="badge bg-warning text-dark">En attente</span>
+                            {% elif appointment.status == 'confirmed' %}
+                                <span class="badge bg-success text-white">Confirmé</span>
+                            {% elif appointment.status == 'cancelled' %}
+                                <span class="badge bg-danger text-white">Annulé</span>
+                            {% elif appointment.status == 'completed' %}
+                                <span class="badge bg-info text-white">Terminé</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="fw-bold text-success mb-3">
+                            <i class="fas fa-clock me-2"></i>Planning
+                        </h6>
+                        <div class="info-item mb-2">
+                            <strong>Date :</strong> {{ appointment.date.strftime('%d/%m/%Y') }}
+                        </div>
+                        <div class="info-item mb-2">
+                            <strong>Heure :</strong> {{ appointment.time.strftime('%H:%M') }}
+                        </div>
+                        <div class="info-item mb-2">
+                            <strong>Durée :</strong> {{ appointment.duration }} minutes
+                        </div>
+                        <div class="info-item mb-2">
+                            <strong>Créé le :</strong> {{ appointment.created_at.strftime('%d/%m/%Y à %H:%M') }}
+                        </div>
+                    </div>
+                </div>
+                {% if appointment.description %}
+                    <hr>
+                    <h6 class="fw-bold text-warning mb-3">
+                        <i class="fas fa-comment me-2"></i>Description
+                    </h6>
+                    <p class="text-muted">{{ appointment.description }}</p>
+                {% endif %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                {% if appointment.status == 'pending' %}
+                    <button type="button" class="btn btn-danger">
+                        <i class="fas fa-times me-2"></i>Annuler le RDV
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+-->
+
+<style>
+/* Appointment Hero Styles */
+.appointment-hero {
+    position: relative;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.appointment-hero-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    animation: float 6s ease-in-out infinite;
+}
+
+.appointment-badge {
+    animation: slideInLeft 1s ease-out;
+}
+
+.appointment-title {
+    animation: slideInLeft 1s ease-out 0.2s both;
+}
+
+.appointment-description {
+    animation: slideInLeft 1s ease-out 0.4s both;
+}
+
+.appointment-stats {
+    animation: slideInLeft 1s ease-out 0.6s both;
+}
+
+.appointment-hero-visual {
+    animation: slideInRight 1s ease-out 0.8s both;
+}
+
+.appointment-icon-container {
+    position: relative;
+    display: inline-block;
+}
+
+.appointment-main-icon {
+    font-size: 8rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.floating-element {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.element-1 {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.element-2 {
+    top: 60%;
+    right: 10%;
+    animation-delay: 1s;
+}
+
+.element-3 {
+    bottom: 20%;
+    left: 50%;
+    animation-delay: 2s;
+}
+
+/* Appointment Card */
+.appointment-card {
+    transition: all 0.3s ease;
+}
+
+.appointment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+}
+
+/* Form Sections */
+.form-section {
+    animation: slideInUp 0.8s ease-out;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f8f9fa;
+}
+
+.section-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(var(--bs-primary-rgb), 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-control-lg, .form-select-lg {
+    border-radius: 0.75rem;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.form-control-lg:focus, .form-select-lg:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.2rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+/* Info Card */
+.info-card {
+    transition: all 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+.info-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Sidebar Cards */
+.sidebar-card {
+    transition: all 0.3s ease;
+}
+
+.sidebar-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+.sidebar-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(var(--bs-primary-rgb), 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Time Slots */
+.time-slot {
+    transition: all 0.3s ease;
+}
+
+.time-slot:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.time-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(var(--bs-primary-rgb), 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+/* Service Items */
+.service-item {
+    transition: all 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.service-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(var(--bs-primary-rgb), 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Contact Items */
+.contact-item {
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(var(--bs-primary-rgb), 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Appointment Items */
+.appointment-item {
+    transition: all 0.3s ease;
+}
+
+.appointment-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+.appointment-detail {
+    padding: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 0.5rem;
+}
+
+/* Empty State */
+.empty-state {
+    padding: 3rem;
+}
+
+/* Modal Styles */
+.modal-content {
+    border: none;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.info-item {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .appointment-main-icon {
+        font-size: 5rem;
+    }
+    
+    .floating-element {
+        font-size: 1rem;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .section-icon {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Set minimum date to today
+document.addEventListener('DOMContentLoaded', function() {
+    const dateInput = document.querySelector('input[type="date"]');
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
+    
+    // Set default time to next available slot
+    const timeInput = document.querySelector('input[type="time"]');
+    const now = new Date();
+    const nextHour = new Date(now.getTime() + 60 * 60 * 1000); // Add 1 hour
+    timeInput.value = nextHour.toTimeString().slice(0, 5);
+});
+
+// Form validation
+document.querySelector('form').addEventListener('submit', function(e) {
+    const dateInput = document.querySelector('input[type="date"]');
+    const timeInput = document.querySelector('input[type="time"]');
+    
+    if (dateInput.value && timeInput.value) {
+        const selectedDateTime = new Date(dateInput.value + 'T' + timeInput.value);
+        const now = new Date();
+        
+        if (selectedDateTime <= now) {
+            e.preventDefault();
+            alert('Veuillez sélectionner une date et heure futures.');
+        }
+    }
+});
+
+// Form validation feedback
+document.querySelectorAll('.form-control, .form-select').forEach(input => {
+    input.addEventListener('blur', function() {
+        if (this.value.trim() !== '') {
+            this.classList.add('is-valid');
+            this.classList.remove('is-invalid');
+        } else if (this.hasAttribute('required')) {
+            this.classList.add('is-invalid');
+            this.classList.remove('is-valid');
+        }
+    });
+});
+</script>
+{% endblock %} 

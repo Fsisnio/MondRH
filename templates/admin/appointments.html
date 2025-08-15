@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}Gestion des Rendez-vous - Administration{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4 admin-layout">
+    <div class="row">
+        {# Route admin_settings not implemented yet #}
+        <main role="main" class="main-content px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Gestion des Rendez-vous</h1>
+            </div>
+
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Client</th>
+                                    <th>Service</th>
+                                    <th>Date & Heure</th>
+                                    <th>Durée</th>
+                                    <th>Sujet</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for appointment in appointments.items %}
+                                <tr>
+                                    <td>{{ appointment.id }}</td>
+                                    <td>
+                                        {{ appointment.user.first_name }} {{ appointment.user.last_name }}
+                                        <br><small class="text-muted">{{ appointment.user.email }}</small>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-{{ 'primary' if appointment.service_type == 'recrutement' else 'info' if appointment.service_type == 'coaching' else 'success' if appointment.service_type == 'formation' else 'warning' }}">
+                                            {{ appointment.service_type|title }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <strong>{{ appointment.date.strftime('%d/%m/%Y') }}</strong>
+                                        <br><small class="text-muted">{{ appointment.time.strftime('%H:%M') }}</small>
+                                    </td>
+                                    <td>{{ appointment.duration }} min</td>
+                                    <td>
+                                        {% if appointment.subject %}
+                                            {{ appointment.subject }}
+                                        {% else %}
+                                            <span class="text-muted">-</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted py-4">Aucun rendez-vous trouvé</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    {% if appointments.pages > 1 %}
+                    <nav aria-label="Navigation des rendez-vous">
+                        <ul class="pagination justify-content-center">
+                            {% if appointments.has_prev %}
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ url_for('admin_appointments', page=appointments.prev_num) }}">Précédent</a>
+                                </li>
+                            {% endif %}
+                            
+                            {% for page_num in appointments.iter_pages() %}
+                                {% if page_num %}
+                                    {% if page_num != appointments.page %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="{{ url_for('admin_appointments', page=page_num) }}">{{ page_num }}</a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item active">
+                                            <span class="page-link">{{ page_num }}</span>
+                                        </li>
+                                    {% endif %}
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <span class="page-link">…</span>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                            
+                            {% if appointments.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ url_for('admin_appointments', page=appointments.next_num) }}">Suivant</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                    {% endif %}
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<style>
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 48px 0 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.sidebar .nav-link {
+    color: #333;
+}
+
+.sidebar .nav-link.active {
+    color: #007bff;
+    background-color: #f8f9fa;
+}
+
+/* Contenu principal */
+.main-content {
+    margin-left: 250px;
+    margin-bottom: 0;
+    padding-left: 2rem;
+    width: calc(100% - 250px);
+    flex: 1;
+}
+
+/* Correction pour l'affichage avec sidebar */
+main {
+    margin-bottom: 100px; /* Espace pour le footer */
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: relative;
+        height: auto;
+        padding: 0;
+    }
+    
+    main {
+        margin-left: 0 !important;
+        margin-bottom: 50px;
+    }
+}
+</style>
+{% endblock %} 

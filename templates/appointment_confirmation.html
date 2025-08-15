@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+
+{% block title %}Confirmation de rendez-vous - MonDRH{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="confirmation-hero bg-gradient-success text-white position-relative overflow-hidden">
+    <div class="confirmation-hero-bg-pattern"></div>
+    <div class="container position-relative">
+        <div class="row align-items-center py-5">
+            <div class="col-lg-8 mx-auto text-center">
+                <div class="confirmation-icon mb-4">
+                    <i class="fas fa-check-circle display-1 text-warning"></i>
+                </div>
+                <h1 class="display-4 fw-bold mb-4">Rendez-vous confirmé !</h1>
+                <p class="lead mb-4">
+                    Votre rendez-vous a été pris avec succès. Vous recevrez une confirmation par email.
+                </p>
+                <div class="confirmation-badge">
+                    <span class="badge bg-warning text-dark px-4 py-2 fw-bold fs-6">
+                        <i class="fas fa-calendar-check me-2"></i>Rendez-vous programmé
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Appointment Details -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="confirmation-card bg-white rounded-4 shadow-lg border-0">
+                    <div class="card-body p-5">
+                        <div class="text-center mb-5">
+                            <h2 class="display-6 fw-bold mb-3 text-success">
+                                <i class="fas fa-calendar-alt me-3"></i>Détails du rendez-vous
+                            </h2>
+                        </div>
+                        
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
+                                        <i class="fas fa-{{ 'exclamation-triangle' if category == 'error' else 'check-circle' }} me-2"></i>
+                                        {{ message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+
+                        <div class="row g-4">
+                            <!-- Informations générales -->
+                            <div class="col-md-6">
+                                <div class="info-section">
+                                    <h5 class="fw-bold text-primary mb-3">
+                                        <i class="fas fa-info-circle me-2"></i>Informations générales
+                                    </h5>
+                                    <div class="info-item mb-3">
+                                        <strong>Sujet :</strong><br>
+                                        <span class="text-dark">{{ appointment.subject }}</span>
+                                    </div>
+                                    <div class="info-item mb-3">
+                                        <strong>Service :</strong><br>
+                                        <span class="text-dark">{{ appointment.service_type|title }}</span>
+                                    </div>
+                                    <div class="info-item mb-3">
+                                        <strong>Statut :</strong><br>
+                                        <span class="badge bg-success text-white px-3 py-2">
+                                            <i class="fas fa-check me-1"></i>Confirmé
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Planning -->
+                            <div class="col-md-6">
+                                <div class="info-section">
+                                    <h5 class="fw-bold text-success mb-3">
+                                        <i class="fas fa-clock me-2"></i>Planning
+                                    </h5>
+                                    <div class="info-item mb-3">
+                                        <strong>Date :</strong><br>
+                                        <span class="text-dark">{{ appointment.date.strftime('%d/%m/%Y') }}</span>
+                                    </div>
+                                    <div class="info-item mb-3">
+                                        <strong>Heure :</strong><br>
+                                        <span class="text-dark">{{ appointment.time.strftime('%H:%M') }}</span>
+                                    </div>
+                                    <div class="info-item mb-3">
+                                        <strong>Durée :</strong><br>
+                                        <span class="text-dark">{{ appointment.duration }} minutes</span>
+                                    </div>
+                                    <div class="info-item mb-3">
+                                        <strong>Créé le :</strong><br>
+                                        <span class="text-dark">{{ appointment.created_at.strftime('%d/%m/%Y à %H:%M') }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% if appointment.description %}
+                            <hr class="my-4">
+                            <div class="description-section">
+                                <h5 class="fw-bold text-warning mb-3">
+                                    <i class="fas fa-comment me-2"></i>Description
+                                </h5>
+                                <p class="text-muted">{{ appointment.description }}</p>
+                            </div>
+                        {% endif %}
+
+                        {% if appointment.google_calendar_link %}
+                            <hr class="my-4">
+                            <div class="calendar-section text-center">
+                                <h5 class="fw-bold text-info mb-3">
+                                    <i class="fas fa-calendar-plus me-2"></i>Google Calendar
+                                </h5>
+                                <p class="text-muted mb-3">Votre rendez-vous a été ajouté à votre Google Calendar.</p>
+                                <a href="{{ appointment.google_calendar_link }}" target="_blank" class="btn btn-outline-info">
+                                    <i class="fas fa-external-link-alt me-2"></i>Voir dans Google Calendar
+                                </a>
+                            </div>
+                        {% endif %}
+
+                        <hr class="my-4">
+
+                        <!-- Actions -->
+                        <div class="text-center">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <a href="{{ url_for('appointments') }}" class="btn btn-outline-primary w-100">
+                                        <i class="fas fa-calendar-plus me-2"></i>Nouveau rendez-vous
+                                    </a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="{{ url_for('admin_dashboard') if current_user.is_admin() else url_for('dashboard') }}" class="btn btn-outline-secondary w-100">
+                                        <i class="fas fa-tachometer-alt me-2"></i>Tableau de bord
+                                    </a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="{{ url_for('index') }}" class="btn btn-outline-success w-100">
+                                        <i class="fas fa-home me-2"></i>Accueil
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Confirmation Hero Styles */
+.confirmation-hero {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
+.confirmation-hero-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    animation: float 6s ease-in-out infinite;
+}
+
+.confirmation-icon {
+    animation: bounceIn 1s ease-out;
+}
+
+.confirmation-badge {
+    animation: slideInUp 1s ease-out 0.5s both;
+}
+
+/* Info Sections */
+.info-section {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border-left: 4px solid #007bff;
+}
+
+.info-item {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+/* Animations */
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .confirmation-card {
+        margin: 1rem;
+    }
+    
+    .info-section {
+        margin-bottom: 1rem;
+    }
+}
+</style>
+{% endblock %} 

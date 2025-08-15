@@ -1,0 +1,981 @@
+{% extends "base.html" %}
+
+{% block title %}Conseil en Organisation - MonDRH{% endblock %}
+
+{% block content %}
+<!-- Hero Section Conseil -->
+<section class="conseil-hero bg-gradient-danger text-white position-relative overflow-hidden">
+    <div class="conseil-hero-bg-pattern"></div>
+    <div class="container position-relative">
+        <div class="row align-items-center min-vh-75">
+            <div class="col-lg-6">
+                <div class="conseil-hero-content">
+                    <div class="conseil-badge mb-4 animate-fade-in">
+                        <span class="badge bg-warning text-dark px-4 py-3 fw-bold fs-6">
+                            <i class="fas fa-lightbulb me-2"></i>Conseil Stratégique
+                        </span>
+                    </div>
+                    <h1 class="display-3 fw-bold mb-4 animate-slide-up">
+                        Conseil en <span class="text-warning">Organisation</span>
+                    </h1>
+                    <p class="lead mb-4 fs-5 animate-slide-up-delay">
+                        Optimisez votre organisation et vos processus RH pour améliorer la performance de votre entreprise. 
+                        Notre expertise vous accompagne dans votre transformation.
+                    </p>
+                    
+                    <!-- Statistiques conseil -->
+                    <div class="conseil-stats mb-5 animate-fade-in-delay">
+                        <div class="row g-3">
+                            <div class="col-4">
+                                <div class="stat-item text-center">
+                                    <h3 class="fw-bold mb-1 text-warning counter" data-target="150">0</h3>
+                                    <small>Projets</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-item text-center">
+                                    <h3 class="fw-bold mb-1 text-warning counter" data-target="40">0</h3>
+                                    <small>% Gain</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-item text-center">
+                                    <h3 class="fw-bold mb-1 text-warning counter" data-target="99">0</h3>
+                                    <small>% Satisfaction</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex gap-3 flex-wrap animate-fade-in-delay">
+                        <a href="#services" class="btn btn-warning btn-lg px-5 py-3 fw-bold">
+                            <i class="fas fa-rocket me-2"></i>Découvrir nos services
+                        </a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg px-5 py-3 fw-bold">
+                            <i class="fas fa-calendar me-2"></i>Demander un audit
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="conseil-hero-visual text-center animate-slide-up-delay">
+                    <div class="conseil-icon-container">
+                        <div class="conseil-main-icon">
+                            <i class="fas fa-lightbulb display-1 text-warning"></i>
+                        </div>
+                        <div class="floating-conseil-elements">
+                            <div class="floating-element element-1">
+                                <i class="fas fa-chart-bar text-primary"></i>
+                            </div>
+                            <div class="floating-element element-2">
+                                <i class="fas fa-cogs text-success"></i>
+                            </div>
+                            <div class="floating-element element-3">
+                                <i class="fas fa-users text-warning"></i>
+                            </div>
+                            <div class="floating-element element-4">
+                                <i class="fas fa-target text-danger"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pourquoi le Conseil -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Pourquoi Choisir le Conseil ?</h2>
+                <p class="lead text-muted">
+                    Le conseil en organisation est un levier stratégique pour votre transformation
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="why-conseil-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-conseil-icon mb-4">
+                        <div class="icon-circle bg-danger text-white">
+                            <i class="fas fa-eye fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Vision Externe</h5>
+                    <p class="text-muted mb-0">
+                        Regard neuf et objectif sur votre organisation
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="why-conseil-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-conseil-icon mb-4">
+                        <div class="icon-circle bg-primary text-white">
+                            <i class="fas fa-chart-line fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Performance</h5>
+                    <p class="text-muted mb-0">
+                        Amélioration mesurable de vos résultats
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="why-conseil-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-conseil-icon mb-4">
+                        <div class="icon-circle bg-warning text-white">
+                            <i class="fas fa-cogs fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Optimisation</h5>
+                    <p class="text-muted mb-0">
+                        Processus optimisés et efficacité accrue
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="why-conseil-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-conseil-icon mb-4">
+                        <div class="icon-circle bg-success text-white">
+                            <i class="fas fa-rocket fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Transformation</h5>
+                    <p class="text-muted mb-0">
+                        Accompagnement vers le changement
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nos Services de Conseil -->
+<section id="services" class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Nos Services de Conseil</h2>
+                <p class="lead text-muted">
+                    Des solutions complètes pour optimiser votre organisation
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="conseil-service-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="service-header mb-4">
+                        <div class="service-icon mb-3">
+                            <div class="icon-circle-lg bg-primary text-white">
+                                <i class="fas fa-search fs-2"></i>
+                            </div>
+                        </div>
+                        <h4 class="fw-bold mb-2">Audit Organisationnel</h4>
+                        <p class="text-muted mb-3">Diagnostic complet de votre organisation</p>
+                        <div class="service-duration mb-3">
+                            <span class="badge bg-primary px-3 py-2">2-4 semaines</span>
+                            <small class="text-muted d-block mt-2">Analyse approfondie</small>
+                        </div>
+                    </div>
+                    <div class="service-features mb-4">
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Analyse des processus
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Évaluation des performances
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Identification des dysfonctionnements
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Benchmark sectoriel
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Rapport détaillé
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="btn btn-primary w-100 py-3 fw-bold">
+                        <i class="fas fa-info-circle me-2"></i>Demander un audit
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="conseil-service-card p-4 bg-white rounded-4 shadow-sm h-100 border border-warning">
+                    <div class="service-badge mb-3">
+                        <span class="badge bg-warning text-dark px-3 py-2 fw-bold">
+                            <i class="fas fa-star me-1"></i>Le Plus Demandé
+                        </span>
+                    </div>
+                    <div class="service-header mb-4">
+                        <div class="service-icon mb-3">
+                            <div class="icon-circle-lg bg-warning text-white">
+                                <i class="fas fa-building fs-2"></i>
+                            </div>
+                        </div>
+                        <h4 class="fw-bold mb-2">Restructuration</h4>
+                        <p class="text-muted mb-3">Redéfinition de votre organisation</p>
+                        <div class="service-duration mb-3">
+                            <span class="badge bg-warning text-dark px-3 py-2">3-6 mois</span>
+                            <small class="text-muted d-block mt-2">Transformation complète</small>
+                        </div>
+                    </div>
+                    <div class="service-features mb-4">
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Redéfinition des missions
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Optimisation des structures
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Plan de transformation
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Accompagnement au changement
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Suivi post-restructuration
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="btn btn-warning w-100 py-3 fw-bold">
+                        <i class="fas fa-info-circle me-2"></i>Demander un devis
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="conseil-service-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="service-header mb-4">
+                        <div class="service-icon mb-3">
+                            <div class="icon-circle-lg bg-success text-white">
+                                <i class="fas fa-chart-line fs-2"></i>
+                            </div>
+                        </div>
+                        <h4 class="fw-bold mb-2">Pilotage Performance</h4>
+                        <p class="text-muted mb-3">Mise en place d'indicateurs de performance</p>
+                        <div class="service-duration mb-3">
+                            <span class="badge bg-success px-3 py-2">1-3 mois</span>
+                            <small class="text-muted d-block mt-2">Mise en œuvre</small>
+                        </div>
+                    </div>
+                    <div class="service-features mb-4">
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Définition des KPIs
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Tableaux de bord
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Processus de suivi
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Formation des managers
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Optimisation continue
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="btn btn-success w-100 py-3 fw-bold">
+                        <i class="fas fa-info-circle me-2"></i>Demander un devis
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Méthodologie de Conseil -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Notre Méthodologie</h2>
+                <p class="lead text-muted">
+                    Une approche structurée et éprouvée pour des résultats durables
+                </p>
+            </div>
+        </div>
+        
+        <div class="conseil-methodology">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="methodology-step text-center">
+                        <div class="methodology-icon mb-4">
+                            <div class="icon-circle-lg bg-primary text-white position-relative">
+                                <i class="fas fa-search fs-3"></i>
+                                <span class="step-number">1</span>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-3">Diagnostic</h5>
+                        <p class="text-muted">
+                            Analyse approfondie de votre organisation actuelle
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="methodology-step text-center">
+                        <div class="methodology-icon mb-4">
+                            <div class="icon-circle-lg bg-warning text-white position-relative">
+                                <i class="fas fa-lightbulb fs-3"></i>
+                                <span class="step-number">2</span>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-3">Recommandations</h5>
+                        <p class="text-muted">
+                            Élaboration de solutions personnalisées
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="methodology-step text-center">
+                        <div class="methodology-icon mb-4">
+                            <div class="icon-circle-lg bg-success text-white position-relative">
+                                <i class="fas fa-cogs fs-3"></i>
+                                <span class="step-number">3</span>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-3">Mise en œuvre</h5>
+                        <p class="text-muted">
+                            Accompagnement dans la transformation
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="methodology-step text-center">
+                        <div class="methodology-icon mb-4">
+                            <div class="icon-circle-lg bg-danger text-white position-relative">
+                                <i class="fas fa-chart-bar fs-3"></i>
+                                <span class="step-number">4</span>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-3">Suivi</h5>
+                        <p class="text-muted">
+                            Mesure des résultats et optimisation continue
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Témoignages Conseil -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Ils ont Transformé leur Organisation</h2>
+                <p class="lead text-muted">
+                    Découvrez les témoignages de nos clients qui ont optimisé leur performance
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="conseil-testimonial-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="testimonial-content mb-4">
+                        <p class="fst-italic text-muted">
+                            "L'audit organisationnel nous a permis d'identifier 30% d'optimisation possible. La restructuration qui a suivi a boosté notre productivité de 40%."
+                        </p>
+                    </div>
+                    <div class="testimonial-author d-flex align-items-center">
+                        <div class="author-avatar me-3">
+                            <div class="avatar-circle bg-primary text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Aminata Diallo</h6>
+                            <small class="text-muted">PDG, Groupe Industriel</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="conseil-testimonial-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="testimonial-content mb-4">
+                        <p class="fst-italic text-muted">
+                            "Le conseil en organisation nous a aidés à traverser une période de croissance difficile. Notre structure est maintenant scalable et performante."
+                        </p>
+                    </div>
+                    <div class="testimonial-author d-flex align-items-center">
+                        <div class="author-avatar me-3">
+                            <div class="avatar-circle bg-warning text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Moussa Fall</h6>
+                            <small class="text-muted">CEO, Startup Tech</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="conseil-testimonial-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="testimonial-content mb-4">
+                        <p class="fst-italic text-muted">
+                            "La mise en place du pilotage de la performance a révolutionné notre management. Nos équipes sont plus motivées et nos résultats ont explosé."
+                        </p>
+                    </div>
+                    <div class="testimonial-author d-flex align-items-center">
+                        <div class="author-avatar me-3">
+                            <div class="avatar-circle bg-success text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Fatou Ndiaye</h6>
+                            <small class="text-muted">DRH, Banque Régionale</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nos Consultants -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Nos Consultants Experts</h2>
+                <p class="lead text-muted">
+                    Une équipe d'experts qualifiés pour vous accompagner dans votre transformation
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="consultant-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="consultant-avatar mb-4">
+                        <div class="avatar-circle-lg bg-primary text-white mx-auto">
+                            <i class="fas fa-user-tie fs-1"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-2">Dr. Aboubacar Diallo</h5>
+                    <p class="text-muted mb-3">Consultant Senior en Organisation</p>
+                    <div class="consultant-specialties mb-3">
+                        <span class="badge bg-primary me-1">Audit</span>
+                        <span class="badge bg-warning me-1">Restructuration</span>
+                        <span class="badge bg-success">Transformation</span>
+                    </div>
+                    <p class="text-muted small">
+                        20 ans d'expérience en conseil organisationnel et transformation d'entreprise
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="consultant-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="consultant-avatar mb-4">
+                        <div class="avatar-circle-lg bg-warning text-white mx-auto">
+                            <i class="fas fa-chart-line fs-1"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-2">Aissatou Ba</h5>
+                    <p class="text-muted mb-3">Experte en Performance</p>
+                    <div class="consultant-specialties mb-3">
+                        <span class="badge bg-primary me-1">KPIs</span>
+                        <span class="badge bg-warning me-1">Performance</span>
+                        <span class="badge bg-success">Optimisation</span>
+                    </div>
+                    <p class="text-muted small">
+                        Spécialiste en pilotage de la performance et optimisation des processus
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="consultant-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="consultant-avatar mb-4">
+                        <div class="avatar-circle-lg bg-success text-white mx-auto">
+                            <i class="fas fa-users-cog fs-1"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-2">Mamadou Sall</h5>
+                    <p class="text-muted mb-3">Expert en Changement</p>
+                    <div class="consultant-specialties mb-3">
+                        <span class="badge bg-primary me-1">Changement</span>
+                        <span class="badge bg-warning me-1">Accompagnement</span>
+                        <span class="badge bg-success">Formation</span>
+                    </div>
+                    <p class="text-muted small">
+                        Expert en accompagnement au changement et formation des équipes
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-gradient-danger text-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-4">Prêt à Optimiser votre Organisation ?</h2>
+                <p class="lead mb-4">
+                    Rejoignez les 150+ entreprises qui ont transformé leur performance grâce à notre conseil.
+                </p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="#contact" class="btn btn-warning btn-lg px-5 py-3 fw-bold">
+                        <i class="fas fa-calendar me-2"></i>Demander un audit gratuit
+                    </a>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-light btn-lg px-5 py-3 fw-bold">
+                        <i class="fas fa-home me-2"></i>Retour à l'accueil
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Parlons de votre Organisation</h2>
+                <p class="lead text-muted">
+                    Contactez-nous pour discuter de vos besoins en conseil et obtenir un audit personnalisé
+                </p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="contact-card bg-white rounded-4 shadow-lg border-0">
+                    <div class="card-body p-5">
+                        <div class="row g-4">
+                            <div class="col-lg-6">
+                                <div class="contact-info">
+                                    <h4 class="fw-bold mb-4">Informations de Contact</h4>
+                                    <div class="contact-item d-flex align-items-center mb-3">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-phone text-danger"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0 fw-bold">+221 787 962 422</p>
+                                            <small class="text-muted">Lun-Ven 9h-18h</small>
+                                        </div>
+                                    </div>
+                                    <div class="contact-item d-flex align-items-center mb-3">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-envelope text-danger"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0 fw-bold">conseil@mondrh.com</p>
+                                            <small class="text-muted">Réponse sous 24h</small>
+                                        </div>
+                                    </div>
+                                    <div class="contact-item d-flex align-items-center mb-3">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-map-marker-alt text-danger"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0 fw-bold">Dakar, Sénégal</p>
+                                            <small class="text-muted">Intervention sur site</small>
+                                        </div>
+                                    </div>
+                                    <div class="contact-item d-flex align-items-center mb-3">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-clock text-danger"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0 fw-bold">Audit gratuit</p>
+                                            <small class="text-muted">Étude préliminaire offerte</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <form id="conseilContactForm" class="contact-form">
+                                    <div class="row g-3">
+                                        <div class="col-12">
+                                            <label for="firstName" class="form-label fw-bold">Prénom *</label>
+                                            <input type="text" class="form-control form-control-lg" id="firstName" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="lastName" class="form-label fw-bold">Nom *</label>
+                                            <input type="text" class="form-control form-control-lg" id="lastName" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="email" class="form-label fw-bold">Email *</label>
+                                            <input type="email" class="form-control form-control-lg" id="email" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="phone" class="form-label fw-bold">Téléphone</label>
+                                            <input type="tel" class="form-control form-control-lg" id="phone">
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="company" class="form-label fw-bold">Entreprise *</label>
+                                            <input type="text" class="form-control form-control-lg" id="company" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="serviceType" class="form-label fw-bold">Type de service</label>
+                                            <select class="form-select form-select-lg" id="serviceType">
+                                                <option value="">Sélectionnez un service</option>
+                                                <option value="audit">Audit Organisationnel</option>
+                                                <option value="restructuration">Restructuration</option>
+                                                <option value="performance">Pilotage Performance</option>
+                                                <option value="sur-mesure">Conseil sur mesure</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="companySize" class="form-label fw-bold">Taille de l'entreprise</label>
+                                            <select class="form-select form-select-lg" id="companySize">
+                                                <option value="">Sélectionnez</option>
+                                                <option value="petite">1-50 employés</option>
+                                                <option value="moyenne">51-200 employés</option>
+                                                <option value="grande">201-1000 employés</option>
+                                                <option value="tres-grande">1000+ employés</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="challenges" class="form-label fw-bold">Vos défis *</label>
+                                            <textarea class="form-control form-control-lg" id="challenges" rows="4" placeholder="Décrivez vos défis organisationnels et vos objectifs..."></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-danger btn-lg w-100 py-3 fw-bold">
+                                                <i class="fas fa-paper-plane me-2"></i>Demander un audit gratuit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Conseil Hero Styles */
+.conseil-hero {
+    position: relative;
+    background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
+}
+
+.conseil-hero-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    animation: float 6s ease-in-out infinite;
+}
+
+.conseil-badge {
+    animation: slideInLeft 1s ease-out;
+}
+
+.conseil-title {
+    animation: slideInLeft 1s ease-out 0.2s both;
+}
+
+.conseil-description {
+    animation: slideInLeft 1s ease-out 0.4s both;
+}
+
+.conseil-stats {
+    animation: slideInLeft 1s ease-out 0.6s both;
+}
+
+.conseil-hero-visual {
+    animation: slideInRight 1s ease-out 0.8s both;
+}
+
+.conseil-icon-container {
+    position: relative;
+    display: inline-block;
+}
+
+.conseil-main-icon {
+    font-size: 8rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.floating-conseil-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.floating-element {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.element-1 {
+    top: 15%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.element-2 {
+    top: 45%;
+    right: 15%;
+    animation-delay: 1s;
+}
+
+.element-3 {
+    bottom: 25%;
+    left: 20%;
+    animation-delay: 2s;
+}
+
+.element-4 {
+    top: 70%;
+    right: 25%;
+    animation-delay: 1.5s;
+}
+
+/* Why Conseil Cards */
+.why-conseil-card {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.why-conseil-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--bs-danger);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+/* Conseil Service Cards */
+.conseil-service-card {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.conseil-service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+}
+
+.service-badge {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.service-duration {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 2px dashed var(--bs-primary);
+}
+
+/* Methodology Steps */
+.methodology-step {
+    transition: all 0.3s ease;
+}
+
+.methodology-step:hover {
+    transform: translateY(-5px);
+}
+
+.methodology-icon {
+    transition: all 0.3s ease;
+}
+
+.methodology-step:hover .methodology-icon {
+    transform: scale(1.1);
+}
+
+/* Conseil Testimonial Cards */
+.conseil-testimonial-card {
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--bs-danger);
+}
+
+.conseil-testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+/* Consultant Cards */
+.consultant-card {
+    transition: all 0.3s ease;
+}
+
+.consultant-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+}
+
+.consultant-avatar {
+    transition: all 0.3s ease;
+}
+
+.consultant-card:hover .consultant-avatar {
+    transform: scale(1.05);
+}
+
+.avatar-circle-lg {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.consultant-specialties .badge {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+}
+
+/* Contact Card */
+.contact-card {
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(var(--bs-danger-rgb), 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Utility Classes */
+.animate-fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+.animate-slide-up {
+    animation: slideInLeft 1s ease-out;
+}
+
+.animate-slide-up-delay {
+    animation: slideInLeft 1s ease-out 0.2s both;
+}
+
+.animate-fade-in-delay {
+    animation: fadeIn 1s ease-out 0.4s both;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .conseil-main-icon {
+        font-size: 5rem;
+    }
+    
+    .floating-element {
+        font-size: 1rem;
+    }
+    
+    .icon-circle-lg {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .avatar-circle-lg {
+        width: 100px;
+        height: 100px;
+    }
+}
+</style>
+
+<script>
+// Animation des compteurs
+document.addEventListener('DOMContentLoaded', function() {
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200;
+
+    const animateCounter = (counter) => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = target / speed;
+
+        if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(() => animateCounter(counter), 1);
+        } else {
+            counter.innerText = target;
+        }
+    };
+
+    // Observer pour déclencher l'animation au scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+
+    counters.forEach(counter => {
+        observer.observe(counter);
+    });
+});
+</script>
+{% endblock %} 

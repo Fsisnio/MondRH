@@ -1,0 +1,775 @@
+{% extends "base.html" %}
+
+{% block title %}Gestion des Utilisateurs - Administration{% endblock %}
+
+{% block content %}
+<div class="admin-container">
+    <!-- Sidebar Améliorée -->
+    <nav class="admin-sidebar">
+        <div class="sidebar-header">
+            <div class="admin-profile">
+                <div class="admin-avatar">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="admin-info">
+                    <h6 class="admin-name">{{ current_user.first_name }} {{ current_user.last_name }}</h6>
+                    <span class="admin-role">Administrateur</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sidebar-menu">
+            <div class="menu-section">
+                <h6 class="menu-title">Gestion</h6>
+                <ul class="menu-list">
+                    <li class="menu-item active">
+                        <a href="{{ url_for('admin_users') }}" class="menu-link">
+                            <i class="fas fa-users"></i>
+                            <span>Utilisateurs</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ url_for('admin_applications') }}" class="menu-link">
+                            <i class="fas fa-briefcase"></i>
+                            <span>Candidatures</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="menu-section">
+                <h6 class="menu-title">Actions rapides</h6>
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a href="{{ url_for('apply') }}" class="menu-link">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Nouvelle candidature</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ url_for('appointments') }}" class="menu-link">
+                            <i class="fas fa-calendar-plus"></i>
+                            <span>Prendre RDV</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="sidebar-footer">
+            <a href="{{ url_for('index') }}" class="view-site-btn">
+                <i class="fas fa-external-link-alt"></i>
+                <span>Voir le site</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Contenu Principal -->
+    <main class="admin-main">
+        <!-- Header avec actions -->
+        <header class="admin-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <h1 class="page-title">
+                        <i class="fas fa-users"></i>
+                        Gestion des Utilisateurs
+                    </h1>
+                    <p class="page-subtitle">Gérez tous les utilisateurs de la plateforme</p>
+                </div>
+                <div class="header-actions">
+                    <div class="action-buttons">
+                        <button class="btn btn-outline-primary" onclick="exportUsers()">
+                            <i class="fas fa-download"></i>
+                            Exporter
+                        </button>
+                        <a href="{{ url_for('register') }}" class="btn btn-primary">
+                            <i class="fas fa-user-plus"></i>
+                            Nouvel utilisateur
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Liste des utilisateurs -->
+        <section class="users-section" data-aos="fade-up" data-aos-delay="100">
+            <div class="users-card">
+                <div class="users-header">
+                    <h5><i class="fas fa-list"></i> Liste des utilisateurs</h5>
+                    <div class="users-count">
+                        {{ users.total }} utilisateur{{ 's' if users.total != 1 else '' }}
+                    </div>
+                </div>
+                
+                <div class="users-content">
+                    {% if users.items %}
+                        <div class="users-grid">
+                                {% for user in users.items %}
+                            <div class="user-card" data-aos="fade-up" data-aos-delay="{{ loop.index * 100 }}">
+                                <div class="user-header">
+                                    <div class="user-id">#{{ user.id }}</div>
+                                    <div class="user-status">
+                                        <span class="status-badge {{ 'active' if user.is_active else 'inactive' }}">
+                                            {{ 'Actif' if user.is_active else 'Inactif' }}
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <div class="user-body">
+                                    <div class="user-info">
+                                        <div class="user-avatar">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div class="user-details">
+                                            <h6 class="user-name">{{ user.first_name }} {{ user.last_name }}</h6>
+                                            <p class="user-email">{{ user.email }}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="user-details-info">
+                                        <div class="detail-item">
+                                            <span class="detail-label">Type :</span>
+                                            <span class="user-type-badge {{ user.user_type }}">{{ user.user_type|title }}</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">Inscription :</span>
+                                            <span class="detail-value">{{ user.created_at.strftime('%d/%m/%Y') }}</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="user-actions">
+                                        <div class="action-buttons">
+                                            <a href="{{ url_for('admin_edit_user', user_id=user.id) }}" 
+                                               class="btn btn-sm btn-outline-primary" title="Modifier">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            {% if user.id != current_user.id %}
+                                            <button type="button" 
+                                                    class="btn btn-sm btn-outline-danger" 
+                                                    title="Supprimer"
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#deleteUserModal{{ user.id }}">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="empty-state">
+                            <i class="fas fa-users"></i>
+                            <h5>Aucun utilisateur trouvé</h5>
+                            <p>Aucun utilisateur n'est enregistré dans le système.</p>
+                            <a href="{{ url_for('register') }}" class="btn btn-primary">
+                                <i class="fas fa-user-plus"></i>
+                                Créer un utilisateur
+                            </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+        </main>
+</div>
+
+<!-- Modales de suppression -->
+{% for user in users.items %}
+{% if user.id != current_user.id %}
+<div class="modal fade" id="deleteUserModal{{ user.id }}" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">
+                    <i class="fas fa-exclamation-triangle me-2"></i>Confirmer la suppression
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Êtes-vous sûr de vouloir supprimer l'utilisateur <strong>{{ user.first_name }} {{ user.last_name }}</strong> ?</p>
+                <p class="text-danger"><strong>Cette action est irréversible !</strong></p>
+                <ul class="text-muted">
+                    <li>Toutes les candidatures seront supprimées</li>
+                    <li>Tous les rendez-vous seront supprimés</li>
+                    <li>Les connexions Google seront supprimées</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <form method="POST" action="{{ url_for('admin_delete_user', user_id=user.id) }}" style="display: inline;">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash me-2"></i>Supprimer définitivement
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+
+<!-- Styles CSS -->
+<style>
+/* Container principal */
+.admin-container {
+    display: flex;
+    min-height: 100vh;
+    background: #f8f9fa;
+}
+
+/* Sidebar améliorée */
+.admin-sidebar {
+    width: 280px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    z-index: 1000;
+    box-shadow: 2px 0 20px rgba(0,0,0,0.1);
+}
+
+.sidebar-header {
+    padding: 2rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.admin-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.admin-avatar {
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.admin-info {
+    flex: 1;
+}
+
+.admin-name {
+    font-weight: 600;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.admin-role {
+    font-size: 0.875rem;
+    opacity: 0.8;
+}
+
+.sidebar-menu {
+    flex: 1;
+    padding: 1.5rem 0;
+}
+
+.menu-section {
+    margin-bottom: 2rem;
+}
+
+.menu-title {
+    padding: 0 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.7;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    margin: 0.25rem 0;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 0 25px 25px 0;
+    margin-right: 1rem;
+}
+
+.menu-link:hover {
+    color: white;
+    background: rgba(255,255,255,0.1);
+    transform: translateX(5px);
+    text-decoration: none;
+}
+
+.menu-item.active .menu-link {
+    color: white;
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.menu-link i {
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar-footer {
+    padding: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.view-site-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.view-site-btn:hover {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+/* Contenu principal */
+.admin-main {
+    flex: 1;
+    margin-left: 280px;
+    padding: 2rem;
+}
+
+/* Header */
+.admin-header {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.page-title i {
+    color: #667eea;
+}
+
+.page-subtitle {
+    margin: 0.5rem 0 0 0;
+    color: #6c757d;
+    font-size: 1.1rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Utilisateurs */
+.users-section {
+    margin-bottom: 2rem;
+}
+
+.users-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.users-header {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+}
+
+.users-header h5 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.users-header h5 i {
+    color: #667eea;
+}
+
+.users-count {
+    font-weight: 500;
+    color: #6c757d;
+}
+
+.users-content {
+    padding: 2rem;
+}
+
+.users-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.user-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.user-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    border-color: #667eea;
+}
+
+.user-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.user-id {
+    font-weight: 600;
+    color: #667eea;
+    font-size: 0.875rem;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.status-badge.active {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-badge.inactive {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.user-name {
+    margin: 0 0 0.25rem 0;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.user-email {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+.user-details-info {
+    margin-bottom: 1rem;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.detail-label {
+    font-weight: 500;
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+.detail-value {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.user-type-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.user-type-badge.admin {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.user-type-badge.client {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.user-type-badge.candidate {
+    background: #e8f5e8;
+    color: #2e7d32;
+}
+
+.user-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-buttons .btn {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.action-buttons .btn:hover {
+    transform: scale(1.1);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: #6c757d;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.empty-state h5 {
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.empty-state p {
+    margin-bottom: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .admin-sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .admin-sidebar.open {
+        transform: translateX(0);
+    }
+    
+    .admin-main {
+        margin-left: 0;
+    }
+    
+    .users-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-main {
+        padding: 1rem;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .user-actions {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+    
+    .action-buttons {
+        justify-content: center;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+[data-aos] {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Boutons améliorés */
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 0.75rem 1.5rem;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.btn-outline-primary {
+    border: 2px solid #667eea;
+    color: #667eea;
+}
+
+.btn-outline-primary:hover {
+    background: #667eea;
+    color: white;
+}
+
+.btn-outline-danger {
+    border: 2px solid #dc3545;
+    color: #dc3545;
+    }
+
+.btn-outline-danger:hover {
+    background: #dc3545;
+    color: white;
+}
+</style>
+
+<!-- Scripts JavaScript -->
+<script>
+// Fonction d'export
+function exportUsers() {
+    // Simulation d'export
+    alert('Fonctionnalité d\'export en cours de développement');
+}
+
+// Initialisation au chargement de la page
+document.addEventListener('DOMContentLoaded', function() {
+    // Animation pour les cartes d'utilisateurs
+    const userCards = document.querySelectorAll('.user-card');
+    userCards.forEach(function(card) {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+    
+    // Animation pour les boutons d'action
+    const actionButtons = document.querySelectorAll('.action-buttons .btn');
+    actionButtons.forEach(function(button) {
+        button.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.1)';
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+        });
+    });
+    
+    // Animation au scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    document.querySelectorAll('[data-aos]').forEach(function(el) {
+        observer.observe(el);
+    });
+});
+</script>
+{% endblock %} 

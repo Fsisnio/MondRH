@@ -1,0 +1,977 @@
+{% extends "base.html" %}
+
+{% block title %}Intérim - MonDRH{% endblock %}
+
+{% block content %}
+<!-- Hero Section Intérim -->
+<section class="interim-hero bg-gradient-info text-white position-relative overflow-hidden">
+    <div class="interim-hero-bg-pattern"></div>
+    <div class="container position-relative">
+        <div class="row align-items-center min-vh-75">
+            <div class="col-lg-6">
+                <div class="interim-hero-content">
+                    <div class="interim-badge mb-4 animate-fade-in">
+                        <span class="badge bg-warning text-dark px-4 py-3 fw-bold fs-6">
+                            <i class="fas fa-clock me-2"></i>Solutions Temporaires
+                        </span>
+                    </div>
+                    <h1 class="display-3 fw-bold mb-4 animate-slide-up">
+                        Intérim <span class="text-warning">Professionnel</span>
+                    </h1>
+                    <p class="lead mb-4 fs-5 animate-slide-up-delay">
+                        Solutions d'intérim adaptées pour répondre à vos besoins temporaires en personnel qualifié. 
+                        Flexibilité, réactivité et expertise au service de votre entreprise.
+                    </p>
+                    
+                    <!-- Statistiques intérim -->
+                    <div class="interim-stats mb-5 animate-fade-in-delay">
+                        <div class="row g-3">
+                            <div class="col-4">
+                                <div class="stat-item text-center">
+                                    <h3 class="fw-bold mb-1 text-warning counter" data-target="500">0</h3>
+                                    <small>Missions</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-item text-center">
+                                    <h3 class="fw-bold mb-1 text-warning counter" data-target="24">0</h3>
+                                    <small>Heures</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-item text-center">
+                                    <h3 class="fw-bold mb-1 text-warning counter" data-target="95">0</h3>
+                                    <small>% Satisfaction</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex gap-3 flex-wrap animate-fade-in-delay">
+                        <a href="#solutions" class="btn btn-warning btn-lg px-5 py-3 fw-bold">
+                            <i class="fas fa-rocket me-2"></i>Découvrir nos solutions
+                        </a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg px-5 py-3 fw-bold">
+                            <i class="fas fa-calendar me-2"></i>Demander un devis
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="interim-hero-visual text-center animate-slide-up-delay">
+                    <div class="interim-icon-container">
+                        <div class="interim-main-icon">
+                            <i class="fas fa-clock display-1 text-warning"></i>
+                        </div>
+                        <div class="floating-interim-elements">
+                            <div class="floating-element element-1">
+                                <i class="fas fa-user-tie text-primary"></i>
+                            </div>
+                            <div class="floating-element element-2">
+                                <i class="fas fa-briefcase text-success"></i>
+                            </div>
+                            <div class="floating-element element-3">
+                                <i class="fas fa-chart-line text-warning"></i>
+                            </div>
+                            <div class="floating-element element-4">
+                                <i class="fas fa-handshake text-danger"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pourquoi l'Intérim -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Pourquoi Choisir l'Intérim ?</h2>
+                <p class="lead text-muted">
+                    L'intérim est une solution flexible et efficace pour gérer vos besoins temporaires
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="why-interim-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-interim-icon mb-4">
+                        <div class="icon-circle bg-info text-white">
+                            <i class="fas fa-bolt fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Réactivité Immédiate</h5>
+                    <p class="text-muted mb-0">
+                        Intervention sous 24h pour répondre à vos urgences
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="why-interim-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-interim-icon mb-4">
+                        <div class="icon-circle bg-warning text-white">
+                            <i class="fas fa-users fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Profils Qualifiés</h5>
+                    <p class="text-muted mb-0">
+                        Personnel expérimenté et formé pour vos missions
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="why-interim-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-interim-icon mb-4">
+                        <div class="icon-circle bg-success text-white">
+                            <i class="fas fa-calculator fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Gestion Administrative</h5>
+                            <p class="text-muted mb-0">
+                        Prise en charge complète de l'administratif RH
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="why-interim-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-interim-icon mb-4">
+                        <div class="icon-circle bg-danger text-white">
+                            <i class="fas fa-shield-alt fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Sécurité Juridique</h5>
+                    <p class="text-muted mb-0">
+                        Conformité légale et protection de votre entreprise
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nos Solutions d'Intérim -->
+<section id="solutions" class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Nos Solutions d'Intérim</h2>
+                <p class="lead text-muted">
+                    Des solutions adaptées à tous vos besoins temporaires
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="interim-solution-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="solution-header mb-4">
+                        <div class="solution-icon mb-3">
+                            <div class="icon-circle-lg bg-primary text-white">
+                                <i class="fas fa-user-tie fs-2"></i>
+                            </div>
+                        </div>
+                        <h4 class="fw-bold mb-2">Intérim Cadre</h4>
+                        <p class="text-muted mb-3">Profils expérimentés pour missions stratégiques</p>
+                        <div class="solution-duration mb-3">
+                            <span class="badge bg-primary px-3 py-2">1-6 mois</span>
+                            <small class="text-muted d-block mt-2">Missions longues</small>
+                        </div>
+                    </div>
+                    <div class="solution-features mb-4">
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Directeurs et managers
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Experts techniques
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Consultants spécialisés
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Accompagnement projet
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Transfert de compétences
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="btn btn-primary w-100 py-3 fw-bold">
+                        <i class="fas fa-info-circle me-2"></i>Demander un devis
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="interim-solution-card p-4 bg-white rounded-4 shadow-sm h-100 border border-warning">
+                    <div class="solution-badge mb-3">
+                        <span class="badge bg-warning text-dark px-3 py-2 fw-bold">
+                            <i class="fas fa-star me-1"></i>Le Plus Demandé
+                        </span>
+                    </div>
+                    <div class="solution-header mb-4">
+                        <div class="solution-icon mb-3">
+                            <div class="icon-circle-lg bg-warning text-white">
+                                <i class="fas fa-briefcase fs-2"></i>
+                            </div>
+                        </div>
+                        <h4 class="fw-bold mb-2">Intérim Opérationnel</h4>
+                        <p class="text-muted mb-3">Personnel qualifié pour vos activités quotidiennes</p>
+                        <div class="solution-duration mb-3">
+                            <span class="badge bg-warning text-dark px-3 py-2">1-12 semaines</span>
+                            <small class="text-muted d-block mt-2">Missions courtes</small>
+                        </div>
+                    </div>
+                    <div class="solution-features mb-4">
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Employés administratifs
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Techniciens spécialisés
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Agents de production
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Personnel commercial
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Réactivité 24h
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="btn btn-warning w-100 py-3 fw-bold">
+                        <i class="fas fa-info-circle me-2"></i>Demander un devis
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="interim-solution-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="solution-header mb-4">
+                        <div class="solution-icon mb-3">
+                            <div class="icon-circle-lg bg-success text-white">
+                                <i class="fas fa-calendar-alt fs-2"></i>
+                            </div>
+                        </div>
+                        <h4 class="fw-bold mb-2">Intérim Saisonnier</h4>
+                        <p class="text-muted mb-3">Solutions pour vos pics d'activité</p>
+                        <div class="solution-duration mb-3">
+                            <span class="badge bg-success px-3 py-2">Saisonnier</span>
+                            <small class="text-muted d-block mt-2">Pics d'activité</small>
+                        </div>
+                    </div>
+                    <div class="solution-features mb-4">
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Périodes de fêtes
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Campagnes marketing
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Inventaires
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Projets ponctuels
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Remplacements
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="btn btn-success w-100 py-3 fw-bold">
+                        <i class="fas fa-info-circle me-2"></i>Demander un devis
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Processus d'Intérim -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Notre Processus</h2>
+                <p class="lead text-muted">
+                    Une méthodologie simple et efficace pour répondre à vos besoins
+                </p>
+            </div>
+        </div>
+        
+        <div class="interim-process">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step text-center">
+                        <div class="process-icon mb-4">
+                            <div class="icon-circle-lg bg-primary text-white position-relative">
+                                <i class="fas fa-phone fs-3"></i>
+                                <span class="step-number">1</span>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-3">Appel</h5>
+                        <p class="text-muted">
+                            Contactez-nous pour exprimer vos besoins
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step text-center">
+                        <div class="process-icon mb-4">
+                            <div class="icon-circle-lg bg-warning text-white position-relative">
+                                <i class="fas fa-search fs-3"></i>
+                                <span class="step-number">2</span>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-3">Sélection</h5>
+                        <p class="text-muted">
+                            Nous sélectionnons les meilleurs profils
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step text-center">
+                        <div class="process-icon mb-4">
+                            <div class="icon-circle-lg bg-success text-white position-relative">
+                                <i class="fas fa-user-check fs-3"></i>
+                                <span class="step-number">3</span>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-3">Validation</h5>
+                        <p class="text-muted">
+                            Vous validez le profil proposé
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step text-center">
+                        <div class="process-icon mb-4">
+                            <div class="icon-circle-lg bg-danger text-white position-relative">
+                                <i class="fas fa-rocket fs-3"></i>
+                                <span class="step-number">4</span>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-3">Intervention</h5>
+                        <p class="text-muted">
+                            Le collaborateur intervient sur site
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Témoignages Intérim -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Ils nous font Confiance</h2>
+                <p class="lead text-muted">
+                    Découvrez les témoignages de nos clients satisfaits de nos services d'intérim
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="interim-testimonial-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="testimonial-content mb-4">
+                        <p class="fst-italic text-muted">
+                            "MonDRH nous a fourni un directeur commercial en 48h lors d'une démission inattendue. Le profil était parfait et nous a permis de maintenir nos objectifs."
+                        </p>
+                    </div>
+                    <div class="testimonial-author d-flex align-items-center">
+                        <div class="author-avatar me-3">
+                            <div class="avatar-circle bg-primary text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Ousmane Diallo</h6>
+                            <small class="text-muted">Directeur Général, Entreprise Commerciale</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="interim-testimonial-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="testimonial-content mb-4">
+                        <p class="fst-italic text-muted">
+                            "L'équipe intérim nous accompagne depuis 3 ans pour nos pics saisonniers. Réactivité, qualité et professionnalisme au rendez-vous."
+                        </p>
+                    </div>
+                    <div class="testimonial-author d-flex align-items-center">
+                        <div class="author-avatar me-3">
+                            <div class="avatar-circle bg-warning text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Fatou Sall</h6>
+                            <small class="text-muted">DRH, Groupe Industriel</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="interim-testimonial-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="testimonial-content mb-4">
+                        <p class="fst-italic text-muted">
+                            "Un technicien spécialisé en 24h pour remplacer notre collaborateur en arrêt maladie. Le service est impeccable et le personnel qualifié."
+                        </p>
+                    </div>
+                    <div class="testimonial-author d-flex align-items-center">
+                        <div class="author-avatar me-3">
+                            <div class="avatar-circle bg-success text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Mamadou Ba</h6>
+                            <small class="text-muted">Responsable Production, Usine</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Avantages de l'Intérim -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Les Avantages de l'Intérim</h2>
+                <p class="lead text-muted">
+                    Pourquoi choisir l'intérim pour vos besoins temporaires
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="advantage-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="d-flex align-items-start">
+                        <div class="advantage-icon me-3">
+                            <div class="icon-circle-sm bg-primary text-white">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-2">Flexibilité Totale</h5>
+                            <p class="text-muted mb-0">
+                                Adaptation à vos besoins : durée, horaires, compétences. Possibilité d'extension ou de réduction selon vos évolutions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="advantage-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="d-flex align-items-start">
+                        <div class="advantage-icon me-3">
+                            <div class="icon-circle-sm bg-warning text-white">
+                                <i class="fas fa-euro-sign"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-2">Maîtrise des Coûts</h5>
+                            <p class="text-muted mb-0">
+                                Pas de charges sociales, pas de frais de recrutement, pas d'indemnités de départ. Budget maîtrisé et prévisible.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="advantage-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="d-flex align-items-start">
+                        <div class="advantage-icon me-3">
+                            <div class="icon-circle-sm bg-success text-white">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-2">Sécurité Juridique</h5>
+                            <p class="text-muted mb-0">
+                                Conformité légale garantie, gestion des risques, assurance responsabilité civile incluse. Vous êtes protégé.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="advantage-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="d-flex align-items-start">
+                        <div class="advantage-icon me-3">
+                            <div class="icon-circle-sm bg-danger text-white">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-2">Qualité Garantie</h5>
+                            <p class="text-muted mb-0">
+                                Personnel qualifié, formé et expérimenté. Tests de compétences et références vérifiées avant intervention.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-gradient-info text-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-4">Besoin d'une Solution Rapide ?</h2>
+                <p class="lead mb-4">
+                    Rejoignez les 500+ entreprises qui nous font confiance pour leurs besoins en intérim.
+                </p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="#contact" class="btn btn-warning btn-lg px-5 py-3 fw-bold">
+                        <i class="fas fa-calendar me-2"></i>Demander un devis gratuit
+                    </a>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-light btn-lg px-5 py-3 fw-bold">
+                        <i class="fas fa-home me-2"></i>Retour à l'accueil
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Parlons de vos Besoins en Intérim</h2>
+                <p class="lead text-muted">
+                    Contactez-nous pour discuter de vos besoins temporaires et obtenir une solution adaptée
+                </p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="contact-card bg-white rounded-4 shadow-lg border-0">
+                    <div class="card-body p-5">
+                        <div class="row g-4">
+                            <div class="col-lg-6">
+                                <div class="contact-info">
+                                    <h4 class="fw-bold mb-4">Informations de Contact</h4>
+                                    <div class="contact-item d-flex align-items-center mb-3">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-phone text-info"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0 fw-bold">+221 787 962 422</p>
+                                            <small class="text-muted">Urgences 24h/24</small>
+                                        </div>
+                                    </div>
+                                    <div class="contact-item d-flex align-items-center mb-3">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-envelope text-info"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0 fw-bold">interim@mondrh.com</p>
+                                            <small class="text-muted">Réponse sous 2h</small>
+                                        </div>
+                                    </div>
+                                    <div class="contact-item d-flex align-items-center mb-3">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-map-marker-alt text-info"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0 fw-bold">Dakar, Sénégal</p>
+                                            <small class="text-muted">Intervention sur tout le territoire</small>
+                                        </div>
+                                    </div>
+                                    <div class="contact-item d-flex align-items-center mb-3">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-clock text-info"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0 fw-bold">Devis gratuit</p>
+                                            <small class="text-muted">Étude personnalisée de vos besoins</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <form id="interimContactForm" class="contact-form">
+                                    <div class="row g-3">
+                                        <div class="col-12">
+                                            <label for="firstName" class="form-label fw-bold">Prénom *</label>
+                                            <input type="text" class="form-control form-control-lg" id="firstName" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="lastName" class="form-label fw-bold">Nom *</label>
+                                            <input type="text" class="form-control form-control-lg" id="lastName" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="email" class="form-label fw-bold">Email *</label>
+                                            <input type="email" class="form-control form-control-lg" id="email" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="phone" class="form-label fw-bold">Téléphone *</label>
+                                            <input type="tel" class="form-control form-control-lg" id="phone" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="company" class="form-label fw-bold">Entreprise *</label>
+                                            <input type="text" class="form-control form-control-lg" id="company" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="interimType" class="form-label fw-bold">Type d'intérim</label>
+                                            <select class="form-select form-select-lg" id="interimType">
+                                                <option value="">Sélectionnez un type</option>
+                                                <option value="cadre">Intérim Cadre</option>
+                                                <option value="operationnel">Intérim Opérationnel</option>
+                                                <option value="saisonnier">Intérim Saisonnier</option>
+                                                <option value="urgence">Urgence</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="urgency" class="form-label fw-bold">Urgence</label>
+                                            <select class="form-select form-select-lg" id="urgency">
+                                                <option value="">Niveau d'urgence</option>
+                                                <option value="immediate">Immédiate (24h)</option>
+                                                <option value="rapide">Rapide (48-72h)</option>
+                                                <option value="planifiee">Planifiée (1-2 semaines)</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="needs" class="form-label fw-bold">Vos besoins *</label>
+                                            <textarea class="form-control form-control-lg" id="needs" rows="4" placeholder="Décrivez votre besoin en intérim, le profil recherché, la durée..."></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-info btn-lg w-100 py-3 fw-bold">
+                                                <i class="fas fa-paper-plane me-2"></i>Demander un devis gratuit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Interim Hero Styles */
+.interim-hero {
+    position: relative;
+    background: linear-gradient(135deg, #17a2b8 0%, #6f42c1 100%);
+}
+
+.interim-hero-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    animation: float 6s ease-in-out infinite;
+}
+
+.interim-badge {
+    animation: slideInLeft 1s ease-out;
+}
+
+.interim-title {
+    animation: slideInLeft 1s ease-out 0.2s both;
+}
+
+.interim-description {
+    animation: slideInLeft 1s ease-out 0.4s both;
+}
+
+.interim-stats {
+    animation: slideInLeft 1s ease-out 0.6s both;
+}
+
+.interim-hero-visual {
+    animation: slideInRight 1s ease-out 0.8s both;
+}
+
+.interim-icon-container {
+    position: relative;
+    display: inline-block;
+}
+
+.interim-main-icon {
+    font-size: 8rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.floating-interim-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.floating-element {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.element-1 {
+    top: 15%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.element-2 {
+    top: 45%;
+    right: 15%;
+    animation-delay: 1s;
+}
+
+.element-3 {
+    bottom: 25%;
+    left: 20%;
+    animation-delay: 2s;
+}
+
+.element-4 {
+    top: 70%;
+    right: 25%;
+    animation-delay: 1.5s;
+}
+
+/* Why Interim Cards */
+.why-interim-card {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.why-interim-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--bs-info);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+/* Interim Solution Cards */
+.interim-solution-card {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.interim-solution-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+}
+
+.solution-badge {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.solution-duration {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 2px dashed var(--bs-primary);
+}
+
+/* Process Steps */
+.process-step {
+    transition: all 0.3s ease;
+}
+
+.process-step:hover {
+    transform: translateY(-5px);
+}
+
+.process-icon {
+    transition: all 0.3s ease;
+}
+
+.process-step:hover .process-icon {
+    transform: scale(1.1);
+}
+
+/* Interim Testimonial Cards */
+.interim-testimonial-card {
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--bs-info);
+}
+
+.interim-testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+/* Advantage Cards */
+.advantage-card {
+    transition: all 0.3s ease;
+}
+
+.advantage-card:hover {
+    transform: translateX(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+.advantage-icon {
+    transition: all 0.3s ease;
+}
+
+.advantage-card:hover .advantage-icon {
+    transform: scale(1.1);
+}
+
+/* Contact Card */
+.contact-card {
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(var(--bs-info-rgb), 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Utility Classes */
+.animate-fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+.animate-slide-up {
+    animation: slideInLeft 1s ease-out;
+}
+
+.animate-slide-up-delay {
+    animation: slideInLeft 1s ease-out 0.2s both;
+}
+
+.animate-fade-in-delay {
+    animation: fadeIn 1s ease-out 0.4s both;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .interim-main-icon {
+        font-size: 5rem;
+    }
+    
+    .floating-element {
+        font-size: 1rem;
+    }
+    
+    .icon-circle-lg {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .avatar-circle-lg {
+        width: 100px;
+        height: 100px;
+    }
+}
+</style>
+
+<script>
+// Animation des compteurs
+document.addEventListener('DOMContentLoaded', function() {
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200;
+
+    const animateCounter = (counter) => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = target / speed;
+
+        if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(() => animateCounter(counter), 1);
+        } else {
+            counter.innerText = target;
+        }
+    };
+
+    // Observer pour déclencher l'animation au scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+
+    counters.forEach(counter => {
+        observer.observe(counter);
+    });
+});
+</script>
+{% endblock %} 

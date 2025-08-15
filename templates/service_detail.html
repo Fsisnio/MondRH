@@ -1,0 +1,690 @@
+{% extends "base.html" %}
+
+{% block title %}{{ service.title }} - MonDRH{% endblock %}
+
+{% block content %}
+<!-- Hero Section avec Animation -->
+<section class="service-hero bg-gradient-primary text-white position-relative overflow-hidden">
+    <div class="service-hero-bg-pattern"></div>
+    <div class="container position-relative">
+        <div class="row align-items-center py-5">
+            <div class="col-lg-6">
+                <div class="service-hero-content">
+                    <div class="service-badge mb-4">
+                        <span class="badge bg-warning text-dark px-3 py-2 fw-bold">
+                            <i class="fas fa-star me-2"></i>Service Premium
+                        </span>
+                    </div>
+                    <h1 class="display-4 fw-bold mb-4 service-title">
+                        {{ service.title }}
+                    </h1>
+                    <p class="lead mb-4 service-description">
+                        {{ service.description }}
+                    </p>
+                    <div class="service-stats mb-4">
+                        <div class="row g-3">
+                            <div class="col-4">
+                                <div class="stat-item text-center">
+                                    <h4 class="fw-bold mb-1 text-warning">98%</h4>
+                                    <small>Satisfaction</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-item text-center">
+                                    <h4 class="fw-bold mb-1 text-warning">500+</h4>
+                                    <small>Projets</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-item text-center">
+                                    <h4 class="fw-bold mb-1 text-warning">24h</h4>
+                                    <small>Réponse</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="#contact" class="btn btn-warning btn-lg px-4 py-3 fw-bold">
+                            <i class="fas fa-rocket me-2"></i>Démarrer maintenant
+                        </a>
+                        <a href="#process" class="btn btn-outline-light btn-lg px-4 py-3 fw-bold">
+                            <i class="fas fa-play me-2"></i>Voir le processus
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="service-hero-visual text-center">
+                    <div class="service-icon-container">
+                        <div class="service-main-icon">
+                            <span class="display-1 text-warning">{{ service.icon }}</span>
+                        </div>
+                        <div class="floating-elements">
+                            <div class="floating-element element-1">
+                                <i class="fas fa-check-circle text-success"></i>
+                            </div>
+                            <div class="floating-element element-2">
+                                <i class="fas fa-chart-line text-primary"></i>
+                            </div>
+                            <div class="floating-element element-3">
+                                <i class="fas fa-users text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pourquoi Choisir MonDRH -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Pourquoi Choisir MonDRH ?</h2>
+                <p class="lead text-muted">
+                    Une expertise africaine au service de votre réussite
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="why-choose-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-choose-icon mb-4">
+                        <div class="icon-circle bg-primary text-white">
+                            <i class="fas fa-globe-africa fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Expertise Africaine</h5>
+                    <p class="text-muted mb-0">
+                        25 ans d'expérience sur le continent africain
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="why-choose-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-choose-icon mb-4">
+                        <div class="icon-circle bg-success text-white">
+                            <i class="fas fa-handshake fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Accompagnement Personnalisé</h5>
+                    <p class="text-muted mb-0">
+                        Solutions sur mesure adaptées à vos besoins
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="why-choose-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-choose-icon mb-4">
+                        <div class="icon-circle bg-warning text-white">
+                            <i class="fas fa-clock fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Réactivité</h5>
+                    <p class="text-muted mb-0">
+                        Réponse garantie sous 24h
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="why-choose-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-choose-icon mb-4">
+                        <div class="icon-circle bg-danger text-white">
+                            <i class="fas fa-trophy fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Résultats Garantis</h5>
+                    <p class="text-muted mb-0">
+                        98% de satisfaction client
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nos Prestations -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Nos Prestations {{ service.title }}</h2>
+                <p class="lead text-muted">
+                    Des services complets pour répondre à tous vos besoins
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            {% for feature in service.features %}
+            <div class="col-lg-6">
+                <div class="feature-card p-4 bg-white rounded-4 shadow-sm border-start border-4 border-primary h-100">
+                    <div class="d-flex align-items-start">
+                        <div class="feature-icon me-3">
+                            <div class="icon-circle-sm bg-primary text-white">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-2">{{ feature }}</h5>
+                            <p class="text-muted mb-0">
+                                Service professionnel et personnalisé pour optimiser vos résultats.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Processus d'Accompagnement -->
+<section id="process" class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Notre Processus</h2>
+                <p class="lead text-muted">
+                    Une méthodologie éprouvée en 4 étapes
+                </p>
+            </div>
+        </div>
+        
+        <div class="process-timeline">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step text-center">
+                        <div class="process-icon mb-4">
+                            <div class="icon-circle-lg bg-primary text-white position-relative">
+                                <i class="fas fa-search fs-3"></i>
+                                <span class="step-number">1</span>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-3">Diagnostic</h5>
+                        <p class="text-muted">
+                            Analyse approfondie de vos besoins et objectifs
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step text-center">
+                        <div class="process-icon mb-4">
+                            <div class="icon-circle-lg bg-success text-white position-relative">
+                                <i class="fas fa-lightbulb fs-3"></i>
+                                <span class="step-number">2</span>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-3">Proposition</h5>
+                        <p class="text-muted">
+                            Élaboration d'une solution sur mesure
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step text-center">
+                        <div class="process-icon mb-4">
+                            <div class="icon-circle-lg bg-warning text-white position-relative">
+                                <i class="fas fa-cogs fs-3"></i>
+                                <span class="step-number">3</span>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-3">Mise en œuvre</h5>
+                        <p class="text-muted">
+                            Exécution et suivi du projet
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step text-center">
+                        <div class="process-icon mb-4">
+                            <div class="icon-circle-lg bg-danger text-white position-relative">
+                                <i class="fas fa-chart-bar fs-3"></i>
+                                <span class="step-number">4</span>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-3">Évaluation</h5>
+                        <p class="text-muted">
+                            Mesure des résultats obtenus
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Témoignages -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Ils nous font confiance</h2>
+                <p class="lead text-muted">
+                    Découvrez les témoignages de nos clients satisfaits
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="testimonial-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="testimonial-content mb-4">
+                        <p class="fst-italic text-muted">
+                            "MonDRH nous a accompagnés dans notre processus de recrutement avec professionnalisme et efficacité."
+                        </p>
+                    </div>
+                    <div class="testimonial-author d-flex align-items-center">
+                        <div class="author-avatar me-3">
+                            <div class="avatar-circle bg-primary text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Fatou Diallo</h6>
+                            <small class="text-muted">Directrice RH, Entreprise ABC</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="testimonial-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="testimonial-content mb-4">
+                        <p class="fst-italic text-muted">
+                            "L'expertise de MonDRH nous a permis d'optimiser nos processus RH et d'améliorer nos performances."
+                        </p>
+                    </div>
+                    <div class="testimonial-author d-flex align-items-center">
+                        <div class="author-avatar me-3">
+                            <div class="avatar-circle bg-success text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Moussa Sall</h6>
+                            <small class="text-muted">CEO, Startup XYZ</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="testimonial-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="testimonial-content mb-4">
+                        <p class="fst-italic text-muted">
+                            "Un accompagnement personnalisé et des résultats qui dépassent nos attentes. Je recommande !"
+                        </p>
+                    </div>
+                    <div class="testimonial-author d-flex align-items-center">
+                        <div class="author-avatar me-3">
+                            <div class="avatar-circle bg-warning text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Aissatou Ba</h6>
+                            <small class="text-muted">Manager, Société DEF</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-gradient-primary text-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-4">Prêt à Transformer votre Entreprise ?</h2>
+                <p class="lead mb-4">
+                    Rejoignez les 500+ entreprises qui nous font confiance pour leurs besoins en {{ service.title.lower() }}.
+                </p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="#contact" class="btn btn-warning btn-lg px-5 py-3 fw-bold">
+                        <i class="fas fa-rocket me-2"></i>Démarrer maintenant
+                    </a>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-light btn-lg px-5 py-3 fw-bold">
+                        <i class="fas fa-home me-2"></i>Retour à l'accueil
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Parlons de votre Projet</h2>
+                <p class="lead text-muted">
+                    Contactez-nous pour discuter de vos besoins en {{ service.title.lower() }}
+                </p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="contact-card bg-white rounded-4 shadow-lg border-0">
+                    <div class="card-body p-5">
+                        <div class="row g-4">
+                            <div class="col-lg-6">
+                                <div class="contact-info">
+                                    <h4 class="fw-bold mb-4">Informations de Contact</h4>
+                                    <div class="contact-item d-flex align-items-center mb-3">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-phone text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0 fw-bold">+221 787 962 422</p>
+                                            <small class="text-muted">Lun-Ven 9h-18h</small>
+                                        </div>
+                                    </div>
+                                    <div class="contact-item d-flex align-items-center mb-3">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-envelope text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0 fw-bold">aboubacargrh@gmail.com</p>
+                                            <small class="text-muted">Réponse sous 24h</small>
+                                        </div>
+                                    </div>
+                                    <div class="contact-item d-flex align-items-center mb-3">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-map-marker-alt text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0 fw-bold">Dakar, Sénégal</p>
+                                            <small class="text-muted">8 bureaux en Afrique</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <form id="contactForm" class="contact-form">
+                                    <div class="row g-3">
+                                        <div class="col-12">
+                                            <label for="firstName" class="form-label fw-bold">Prénom *</label>
+                                            <input type="text" class="form-control form-control-lg" id="firstName" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="lastName" class="form-label fw-bold">Nom *</label>
+                                            <input type="text" class="form-control form-control-lg" id="lastName" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="email" class="form-label fw-bold">Email *</label>
+                                            <input type="email" class="form-control form-control-lg" id="email" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="phone" class="form-label fw-bold">Téléphone</label>
+                                            <input type="tel" class="form-control form-control-lg" id="phone">
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="company" class="form-label fw-bold">Entreprise</label>
+                                            <input type="text" class="form-control form-control-lg" id="company">
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="service" class="form-label fw-bold">Service</label>
+                                            <input type="text" class="form-control form-control-lg" id="service" value="{{ service.title }}" readonly>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="message" class="form-label fw-bold">Message *</label>
+                                            <textarea class="form-control form-control-lg" id="message" rows="4" placeholder="Décrivez votre projet ou vos besoins en {{ service.title.lower() }}..."></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-primary btn-lg w-100 py-3 fw-bold">
+                                                <i class="fas fa-paper-plane me-2"></i>Envoyer le message
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Service Hero Styles */
+.service-hero {
+    position: relative;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.service-hero-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    animation: float 6s ease-in-out infinite;
+}
+
+.service-badge {
+    animation: slideInLeft 1s ease-out;
+}
+
+.service-title {
+    animation: slideInLeft 1s ease-out 0.2s both;
+}
+
+.service-description {
+    animation: slideInLeft 1s ease-out 0.4s both;
+}
+
+.service-stats {
+    animation: slideInLeft 1s ease-out 0.6s both;
+}
+
+.service-hero-visual {
+    animation: slideInRight 1s ease-out 0.8s both;
+}
+
+.service-icon-container {
+    position: relative;
+    display: inline-block;
+}
+
+.service-main-icon {
+    font-size: 8rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.floating-element {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.element-1 {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.element-2 {
+    top: 60%;
+    right: 10%;
+    animation-delay: 1s;
+}
+
+.element-3 {
+    bottom: 20%;
+    left: 50%;
+    animation-delay: 2s;
+}
+
+/* Why Choose Cards */
+.why-choose-card {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.why-choose-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--bs-primary);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+.icon-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.icon-circle-sm {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-circle-lg {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.step-number {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--bs-warning);
+    color: var(--bs-dark);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* Feature Cards */
+.feature-card {
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateX(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+/* Testimonial Cards */
+.testimonial-card {
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+.avatar-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Contact Card */
+.contact-card {
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(var(--bs-primary-rgb), 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .service-main-icon {
+        font-size: 5rem;
+    }
+    
+    .floating-element {
+        font-size: 1rem;
+    }
+    
+    .icon-circle-lg {
+        width: 80px;
+        height: 80px;
+    }
+}
+</style>
+{% endblock %} 

@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}Détails du Rendez-vous - Administration{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4 admin-layout">
+    <div class="row">
+        <main role="main" class="main-content px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Détails du Rendez-vous #{{ appointment.id }}</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <a href="{{ url_for('admin_appointments') }}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Retour
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card shadow">
+                        <div class="card-header">
+                            <h5 class="mb-0">Informations du Rendez-vous</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>Client</h6>
+                                    <p class="mb-3">
+                                        <strong>{{ appointment.user.first_name }} {{ appointment.user.last_name }}</strong><br>
+                                        <small class="text-muted">{{ appointment.user.email }}</small>
+                                    </p>
+                                    
+                                    <h6>Service</h6>
+                                    <p class="mb-3">
+                                        <span class="badge bg-{{ 'primary' if appointment.service_type == 'recrutement' else 'info' if appointment.service_type == 'coaching' else 'success' if appointment.service_type == 'formation' else 'warning' }}">
+                                            {{ appointment.service_type|title }}
+                                        </span>
+                                    </p>
+                                    
+                                    <h6>Date et Heure</h6>
+                                    <p class="mb-3">
+                                        <strong>{{ appointment.date.strftime('%d/%m/%Y') }}</strong><br>
+                                        <small class="text-muted">{{ appointment.time.strftime('%H:%M') }}</small>
+                                    </p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>Durée</h6>
+                                    <p class="mb-3">{{ appointment.duration }} minutes</p>
+                                    
+                                    <h6>Statut</h6>
+                                    <p class="mb-3">
+                                        <span class="badge bg-{{ 'warning' if appointment.status == 'pending' else 'success' if appointment.status == 'confirmed' else 'danger' if appointment.status == 'cancelled' else 'info' }}">
+                                            {{ appointment.status|title }}
+                                        </span>
+                                    </p>
+                                    
+                                    <h6>Sujet</h6>
+                                    <p class="mb-3">
+                                        {% if appointment.subject %}
+                                            {{ appointment.subject }}
+                                        {% else %}
+                                            <span class="text-muted">Aucun sujet spécifié</span>
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            {% if appointment.notes %}
+                            <div class="mt-4">
+                                <h6>Notes</h6>
+                                <p class="mb-0">{{ appointment.notes }}</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card shadow">
+                        <div class="card-header">
+                            <h5 class="mb-0">Actions</h5>
+                        </div>
+                        <div class="card-body">
+                            {% if appointment.status == 'pending' %}
+                            <form method="POST" action="{{ url_for('admin_confirm_appointment', appointment_id=appointment.id) }}" class="mb-2">
+                                <button type="submit" class="btn btn-success w-100">
+                                    <i class="fas fa-check me-2"></i>Confirmer
+                                </button>
+                            </form>
+                            {% endif %}
+                            
+                            {% if appointment.status != 'cancelled' %}
+                            <form method="POST" action="{{ url_for('admin_cancel_appointment', appointment_id=appointment.id) }}" class="mb-2">
+                                <button type="submit" class="btn btn-warning w-100">
+                                    <i class="fas fa-times me-2"></i>Annuler
+                                </button>
+                            </form>
+                            {% endif %}
+                            
+                            <form method="POST" action="{{ url_for('admin_delete_appointment', appointment_id=appointment.id) }}" 
+                                  onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce rendez-vous ?')">
+                                <button type="submit" class="btn btn-danger w-100">
+                                    <i class="fas fa-trash me-2"></i>Supprimer
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    {% if appointment.google_calendar_link %}
+                    <div class="card shadow mt-3">
+                        <div class="card-header">
+                            <h5 class="mb-0">Google Calendar</h5>
+                        </div>
+                        <div class="card-body">
+                            <a href="{{ appointment.google_calendar_link }}" target="_blank" class="btn btn-outline-primary w-100">
+                                <i class="fab fa-google me-2"></i>Voir dans Calendar
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %} 

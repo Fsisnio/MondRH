@@ -1,0 +1,966 @@
+{% extends "base.html" %}
+
+{% block title %}Coaching - MonDRH{% endblock %}
+
+{% block content %}
+<!-- Hero Section Coaching -->
+<section class="coaching-hero bg-gradient-success text-white position-relative overflow-hidden">
+    <div class="coaching-hero-bg-pattern"></div>
+    <div class="container position-relative">
+        <div class="row align-items-center min-vh-75">
+            <div class="col-lg-6">
+                <div class="coaching-hero-content">
+                    <div class="coaching-badge mb-4 animate-fade-in">
+                        <span class="badge bg-warning text-dark px-4 py-3 fw-bold fs-6">
+                            <i class="fas fa-bullseye me-2"></i>Développement Personnel
+                        </span>
+                    </div>
+                    <h1 class="display-3 fw-bold mb-4 animate-slide-up">
+                        Coaching <span class="text-warning">Professionnel</span>
+                    </h1>
+                    <p class="lead mb-4 fs-5 animate-slide-up-delay">
+                        Développez votre potentiel et celui de vos équipes grâce à nos programmes de coaching personnalisés. 
+                        Transformez vos défis en opportunités de croissance.
+                    </p>
+                    
+                    <!-- Statistiques coaching -->
+                    <div class="coaching-stats mb-5 animate-fade-in-delay">
+                        <div class="row g-3">
+                            <div class="col-4">
+                                <div class="stat-item text-center">
+                                    <h3 class="fw-bold mb-1 text-warning counter" data-target="95">0</h3>
+                                    <small>% de réussite</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-item text-center">
+                                    <h3 class="fw-bold mb-1 text-warning counter" data-target="300">0</h3>
+                                    <small>Coachs formés</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-item text-center">
+                                    <h3 class="fw-bold mb-1 text-warning counter" data-target="12">0</h3>
+                                    <small>Mois d'accompagnement</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex gap-3 flex-wrap animate-fade-in-delay">
+                        <a href="#programs" class="btn btn-warning btn-lg px-5 py-3 fw-bold">
+                            <i class="fas fa-rocket me-2"></i>Découvrir nos programmes
+                        </a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg px-5 py-3 fw-bold">
+                            <i class="fas fa-calendar me-2"></i>Réserver une séance
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="coaching-hero-visual text-center animate-slide-up-delay">
+                    <div class="coaching-icon-container">
+                        <div class="coaching-main-icon">
+                            <i class="fas fa-bullseye display-1 text-warning"></i>
+                        </div>
+                        <div class="floating-coaching-elements">
+                            <div class="floating-element element-1">
+                                <i class="fas fa-chart-line text-success"></i>
+                            </div>
+                            <div class="floating-element element-2">
+                                <i class="fas fa-lightbulb text-primary"></i>
+                            </div>
+                            <div class="floating-element element-3">
+                                <i class="fas fa-users text-warning"></i>
+                            </div>
+                            <div class="floating-element element-4">
+                                <i class="fas fa-trophy text-danger"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pourquoi le Coaching -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Pourquoi Choisir le Coaching ?</h2>
+                <p class="lead text-muted">
+                    Le coaching est un levier puissant pour transformer votre carrière et votre organisation
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="why-coaching-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-coaching-icon mb-4">
+                        <div class="icon-circle bg-success text-white">
+                            <i class="fas fa-eye fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Clarté des Objectifs</h5>
+                    <p class="text-muted mb-0">
+                        Définissez des objectifs clairs et mesurables pour votre développement
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="why-coaching-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-coaching-icon mb-4">
+                        <div class="icon-circle bg-primary text-white">
+                            <i class="fas fa-brain fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Développement des Compétences</h5>
+                    <p class="text-muted mb-0">
+                        Acquérez de nouvelles compétences et optimisez vos performances
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="why-coaching-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-coaching-icon mb-4">
+                        <div class="icon-circle bg-warning text-white">
+                            <i class="fas fa-balance-scale fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Équilibre Vie Pro/Perso</h5>
+                    <p class="text-muted mb-0">
+                        Trouvez l'équilibre parfait entre votre vie professionnelle et personnelle
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="why-coaching-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="why-coaching-icon mb-4">
+                        <div class="icon-circle bg-danger text-white">
+                            <i class="fas fa-rocket fs-2"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Accélération de Carrière</h5>
+                    <p class="text-muted mb-0">
+                        Accélérez votre progression et atteignez vos objectifs plus rapidement
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nos Programmes de Coaching -->
+<section id="programs" class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Nos Programmes de Coaching</h2>
+                <p class="lead text-muted">
+                    Des programmes sur mesure adaptés à vos besoins spécifiques
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="coaching-program-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="program-header mb-4">
+                        <div class="program-icon mb-3">
+                            <div class="icon-circle-lg bg-primary text-white">
+                                <i class="fas fa-user-tie fs-2"></i>
+                            </div>
+                        </div>
+                        <h4 class="fw-bold mb-2">Coaching Individuel</h4>
+                        <p class="text-muted mb-3">Accompagnement personnalisé pour votre développement</p>
+                        <div class="program-price mb-3">
+                            <span class="h3 fw-bold text-primary">À partir de 150€</span>
+                            <small class="text-muted d-block">par séance</small>
+                        </div>
+                    </div>
+                    <div class="program-features mb-4">
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>12 séances personnalisées
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Bilan de compétences
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Plan d'action détaillé
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Suivi entre les séances
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Rapport final d'évaluation
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="btn btn-primary w-100 py-3 fw-bold">
+                        <i class="fas fa-calendar me-2"></i>Réserver maintenant
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="coaching-program-card p-4 bg-white rounded-4 shadow-sm h-100 border border-warning">
+                    <div class="program-badge mb-3">
+                        <span class="badge bg-warning text-dark px-3 py-2 fw-bold">
+                            <i class="fas fa-star me-1"></i>Le Plus Populaire
+                        </span>
+                    </div>
+                    <div class="program-header mb-4">
+                        <div class="program-icon mb-3">
+                            <div class="icon-circle-lg bg-success text-white">
+                                <i class="fas fa-users fs-2"></i>
+                            </div>
+                        </div>
+                        <h4 class="fw-bold mb-2">Coaching d'Équipe</h4>
+                        <p class="text-muted mb-3">Développez la cohésion et la performance collective</p>
+                        <div class="program-price mb-3">
+                            <span class="h3 fw-bold text-success">À partir de 300€</span>
+                            <small class="text-muted d-block">par session équipe</small>
+                        </div>
+                    </div>
+                    <div class="program-features mb-4">
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>8 sessions d'équipe
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Diagnostic d'équipe
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Développement du leadership
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Amélioration de la communication
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Outils de collaboration
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="btn btn-success w-100 py-3 fw-bold">
+                        <i class="fas fa-calendar me-2"></i>Réserver maintenant
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="coaching-program-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="program-header mb-4">
+                        <div class="program-icon mb-3">
+                            <div class="icon-circle-lg bg-warning text-white">
+                                <i class="fas fa-crown fs-2"></i>
+                            </div>
+                        </div>
+                        <h4 class="fw-bold mb-2">Coaching Executive</h4>
+                        <p class="text-muted mb-3">Accompagnement des dirigeants et cadres supérieurs</p>
+                        <div class="program-price mb-3">
+                            <span class="h3 fw-bold text-warning">À partir de 500€</span>
+                            <small class="text-muted d-block">par séance</small>
+                        </div>
+                    </div>
+                    <div class="program-features mb-4">
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>16 séances intensives
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>360° feedback
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Stratégie de leadership
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Gestion du changement
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>Accompagnement VIP
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="btn btn-warning w-100 py-3 fw-bold">
+                        <i class="fas fa-calendar me-2"></i>Réserver maintenant
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Méthodologie de Coaching -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Notre Méthodologie</h2>
+                <p class="lead text-muted">
+                    Une approche structurée et éprouvée pour des résultats durables
+                </p>
+            </div>
+        </div>
+        
+        <div class="coaching-methodology">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="methodology-step text-center">
+                        <div class="methodology-icon mb-4">
+                            <div class="icon-circle-lg bg-primary text-white position-relative">
+                                <i class="fas fa-search fs-3"></i>
+                                <span class="step-number">1</span>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-3">Diagnostic Initial</h5>
+                        <p class="text-muted">
+                            Analyse approfondie de vos besoins, objectifs et contexte
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="methodology-step text-center">
+                        <div class="methodology-icon mb-4">
+                            <div class="icon-circle-lg bg-success text-white position-relative">
+                                <i class="fas fa-target fs-3"></i>
+                                <span class="step-number">2</span>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-3">Définition des Objectifs</h5>
+                        <p class="text-muted">
+                            Établissement d'objectifs SMART et plan d'action personnalisé
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="methodology-step text-center">
+                        <div class="methodology-icon mb-4">
+                            <div class="icon-circle-lg bg-warning text-white position-relative">
+                                <i class="fas fa-cogs fs-3"></i>
+                                <span class="step-number">3</span>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-3">Accompagnement</h5>
+                        <p class="text-muted">
+                            Séances régulières avec outils et techniques adaptés
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="methodology-step text-center">
+                        <div class="methodology-icon mb-4">
+                            <div class="icon-circle-lg bg-danger text-white position-relative">
+                                <i class="fas fa-chart-line fs-3"></i>
+                                <span class="step-number">4</span>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-3">Mesure des Résultats</h5>
+                        <p class="text-muted">
+                            Évaluation des progrès et consolidation des acquis
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Témoignages Coaching -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Ils ont Transformé leur Carrière</h2>
+                <p class="lead text-muted">
+                    Découvrez les témoignages de nos clients qui ont réussi grâce au coaching
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="coaching-testimonial-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="testimonial-content mb-4">
+                        <p class="fst-italic text-muted">
+                            "Le coaching avec MonDRH m'a permis de clarifier mes objectifs professionnels et de développer mon leadership. J'ai obtenu une promotion 6 mois après le début du programme."
+                        </p>
+                    </div>
+                    <div class="testimonial-author d-flex align-items-center">
+                        <div class="author-avatar me-3">
+                            <div class="avatar-circle bg-primary text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Aminata Diop</h6>
+                            <small class="text-muted">Directrice Marketing, TechStart</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="coaching-testimonial-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="testimonial-content mb-4">
+                        <p class="fst-italic text-muted">
+                            "L'accompagnement d'équipe a transformé notre culture d'entreprise. La communication s'est améliorée et nos performances ont augmenté de 40%."
+                        </p>
+                    </div>
+                    <div class="testimonial-author d-flex align-items-center">
+                        <div class="author-avatar me-3">
+                            <div class="avatar-circle bg-success text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Mamadou Fall</h6>
+                            <small class="text-muted">CEO, InnovationLab</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="coaching-testimonial-card p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="testimonial-content mb-4">
+                        <p class="fst-italic text-muted">
+                            "Le coaching executive m'a aidé à gérer la transition lors de la fusion de mon entreprise. J'ai pu maintenir la motivation de mes équipes et atteindre nos objectifs."
+                        </p>
+                    </div>
+                    <div class="testimonial-author d-flex align-items-center">
+                        <div class="author-avatar me-3">
+                            <div class="avatar-circle bg-warning text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Fatou Ndiaye</h6>
+                            <small class="text-muted">PDG, Groupe Financier</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nos Coaches -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Nos Coaches Certifiés</h2>
+                <p class="lead text-muted">
+                    Une équipe d'experts qualifiés pour vous accompagner vers la réussite
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="coach-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="coach-avatar mb-4">
+                        <div class="avatar-circle-lg bg-primary text-white mx-auto">
+                            <i class="fas fa-user-tie fs-1"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-2">Dr. Aboubacar Diallo</h5>
+                    <p class="text-muted mb-3">Coach Senior & Psychologue du Travail</p>
+                    <div class="coach-specialties mb-3">
+                        <span class="badge bg-primary me-1">Leadership</span>
+                        <span class="badge bg-success me-1">Gestion du Stress</span>
+                        <span class="badge bg-warning">Carrière</span>
+                    </div>
+                    <p class="text-muted small">
+                        15 ans d'expérience en coaching executive et développement du leadership
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="coach-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="coach-avatar mb-4">
+                        <div class="avatar-circle-lg bg-success text-white mx-auto">
+                            <i class="fas fa-user-graduate fs-1"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-2">Aissatou Ba</h5>
+                    <p class="text-muted mb-3">Coach d'Équipe & Formatrice</p>
+                    <div class="coach-specialties mb-3">
+                        <span class="badge bg-primary me-1">Équipe</span>
+                        <span class="badge bg-success me-1">Communication</span>
+                        <span class="badge bg-warning">Performance</span>
+                    </div>
+                    <p class="text-muted small">
+                        Spécialiste en développement d'équipe et optimisation des performances
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="coach-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
+                    <div class="coach-avatar mb-4">
+                        <div class="avatar-circle-lg bg-warning text-white mx-auto">
+                            <i class="fas fa-user-cog fs-1"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-2">Moussa Sall</h5>
+                    <p class="text-muted mb-3">Coach Individuel & Mentor</p>
+                    <div class="coach-specialties mb-3">
+                        <span class="badge bg-primary me-1">Individuel</span>
+                        <span class="badge bg-success me-1">Transition</span>
+                        <span class="badge bg-warning">Objectifs</span>
+                    </div>
+                    <p class="text-muted small">
+                        Expert en accompagnement individuel et transitions de carrière
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-gradient-success text-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-4">Prêt à Transformer votre Carrière ?</h2>
+                <p class="lead mb-4">
+                    Rejoignez les 300+ professionnels qui ont transformé leur carrière grâce à notre coaching.
+                </p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="#contact" class="btn btn-warning btn-lg px-5 py-3 fw-bold">
+                        <i class="fas fa-calendar me-2"></i>Réserver une séance gratuite
+                    </a>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-light btn-lg px-5 py-3 fw-bold">
+                        <i class="fas fa-home me-2"></i>Retour à l'accueil
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Commençons votre Transformation</h2>
+                <p class="lead text-muted">
+                    Contactez-nous pour discuter de vos objectifs et découvrir comment le coaching peut vous aider
+                </p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="contact-card bg-white rounded-4 shadow-lg border-0">
+                    <div class="card-body p-5">
+                        <div class="row g-4">
+                            <div class="col-lg-6">
+                                <div class="contact-info">
+                                    <h4 class="fw-bold mb-4">Informations de Contact</h4>
+                                    <div class="contact-item d-flex align-items-center mb-3">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-phone text-success"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0 fw-bold">+221 787 962 422</p>
+                                            <small class="text-muted">Lun-Ven 9h-18h</small>
+                                        </div>
+                                    </div>
+                                    <div class="contact-item d-flex align-items-center mb-3">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-envelope text-success"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0 fw-bold">coaching@mondrh.com</p>
+                                            <small class="text-muted">Réponse sous 24h</small>
+                                        </div>
+                                    </div>
+                                    <div class="contact-item d-flex align-items-center mb-3">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-map-marker-alt text-success"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0 fw-bold">Dakar, Sénégal</p>
+                                            <small class="text-muted">Séances en présentiel et en ligne</small>
+                                        </div>
+                                    </div>
+                                    <div class="contact-item d-flex align-items-center mb-3">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-clock text-success"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0 fw-bold">Séance gratuite</p>
+                                            <small class="text-muted">30 minutes de découverte</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <form id="coachingContactForm" class="contact-form">
+                                    <div class="row g-3">
+                                        <div class="col-12">
+                                            <label for="firstName" class="form-label fw-bold">Prénom *</label>
+                                            <input type="text" class="form-control form-control-lg" id="firstName" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="lastName" class="form-label fw-bold">Nom *</label>
+                                            <input type="text" class="form-control form-control-lg" id="lastName" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="email" class="form-label fw-bold">Email *</label>
+                                            <input type="email" class="form-control form-control-lg" id="email" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="phone" class="form-label fw-bold">Téléphone</label>
+                                            <input type="tel" class="form-control form-control-lg" id="phone">
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="program" class="form-label fw-bold">Programme d'intérêt</label>
+                                            <select class="form-select form-select-lg" id="program">
+                                                <option value="">Sélectionnez un programme</option>
+                                                <option value="individuel">Coaching Individuel</option>
+                                                <option value="equipe">Coaching d'Équipe</option>
+                                                <option value="executive">Coaching Executive</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="objectives" class="form-label fw-bold">Vos objectifs *</label>
+                                            <textarea class="form-control form-control-lg" id="objectives" rows="4" placeholder="Décrivez vos objectifs et ce que vous souhaitez accomplir..."></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-success btn-lg w-100 py-3 fw-bold">
+                                                <i class="fas fa-paper-plane me-2"></i>Demander une séance gratuite
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Coaching Hero Styles */
+.coaching-hero {
+    position: relative;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
+.coaching-hero-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    animation: float 6s ease-in-out infinite;
+}
+
+.coaching-badge {
+    animation: slideInLeft 1s ease-out;
+}
+
+.coaching-title {
+    animation: slideInLeft 1s ease-out 0.2s both;
+}
+
+.coaching-description {
+    animation: slideInLeft 1s ease-out 0.4s both;
+}
+
+.coaching-stats {
+    animation: slideInLeft 1s ease-out 0.6s both;
+}
+
+.coaching-hero-visual {
+    animation: slideInRight 1s ease-out 0.8s both;
+}
+
+.coaching-icon-container {
+    position: relative;
+    display: inline-block;
+}
+
+.coaching-main-icon {
+    font-size: 8rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.floating-coaching-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.floating-element {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.element-1 {
+    top: 15%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.element-2 {
+    top: 45%;
+    right: 15%;
+    animation-delay: 1s;
+}
+
+.element-3 {
+    bottom: 25%;
+    left: 20%;
+    animation-delay: 2s;
+}
+
+.element-4 {
+    top: 70%;
+    right: 25%;
+    animation-delay: 1.5s;
+}
+
+/* Why Coaching Cards */
+.why-coaching-card {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.why-coaching-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--bs-success);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+/* Coaching Program Cards */
+.coaching-program-card {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.coaching-program-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+}
+
+.program-badge {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.program-price {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 2px dashed var(--bs-primary);
+}
+
+/* Methodology Steps */
+.methodology-step {
+    transition: all 0.3s ease;
+}
+
+.methodology-step:hover {
+    transform: translateY(-5px);
+}
+
+.methodology-icon {
+    transition: all 0.3s ease;
+}
+
+.methodology-step:hover .methodology-icon {
+    transform: scale(1.1);
+}
+
+/* Coaching Testimonial Cards */
+.coaching-testimonial-card {
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--bs-success);
+}
+
+.coaching-testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+/* Coach Cards */
+.coach-card {
+    transition: all 0.3s ease;
+}
+
+.coach-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+}
+
+.coach-avatar {
+    transition: all 0.3s ease;
+}
+
+.coach-card:hover .coach-avatar {
+    transform: scale(1.05);
+}
+
+.avatar-circle-lg {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.coach-specialties .badge {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+}
+
+/* Contact Card */
+.contact-card {
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(var(--bs-success-rgb), 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Utility Classes */
+.animate-fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+.animate-slide-up {
+    animation: slideInLeft 1s ease-out;
+}
+
+.animate-slide-up-delay {
+    animation: slideInLeft 1s ease-out 0.2s both;
+}
+
+.animate-fade-in-delay {
+    animation: fadeIn 1s ease-out 0.4s both;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .coaching-main-icon {
+        font-size: 5rem;
+    }
+    
+    .floating-element {
+        font-size: 1rem;
+    }
+    
+    .icon-circle-lg {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .avatar-circle-lg {
+        width: 100px;
+        height: 100px;
+    }
+}
+</style>
+
+<script>
+// Animation des compteurs
+document.addEventListener('DOMContentLoaded', function() {
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200;
+
+    const animateCounter = (counter) => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = target / speed;
+
+        if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(() => animateCounter(counter), 1);
+        } else {
+            counter.innerText = target;
+        }
+    };
+
+    // Observer pour déclencher l'animation au scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+
+    counters.forEach(counter => {
+        observer.observe(counter);
+    });
+});
+</script>
+{% endblock %} 
