@@ -75,7 +75,7 @@ def create_admin_user():
         
         try:
             # Vérifier s'il y a déjà un admin
-            existing_admin = User.query.filter_by(email='admin@monderh.fr').first()
+            existing_admin = User.query.filter_by(email='faladespero1@gmail.com').first()
             if existing_admin:
                 print("⚠️ Un administrateur avec cet email existe déjà")
                 if existing_admin.user_type == 'admin':
@@ -93,10 +93,10 @@ def create_admin_user():
             from werkzeug.security import generate_password_hash
             
             admin_user = User(
-                email='admin@monderh.fr',
-                password_hash=generate_password_hash('admin123'),
-                first_name='Admin',
-                last_name='MonDRH',
+                email='faladespero1@gmail.com',
+                password_hash=generate_password_hash('admin124'),
+                first_name='Spero',
+                last_name='Falade',
                 user_type='admin',
                 is_active=True
             )
@@ -124,7 +124,7 @@ def test_admin_login():
         try:
             from werkzeug.security import check_password_hash
             
-            admin = User.query.filter_by(email='admin@monderh.fr').first()
+            admin = User.query.filter_by(email='faladespero1@gmail.com').first()
             if not admin:
                 print("❌ Aucun administrateur trouvé")
                 return False
@@ -134,7 +134,7 @@ def test_admin_login():
                 return False
             
             # Tester le mot de passe
-            test_password = 'admin123'
+            test_password = 'admin124'
             if check_password_hash(admin.password_hash, test_password):
                 print("✅ Mot de passe correct")
                 print("✅ Compte administrateur fonctionnel")

@@ -60,10 +60,10 @@ def create_admin_user():
             from werkzeug.security import generate_password_hash
             
             admin_user = User(
-                email='admin@monderh.fr',
-                password_hash=generate_password_hash('admin123'),
-                first_name='Admin',
-                last_name='MonDRH',
+                email='faladespero1@gmail.com',
+                password_hash=generate_password_hash('admin124'),
+                first_name='Spero',
+                last_name='Falade',
                 user_type='admin',
                 is_active=True
             )
@@ -72,8 +72,8 @@ def create_admin_user():
             db.session.commit()
             
             print("✅ Utilisateur administrateur créé:")
-            print("   Email: admin@monderh.fr")
-            print("   Mot de passe: admin123")
+            print("   Email: faladespero1@gmail.com")
+            print("   Mot de passe: admin124")
             
             return True
             
@@ -174,8 +174,8 @@ def main():
     print("=" * 60)
     print("📋 Informations importantes:")
     print("   • URL de l'application: https://votre-app.onrender.com")
-    print("   • Email admin: admin@monderh.fr")
-    print("   • Mot de passe admin: admin123")
+    print("   • Email admin: faladespero1@gmail.com")
+    print("   • Mot de passe admin: admin124")
     print("   • N'oubliez pas de changer le mot de passe admin !")
     
     return True
