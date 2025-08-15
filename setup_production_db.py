@@ -64,7 +64,7 @@ def create_admin_user():
                 password_hash=generate_password_hash('admin123'),
                 first_name='Admin',
                 last_name='MonDRH',
-                role='admin',
+                user_type='admin',
                 is_active=True
             )
             

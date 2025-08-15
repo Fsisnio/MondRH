@@ -26,9 +26,11 @@ def init_database():
             admin_user = User.query.filter_by(user_type='admin').first()
             if not admin_user:
                 print("👤 Création d'un utilisateur administrateur...")
+                from werkzeug.security import generate_password_hash
+                
                 admin_user = User(
                     email='admin@monderh.fr',
-                    password_hash='pbkdf2:sha256:600000$dev-admin-password-hash',
+                    password_hash=generate_password_hash('admin123'),
                     first_name='Admin',
                     last_name='MonDRH',
                     user_type='admin',
