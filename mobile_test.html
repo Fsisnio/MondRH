@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Mobile - MonDRH</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .mobile-test-section {
+            padding: 2rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        .device-info {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .responsive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .test-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+        }
+        .logo-test {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .logo-test img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-center py-5">
+            <h1>📱 Test de Responsivité Mobile</h1>
+            <p class="lead">Vérifiez l'affichage sur différents appareils</p>
+        </div>
+
+        <!-- Informations sur l'appareil -->
+        <div class="mobile-test-section">
+            <h2>📊 Informations sur l'appareil</h2>
+            <div class="device-info">
+                <p><strong>Largeur d'écran:</strong> <span id="screen-width"></span>px</p>
+                <p><strong>Hauteur d'écran:</strong> <span id="screen-height"></span>px</p>
+                <p><strong>Ratio d'aspect:</strong> <span id="aspect-ratio"></span></p>
+                <p><strong>Orientation:</strong> <span id="orientation"></span></p>
+                <p><strong>User Agent:</strong> <span id="user-agent"></span></p>
+            </div>
+        </div>
+
+        <!-- Test du logo -->
+        <div class="mobile-test-section">
+            <h2>🖼️ Test du Logo</h2>
+            <div class="logo-test">
+                <img src="static/images/logodrh.png" alt="MonDRH Logo" style="height: 100px;">
+                <p class="mt-3">Logo MonDRH - Taille: 100px</p>
+            </div>
+        </div>
+
+        <!-- Test de la grille responsive -->
+        <div class="mobile-test-section">
+            <h2>🔲 Test de la Grille Responsive</h2>
+            <div class="responsive-grid">
+                <div class="test-card">
+                    <i class="fas fa-mobile-alt fa-3x text-primary mb-3"></i>
+                    <h5>Mobile</h5>
+                    <p>Test sur petit écran</p>
+                </div>
+                <div class="test-card">
+                    <i class="fas fa-tablet-alt fa-3x text-success mb-3"></i>
+                    <h5>Tablette</h5>
+                    <p>Test sur écran moyen</p>
+                </div>
+                <div class="test-card">
+                    <i class="fas fa-desktop fa-3x text-warning mb-3"></i>
+                    <h5>Desktop</h5>
+                    <p>Test sur grand écran</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test des boutons -->
+        <div class="mobile-test-section">
+            <h2>🔘 Test des Boutons</h2>
+            <div class="d-flex flex-wrap gap-2">
+                <button class="btn btn-primary">Bouton Principal</button>
+                <button class="btn btn-secondary">Bouton Secondaire</button>
+                <button class="btn btn-success">Bouton Succès</button>
+                <button class="btn btn-warning">Bouton Attention</button>
+                <button class="btn btn-danger">Bouton Danger</button>
+            </div>
+        </div>
+
+        <!-- Test des formulaires -->
+        <div class="mobile-test-section">
+            <h2>📝 Test des Formulaires</h2>
+            <form>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="firstName" class="form-label">Prénom</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="Votre prénom">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="Votre nom">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="votre@email.com">
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" rows="3" placeholder="Votre message"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+            </form>
+        </div>
+
+        <!-- Test de la navigation -->
+        <div class="mobile-test-section">
+            <h2>🧭 Test de la Navigation</h2>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <img src="static/images/logodrh.png" alt="Logo" style="height: 30px;">
+                        MonDRH
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Instructions de test -->
+        <div class="mobile-test-section">
+            <h2>📋 Instructions de Test</h2>
+            <div class="alert alert-info">
+                <h5>🧪 Comment tester :</h5>
+                <ol>
+                    <li><strong>Redimensionnez la fenêtre</strong> de votre navigateur</li>
+                    <li><strong>Utilisez les outils de développement</strong> (F12) et simulez différents appareils</li>
+                    <li><strong>Testez sur votre mobile</strong> en visitant cette page</li>
+                    <li><strong>Vérifiez l'orientation</strong> portrait et paysage</li>
+                </ol>
+                
+                <h5>📱 Points à vérifier :</h5>
+                <ul>
+                    <li>Le logo s'adapte-t-il à la taille de l'écran ?</li>
+                    <li>La navigation est-elle utilisable sur mobile ?</li>
+                    <li>Les formulaires sont-ils lisibles ?</li>
+                    <li>Les boutons sont-ils assez grands pour le tactile ?</li>
+                    <li>Le texte est-il lisible sur petit écran ?</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Afficher les informations sur l'appareil
+        function updateDeviceInfo() {
+            document.getElementById('screen-width').textContent = window.innerWidth;
+            document.getElementById('screen-height').textContent = window.innerHeight;
+            document.getElementById('aspect-ratio').textContent = (window.innerWidth / window.innerHeight).toFixed(2);
+            document.getElementById('orientation').textContent = window.innerWidth > window.innerHeight ? 'Paysage' : 'Portrait';
+            document.getElementById('user-agent').textContent = navigator.userAgent.substring(0, 50) + '...';
+        }
+
+        // Mettre à jour lors du redimensionnement
+        window.addEventListener('resize', updateDeviceInfo);
+        window.addEventListener('orientationchange', updateDeviceInfo);
+
+        // Initialisation
+        updateDeviceInfo();
+    </script>
+</body>
+</html> 
