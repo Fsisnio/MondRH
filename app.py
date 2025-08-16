@@ -9,6 +9,7 @@ from wtforms.validators import DataRequired, Email, Length, EqualTo
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 import os
+import logging
 from datetime import datetime, timedelta, timezone
 import json
 from functools import wraps
@@ -40,12 +41,19 @@ from googleapiclient.http import MediaIoBaseUpload, MediaIoBaseDownload
 # Charger les variables d'environnement
 load_dotenv()
 
+# Configuration du logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
 app = Flask(__name__)
 CORS(app)
 
 # Configuration
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///monderh.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///monderh.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
@@ -197,8 +205,13 @@ class GoogleToken(db.Model):
 def admin_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if not current_user.is_authenticated or not current_user.is_admin():
+        if not current_user.is_authenticated:
+            logger.warning(f"Tentative d'accès non authentifié à une route admin depuis {request.remote_addr}")
             abort(403)
+        if not current_user.is_admin():
+            logger.warning(f"Tentative d'accès non autorisé à une route admin par {current_user.email} depuis {request.remote_addr}")
+            abort(403)
+        logger.info(f"Accès autorisé à une route admin par {current_user.email}")
         return f(*args, **kwargs)
     return decorated_function
 
@@ -490,7 +503,12 @@ class UserEditForm(FlaskForm):
 # User loader for Flask-Login
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    user = User.query.get(int(user_id))
+    if user:
+        logger.info(f"Utilisateur chargé: {user.email} (ID: {user_id})")
+    else:
+        logger.warning(f"Tentative de chargement d'un utilisateur inexistant: {user_id}")
+    return user
 
 # Filtres Jinja2 personnalisés
 @app.template_filter('nl2br')
@@ -610,17 +628,23 @@ def service_detail(service_name):
 # Authentication routes
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    logger.info(f"Tentative de connexion depuis {request.remote_addr}")
+    
     if current_user.is_authenticated:
+        logger.info(f"Utilisateur déjà connecté: {current_user.email}")
         return redirect(url_for('admin_dashboard') if current_user.is_admin() else url_for('dashboard'))
     
     form = LoginForm()
     if form.validate_on_submit():
+        logger.info(f"Tentative de connexion pour l'email: {form.email.data}")
         user = User.query.filter_by(email=form.email.data).first()
         if user and check_password_hash(user.password_hash, form.password.data):
             login_user(user, remember=form.remember_me.data)
+            logger.info(f"Connexion réussie pour l'utilisateur: {user.email} (type: {user.user_type})")
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('admin_dashboard') if user.is_admin() else url_for('dashboard'))
         else:
+            logger.warning(f"Échec de connexion pour l'email: {form.email.data}")
             flash('Email ou mot de passe incorrect', 'error')
     
     return render_template('auth/login.html', form=form)
@@ -1018,6 +1042,8 @@ def internal_error(error):
 @login_required
 @admin_required
 def admin_dashboard():
+    logger.info(f"Accès au tableau de bord admin par {current_user.email}")
+    
     # Statistiques générales
     total_users = User.query.count()
     total_applications = Application.query.count()
